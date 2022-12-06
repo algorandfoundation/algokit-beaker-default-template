@@ -9,57 +9,34 @@ ide_vscode:
     help: Do you want to add VSCode configuration?
     default: yes
 
-ide_pycharm:
-    type: bool
-    help: Do you want to add PyCharm configuration?
-    default: yes
-
-programming_language:
-    type: str
-    help: What is the programming language that you want to use?
-    choices:
-        Python: "python"
-        TypeScript: "typescript"
-    default: "python"
-
 use_python_poetry:
     type: bool
     help: Do you want to use Poetry for dependency management?
     default: yes
-    when: "{{ programming_language == 'python' }}"
 
-python_linter:
-    type: str
-    help: Please select Python linter
-    choices:
-        Ruff: "ruff"
-        Flake8: "flake8"
-        No, thank you: "null"
-    default: "ruff"
-    when: "{{ programming_language == 'python' }}"
+use_python_ruff:
+    type: bool
+    help: Do you want to use Ruff as linter?
+    default: yes
 
 use_python_black:
     type: bool
     help: Do you want to use Black as formatter?
     default: yes
-    when: "{{ programming_language == 'python' }}"
 
 use_python_mypy:
     type: bool
     help: Do you want to use MyPy for type checking?
     default: yes
-    when: "{{ programming_language == 'python' }}"
 
 use_python_pytest:
     type: bool
     help: Do you want to use PyTest for unit tests?
     default: yes
-    when: "{{ programming_language == 'python' }}"
 
 use_python_pip_audit:
     type: bool
     help: Do you want to use Pip-Audit?
     default: yes
-    when: "{{ programming_language == 'python' }}"
 
 _subdirectory: template_content

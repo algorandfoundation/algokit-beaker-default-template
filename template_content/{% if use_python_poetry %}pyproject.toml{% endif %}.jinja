@@ -17,11 +17,8 @@ pip-audit = "^2.4.5"
 {%- if use_python_black -%}
 black = {extras = ["d"], version = "^22.10.0"}
 {% endif %}
-{%- if python_linter == 'ruff' -%}
+{%- if use_python_ruff -%}
 ruff = "^0.0.149"
-{% endif %}
-{%- if python_linter == 'flake8' -%}
-flake8 = "^6.0.0"
 {% endif %}
 {%- if use_python_mypy -%}
 mypy = "^0.991"
@@ -35,7 +32,7 @@ pytest-cov = "^4.0.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-{%- if python_linter == 'ruff' -%}
+{%- if use_python_ruff -%}
 [tool.ruff]
 line-length = 120
 select = ["E", "F", "ANN", "U", "N", "C", "B", "A", "YTT", "M", "W", "FBT", "Q", "RUF", "I"]
