@@ -38,10 +38,22 @@ python_formatter:
     default: yes
     when: "{{ programming_language == 'python' }}"
 
+python_mypy:
+    type: bool
+    help: Do you want to use MyPy for type checking?
+    default: yes
+    when: "{{ programming_language == 'python' }}"
+
+python_poetry:
+    type: bool
+    help: Do you want to use Poetry for dependency management?
+    default: yes
+    when: "{{ programming_language == 'python' }}"
+
 python_unittest:
     type: bool
     help: Do you want to generate unit tests?
     default: yes
     when: "{{ programming_language == 'python' }}"
 
-_subdirectory: content
+_subdirectory: template-content
