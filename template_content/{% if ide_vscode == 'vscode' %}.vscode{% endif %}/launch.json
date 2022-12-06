@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Compile PyTEAL smart contracts to .teal",
+      "type": "python",
+      "request": "launch",
+      "module": "smart_contracts",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
