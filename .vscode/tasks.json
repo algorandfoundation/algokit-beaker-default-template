@@ -1,0 +1,41 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run template using algokit",
+      "command": "algokit",
+      "args": [
+        "init",
+        "--name",
+        "test_output",
+        "--no-git",
+        "--template-url",
+        "${workspaceFolder}",
+      ],
+      "type": "shell",
+      "group": "build",
+      "dependsOn": ["Delete test_output folder"]
+    },
+    
+    {
+      "label": "Delete test_output folder",
+      "command": "rm",
+      "args": [
+        "-rf",
+        "test_output"
+      ],
+      "type": "shell",
+      "windows": {
+        "command": "Remove-Item",
+        "args": [
+          "-Recurse",
+          "-Force",
+          "test_output"
+        ]
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    }
+  ]
+}

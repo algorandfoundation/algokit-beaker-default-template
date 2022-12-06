@@ -2,10 +2,12 @@
   "recommendations": [
     "ms-python.python",
     "ms-python.vscode-pylance",
+    {% if python_linter == 'ruff' -%}
     "charliermarsh.ruff",
+    "emeraldwalk.runonsave",
+    {% endif %}
     "bungcip.better-toml",
     "editorconfig.editorconfig",
-    "emeraldwalk.runonsave",
     "matangover.mypy"
   ]
 }

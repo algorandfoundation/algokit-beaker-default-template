@@ -1,4 +1,4 @@
-# Project {{ project_name }}
+# {{ project_name }}
 
 This project has been generated using AlgoKit. See below for default getting started instructions.
 
@@ -35,8 +35,14 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 This project makes use of Python to build Algorand smart contracts. The following tools are in use:
 
+{% if use_python_poetry -%}
 - [Poetry](https://python-poetry.org/): Python packaging and dependency management.
+{% endif %}
+{%- if use_python_black -%}
 - [Black](https://github.com/psf/black): A Python code formatter.
+{% endif %}
+{%- if use_python_ruff -%}
 - [Ruff](https://github.com/charliermarsh/ruff): An extremely fast Python linter.
+{% endif %}
 
 It has also been configured to have a productive dev experience out of the box in VS Code, see the [.vscode](./.vscode) folder.
