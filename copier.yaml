@@ -1,50 +1,89 @@
 # questions
-advanced_mode:
-    type: bool
-    help: Would you like to use default settings (VSCode, Python with suggested development settings)
-
 project_name:
     type: str
     help: Name for this project.
-    default: "Sample Project"
+    default: "sample-app"
+
+default_or_advanced_mode:
+    type: str
+    help: Would you like to use default settings (VSCode, Python with suggested development settings)?
+    choices:
+        Default: "default"
+        Advanced: "advanced"
+    default: "default"
 
 advanced_ide:
-    when: 
     type: str
+    help: What is the IDE that you want to use?
     choices:
         VS Code: "vscode"
         PyCharm: "pycharm"
         Text Only: "textonly"
+    default: "vscode"
+    when: "{{ default_or_advanced_mode == 'advanced' }}"
 
 advanced_language:
     type: str
+    help: What is the programming language that you want to use?
     choices:
         Python: "python"
-        Typescript: "typescript"
+        TypeScript: "typescript"
+    default: "python"
+    when: "{{ default_or_advanced_mode == 'advanced' }}"
 
 advanced_python_linter:
     type: str
+    help: Please select Python linter
     choices:
-        Black: "black"
-        Flake8: "flake8"
+        Ruff: "ruff"
         PyLint: "pylint"
+    default: "ruff"
+    when: "{{ default_or_advanced_mode == 'advanced' and advanced_language != 'python' }}"
 
 advanced_typescript_linter:
     type: str
+    help: Please select TypeScript linter
     choices:
         TSLint: "tslint"
         ESLint: "eslint"
+    default: "tslint"
+    when: "{{ default_or_advanced_mode == 'advanced' and advanced_language != 'typescript' }}"
+
+advanced_python_formatter:
+    type: str
+    help: Please select Python formatter
+    choices:
+        Black: "black"
+        Prettier: "prettier"
+        Flake8: "flake8"
+    default: "black"
+    when: "{{ default_or_advanced_mode == 'advanced' and advanced_language != 'python' }}"
+
+advanced_typescript_formatter:
+    type: str
+    help: Please select TypeScript formatter
+    choices:
+        Prettier: "prettier"
+        Gts: "gts"
+    default: "prettier"
+    when: "{{ default_or_advanced_mode == 'advanced' and advanced_language != 'typescript' }}"
 
 advanced_python_unittest:
     type: str
+    help: Please select Python unittest framework
     choices:
         PyTest: "pytest"
         Robot: "robot"
         UnitTest: "unittest"
+    default: "pytest"
+    when: "{{ default_or_advanced_mode == 'advanced' and advanced_language != 'Python' }}"
 
 advanced_typescript_unittest:
     type: str
+    help: Please select TypeScript unittest framework
     choices:
         Jest: "jest"
         Mocha: "mocha"
         Jasmine: "jasmine"
+    default: "jest"
+    when: "{{ default_or_advanced_mode == 'advanced' and advanced_language != 'typescript' }}"
