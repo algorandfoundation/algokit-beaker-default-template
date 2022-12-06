@@ -52,7 +52,7 @@ use_python_mypy:
 
 use_python_pytest:
     type: bool
-    help: Do you want to generate unit tests?
+    help: Do you want to use PyTest for unit tests?
     default: yes
     when: "{{ programming_language == 'python' }}"
 

@@ -11,22 +11,22 @@ pyteal = "^0.20.1"
 beaker-pyteal = "^0.4.0"
 
 [tool.poetry.group.dev.dependencies]
-{% if use_python_pip_audit %%}
+{% if use_python_pip_audit -%}
 pip-audit = "^2.4.5"
 {% endif %}
-{% if use_python_black %}
+{%- if use_python_black -%}
 black = {extras = ["d"], version = "^22.10.0"}
 {% endif %}
-{% if python_linter == 'ruff' %}
+{%- if python_linter == 'ruff' -%}
 ruff = "^0.0.149"
 {% endif %}
-{% if python_linter == 'flake8' %}
+{%- if python_linter == 'flake8' -%}
 flake8 = "^6.0.0"
 {% endif %}
-{% if use_python_mypy %}
+{%- if use_python_mypy -%}
 mypy = "^0.991"
 {% endif %}
-{% if use_python_pytest %}
+{%- if use_python_pytest -%}
 pytest = "^7.2.0"
 pytest-cov = "^4.0.0"
 {% endif %}
@@ -35,7 +35,7 @@ pytest-cov = "^4.0.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-{% if python_linter == 'ruff' %}
+{%- if python_linter == 'ruff' -%}
 [tool.ruff]
 line-length = 120
 select = ["E", "F", "ANN", "U", "N", "C", "B", "A", "YTT", "M", "W", "FBT", "Q", "RUF", "I"]
@@ -74,7 +74,7 @@ allow-star-arg-any = true
 suppress-none-returning = true
 {% endif %}
 
-{% if use_python_black %}
+{%- if use_python_black -%}
 [tool.black]
 line-length = 120
 {% endif %}
@@ -82,7 +82,7 @@ line-length = 120
 [tool.pytest.ini_options]
 pythonpath = ["smart_contracts"]
 
-{% if use_python_mypy %}
+{%- if use_python_mypy -%}
 [tool.mypy]
 files = "smart_contracts/"
 python_version = "3.10"
@@ -98,7 +98,7 @@ implicit_reexport = false
 show_error_codes = true
 {% endif %}
 
-{% if use_python_pytest %}
+{%- if use_python_pytest -%}
 [tool.pytest.ini_options]
 pythonpath = ["src", "tests"]
 {% endif %}
