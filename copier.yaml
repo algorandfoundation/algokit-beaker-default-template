@@ -22,6 +22,12 @@ programming_language:
         TypeScript: "typescript"
     default: "python"
 
+use_python_poetry:
+    type: bool
+    help: Do you want to use Poetry for dependency management?
+    default: yes
+    when: "{{ programming_language == 'python' }}"
+
 python_linter:
     type: str
     help: Please select Python linter
@@ -32,28 +38,28 @@ python_linter:
     default: "ruff"
     when: "{{ programming_language == 'python' }}"
 
-python_formatter:
+use_python_black:
     type: bool
     help: Do you want to use Black as formatter?
     default: yes
     when: "{{ programming_language == 'python' }}"
 
-python_mypy:
+use_python_mypy:
     type: bool
     help: Do you want to use MyPy for type checking?
     default: yes
     when: "{{ programming_language == 'python' }}"
 
-python_poetry:
-    type: bool
-    help: Do you want to use Poetry for dependency management?
-    default: yes
-    when: "{{ programming_language == 'python' }}"
-
-python_unittest:
+use_python_pytest:
     type: bool
     help: Do you want to generate unit tests?
     default: yes
     when: "{{ programming_language == 'python' }}"
 
-_subdirectory: template-content
+use_python_pip_audit:
+    type: bool
+    help: Do you want to use Pip-Audit?
+    default: yes
+    when: "{{ programming_language == 'python' }}"
+
+_subdirectory: template_content
