@@ -1,0 +1,50 @@
+# questions
+advanced_mode:
+    type: bool
+    help: Would you like to use default settings (VSCode, Python with suggested development settings)
+
+project_name:
+    type: str
+    help: Name for this project.
+    default: "Sample Project"
+
+advanced_ide:
+    when: 
+    type: str
+    choices:
+        VS Code: "vscode"
+        PyCharm: "pycharm"
+        Text Only: "textonly"
+
+advanced_language:
+    type: str
+    choices:
+        Python: "python"
+        Typescript: "typescript"
+
+advanced_python_linter:
+    type: str
+    choices:
+        Black: "black"
+        Flake8: "flake8"
+        PyLint: "pylint"
+
+advanced_typescript_linter:
+    type: str
+    choices:
+        TSLint: "tslint"
+        ESLint: "eslint"
+
+advanced_python_unittest:
+    type: str
+    choices:
+        PyTest: "pytest"
+        Robot: "robot"
+        UnitTest: "unittest"
+
+advanced_typescript_unittest:
+    type: str
+    choices:
+        Jest: "jest"
+        Mocha: "mocha"
+        Jasmine: "jasmine"
