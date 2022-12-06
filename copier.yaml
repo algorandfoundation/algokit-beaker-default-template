@@ -14,10 +14,14 @@ use_python_poetry:
     help: Do you want to use Poetry for dependency management?
     default: yes
 
-use_python_ruff:
-    type: bool
-    help: Do you want to use Ruff as linter?
-    default: yes
+python_linter:
+    type: str
+    help: Please select Python linter
+    choices:
+        Ruff: "ruff"
+        Flake8: "flake8"
+        No, thank you: "null"
+    default: "ruff"
 
 use_python_black:
     type: bool

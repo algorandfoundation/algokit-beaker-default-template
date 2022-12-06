@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "{{ project_name }} contract"
+name = "{{ project_name }}"
 version = "0.1.0"
 description = "Algorand smart contracts"
 authors = ["Your Name <you@example.com>"]
@@ -17,8 +17,11 @@ pip-audit = "^2.4.5"
 {%- if use_python_black -%}
 black = {extras = ["d"], version = "^22.10.0"}
 {% endif %}
-{%- if use_python_ruff -%}
+{%- if python_linter == 'ruff' -%}
 ruff = "^0.0.149"
+{% endif %}
+{%- if python_linter == 'flake8' -%}
+flake8 = "^6.0.0"
 {% endif %}
 {%- if use_python_mypy -%}
 mypy = "^0.991"
@@ -32,7 +35,7 @@ pytest-cov = "^4.0.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-{% if use_python_ruff %}
+{% if python_linter == 'ruff' -%}
 [tool.ruff]
 line-length = 120
 select = ["E", "F", "ANN", "U", "N", "C", "B", "A", "YTT", "M", "W", "FBT", "Q", "RUF", "I"]
@@ -71,24 +74,21 @@ allow-star-arg-any = true
 suppress-none-returning = true
 {% endif %}
 
-
-{% if use_python_black %}
+{% if use_python_black -%}
 [tool.black]
 line-length = 120
 {% endif %}
 
-{% if use_python_pytest %}
+{% if use_python_pytest -%}
 [tool.pytest.ini_options]
 pythonpath = ["smart_contracts", "tests"]
 {% endif %}
-
-
-{% if not use_python_pytest %}
+{% if not use_python_pytest -%}
 [tool.pytest.ini_options]
 pythonpath = ["smart_contracts"]
 {% endif %}
 
-{% if use_python_mypy %}
+{% if use_python_mypy -%}
 [tool.mypy]
 files = "smart_contracts/"
 python_version = "3.10"
