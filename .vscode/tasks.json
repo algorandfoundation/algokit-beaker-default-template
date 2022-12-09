@@ -5,6 +5,7 @@
       "label": "Run template using algokit",
       "command": "algokit",
       "args": [
+        "-v",
         "init",
         "--name",
         "test_output",
@@ -15,7 +16,10 @@
         "${workspaceFolder}",
       ],
       "type": "shell",
-      "group": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "dependsOn": ["Delete test_output folder"]
     },
     
@@ -28,12 +32,7 @@
       ],
       "type": "shell",
       "windows": {
-        "command": "Remove-Item",
-        "args": [
-          "-Recurse",
-          "-Force",
-          "test_output"
-        ]
+        "command": "./clear.ps1"
       },
       "options": {
         "cwd": "${workspaceFolder}"
