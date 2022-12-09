@@ -1,5 +1,8 @@
 _subdirectory: template_content
 
+_tasks:
+    - algokit bootstrap poetry --ok-exit-code --run {{run_poetry_install}}
+
 # questions
 project_name:
     type: str
@@ -48,4 +51,9 @@ use_python_pytest:
 use_python_pip_audit:
     type: bool
     help: Do you want to use Pip-Audit?
+    default: yes
+
+run_poetry_install:
+    type: bool
+    help: Do you want to run `poetry install`?
     default: yes

@@ -2,7 +2,8 @@ from pathlib import Path
 from shutil import rmtree
 from typing import Sequence
 
-from beaker import Application
+from beaker.application import Application
+
 from smart_contracts.helloworld import HelloWorld
 
 
@@ -20,6 +21,7 @@ class Lab:
             module_name = cls.__module__.removeprefix("smart_contracts.")
             qualified_app_name = f"{module_name}.{cls.__qualname__}"
             app_output_dir = output_dir / qualified_app_name
+            print(f"Compiling {qualified_app_name} to {app_output_dir}")
             app.dump(str(app_output_dir))
 
 
