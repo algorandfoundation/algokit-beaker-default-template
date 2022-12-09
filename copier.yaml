@@ -4,15 +4,17 @@ _subdirectory: template_content
 project_name:
     type: str
     help: Name for this project.
-    placeholder: "sample-app"
+    placeholder: "algorand-app"
 
 author_name:
     type: str
     help: Package author name
+    placeholder: "Your Name"
 
 author_email:
     type: str
     help: Package author email
+    placeholder: "your@email.tld"
 
 ide_vscode:
     type: bool
