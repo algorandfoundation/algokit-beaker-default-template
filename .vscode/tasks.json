@@ -9,6 +9,8 @@
         "--name",
         "test_output",
         "--no-git",
+        "--defaults",
+        "--accept-template-url",
         "--template-url",
         "${workspaceFolder}",
       ],
