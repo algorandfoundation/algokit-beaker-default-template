@@ -1,18 +1,23 @@
 _subdirectory: template_content
 
+_tasks:
+    - algokit bootstrap poetry --ok-exit-code --run {{run_poetry_install}}
+
 # questions
 project_name:
     type: str
     help: Name for this project.
-    placeholder: "sample-app"
+    placeholder: "algorand-app"
 
 author_name:
     type: str
     help: Package author name
+    placeholder: "Your Name"
 
 author_email:
     type: str
     help: Package author email
+    placeholder: "your@email.tld"
 
 ide_vscode:
     type: bool
@@ -46,4 +51,9 @@ use_python_pytest:
 use_python_pip_audit:
     type: bool
     help: Do you want to use Pip-Audit?
+    default: yes
+
+run_poetry_install:
+    type: bool
+    help: Do you want to run `poetry install`?
     default: yes
