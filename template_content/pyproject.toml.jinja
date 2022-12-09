@@ -2,12 +2,11 @@
 name = "{{ project_name }}"
 version = "0.1.0"
 description = "Algorand smart contracts"
-authors = ["Your Name <you@example.com>"]
+authors = ["{{ author_name }} <{{ author_email }}>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pyteal = "^0.20.1"
 beaker-pyteal = "^0.4.0"
 
 [tool.poetry.group.dev.dependencies]
@@ -18,7 +17,7 @@ pip-audit = "^2.4.5"
 black = {extras = ["d"], version = "^22.10.0"}
 {% endif %}
 {%- if python_linter == 'ruff' -%}
-ruff = "^0.0.149"
+ruff = "^0.0.171"
 {% endif %}
 {%- if python_linter == 'flake8' -%}
 flake8 = "^6.0.0"
@@ -37,10 +36,8 @@ build-backend = "poetry.core.masonry.api"
 
 {% if python_linter == 'ruff' -%}
 [tool.ruff]
-line-length = 120
-select = ["E", "F", "ANN", "U", "N", "C", "B", "A", "YTT", "M", "W", "FBT", "Q", "RUF", "I"]
-# note: remove A003 once flake8-builtins: builtins-ignorelist supported and can ignore id
-ignore = ["ANN101", "C901", "A003"]
+select = ["E", "F", "ANN", "UP", "N", "C", "B", "A", "YTT", "W", "FBT", "Q", "RUF", "I"]
+ignore = ["ANN101", "C901"]
 # Exclude a variety of commonly ignored directories.
 exclude = [
     ".bzr",
@@ -74,18 +71,9 @@ allow-star-arg-any = true
 suppress-none-returning = true
 {% endif %}
 
-{% if use_python_black -%}
-[tool.black]
-line-length = 120
-{% endif %}
-
 {% if use_python_pytest -%}
 [tool.pytest.ini_options]
 pythonpath = ["smart_contracts", "tests"]
-{% endif %}
-{% if not use_python_pytest -%}
-[tool.pytest.ini_options]
-pythonpath = ["smart_contracts"]
 {% endif %}
 
 {% if use_python_mypy -%}

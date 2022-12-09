@@ -1,17 +1,22 @@
+_subdirectory: template_content
+
 # questions
 project_name:
     type: str
     help: Name for this project.
     placeholder: "sample-app"
 
+author_name:
+    type: str
+    help: Package author name
+
+author_email:
+    type: str
+    help: Package author email
+
 ide_vscode:
     type: bool
     help: Do you want to add VSCode configuration?
-    default: yes
-
-use_python_poetry:
-    type: bool
-    help: Do you want to use Poetry for dependency management?
     default: yes
 
 python_linter:
@@ -42,5 +47,3 @@ use_python_pip_audit:
     type: bool
     help: Do you want to use Pip-Audit?
     default: yes
-
-_subdirectory: template_content
