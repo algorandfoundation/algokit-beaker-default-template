@@ -1,9 +1,9 @@
 _subdirectory: template_content
 
 _tasks:
-    - ["{{ _copier_python }}", "-c", "import subprocess\nif ('{{run_poetry_install}}'.lower() in ['true', '1', 't', 'y', 'yes']): subprocess.run('algokit -v bootstrap poetry --ok-exit-code'.split())"]
+    - ["{{ _copier_python }}", "-c", "import subprocess\nif ('{{run_poetry_install}}'.lower() in ['true', '1', 't', 'y', 'yes']): subprocess.run('algokit bootstrap poetry --ok-exit-code'.split())"]
     # This is what I want it to be, but it doesn't work :(
-    #- '{% if run_poetry_install %}algokit -v bootstrap poetry --ok-exit-code{% endif %}"'
+    #- '{% if run_poetry_install %}algokit bootstrap poetry --ok-exit-code{% endif %}"'
 
 # questions
 project_name:
