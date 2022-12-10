@@ -14,6 +14,9 @@
         "--accept-template-url",
         "--template-url",
         "${workspaceFolder}",
+        "-a",
+        "run_poetry_install",
+        "False"
       ],
       "type": "shell",
       "group": {
