@@ -11,7 +11,7 @@
         "test_output",
         "--no-git",
         "--defaults",
-        "--accept-template-url",
+        "--unsafe-security-accept-template-url",
         "--template-url",
         "${workspaceFolder}",
         "-a",
