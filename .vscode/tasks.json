@@ -25,7 +25,6 @@
       },
       "dependsOn": ["Delete test_output folder"]
     },
-    
     {
       "label": "Delete test_output folder",
       "command": "rm",
@@ -35,7 +34,7 @@
       ],
       "type": "shell",
       "windows": {
-        "command": "./clear.ps1"
+        "command": "./.vscode/clear.ps1"
       },
       "options": {
         "cwd": "${workspaceFolder}"
