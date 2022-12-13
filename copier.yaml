@@ -77,7 +77,7 @@ algod_port:
 
 indexer_token:
     type: str
-    help: Default Algod token
+    help: Default Indexer token
     default: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
 indexer_server:
