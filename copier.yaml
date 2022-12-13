@@ -60,7 +60,7 @@ run_poetry_install:
     help: Do you want to run `poetry install`?
     default: yes
 
-algo_token:
+algod_token:
     type: str
     help: Default Algod Token
     default: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
