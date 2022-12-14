@@ -6,6 +6,7 @@ _tasks:
     #- '{% if run_poetry_install %}algokit bootstrap poetry --ok-exit-code{% endif %}"'
 
 # questions
+# project_name should never get prompted, AlgoKit should always pass it by convention
 project_name:
     type: str
     help: Name for this project.
@@ -59,6 +60,8 @@ run_poetry_install:
     type: bool
     help: Do you want to automatically install Python dependencies and set up the Python virtual environment so you can execute the project immediately (via `poetry install`)?
     default: yes
+
+# The following should never get prompted; algokit should always pass these values through by convention
 
 algod_token:
     type: str
