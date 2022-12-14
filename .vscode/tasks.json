@@ -14,9 +14,7 @@
         "--UNSAFE-SECURITY-accept-template-url",
         "--template-url",
         "${workspaceFolder}",
-        "-a",
-        "run_poetry_install",
-        "False"
+        "--no-bootstrap"
       ],
       "type": "shell",
       "group": {
@@ -38,9 +36,7 @@
         "--UNSAFE-SECURITY-accept-template-url",
         "--template-url",
         "${workspaceFolder}",
-        "-a",
-        "run_poetry_install",
-        "False"
+        "--no-bootstrap"
       ],
       "type": "shell",
       "dependsOn": ["Delete test_output folder"],
