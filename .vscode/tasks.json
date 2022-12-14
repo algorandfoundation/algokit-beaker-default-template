@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Run template using algokit",
+      "label": "Run template using algokit (no-prompts)",
       "command": "algokit",
       "args": [
         "-v",
@@ -11,7 +11,7 @@
         "test_output",
         "--no-git",
         "--defaults",
-        "--unsafe-security-accept-template-url",
+        "--UNSAFE-SECURITY-accept-template-url",
         "--template-url",
         "${workspaceFolder}",
         "-a",
@@ -23,7 +23,28 @@
         "kind": "build",
         "isDefault": true
       },
-      "dependsOn": ["Delete test_output folder"]
+      "dependsOn": ["Delete test_output folder"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Run template using algokit (template prompts)",
+      "command": "algokit",
+      "args": [
+        "-v",
+        "init",
+        "--name",
+        "test_output",
+        "--no-git",
+        "--UNSAFE-SECURITY-accept-template-url",
+        "--template-url",
+        "${workspaceFolder}",
+        "-a",
+        "run_poetry_install",
+        "False"
+      ],
+      "type": "shell",
+      "dependsOn": ["Delete test_output folder"],
+      "problemMatcher": []
     },
     {
       "label": "Delete test_output folder",
@@ -38,7 +59,8 @@
       },
       "options": {
         "cwd": "${workspaceFolder}"
-      }
+      },
+      "problemMatcher": []
     }
   ]
 }
