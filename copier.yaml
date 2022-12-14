@@ -28,7 +28,7 @@ ide_vscode:
 
 python_linter:
     type: str
-    help: Please select Python linter
+    help: Do you want to use a Python linter?
     choices:
         Ruff: "ruff"
         Flake8: "flake8"
@@ -37,27 +37,27 @@ python_linter:
 
 use_python_black:
     type: bool
-    help: Do you want to use Black as formatter?
+    help: Do you want to use a Python formatter (via Black)?
     default: yes
 
 use_python_mypy:
     type: bool
-    help: Do you want to use MyPy for type checking?
+    help: Do you want to use a Python type checker (via mypy)?
     default: yes
 
 use_python_pytest:
     type: bool
-    help: Do you want to use PyTest for unit tests?
+    help: Do you want to include unit tests (via pytest)?
     default: yes
 
 use_python_pip_audit:
     type: bool
-    help: Do you want to use Pip-Audit?
+    help: Do you want to include Python dependency vulnerability scanning (via pip-audit)?
     default: yes
 
 run_poetry_install:
     type: bool
-    help: Do you want to run `poetry install`?
+    help: Do you want to automatically install Python dependencies and set up the Python virtual environment so you can execute the project immediately (via `poetry install`)?
     default: yes
 
 algod_token:
