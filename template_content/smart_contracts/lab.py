@@ -3,6 +3,7 @@ from shutil import rmtree
 from typing import Sequence
 
 from beaker.application import Application
+
 from smart_contracts.helloworld import HelloWorld
 
 
