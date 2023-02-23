@@ -11,23 +11,23 @@ beaker-pyteal = { git = "https://github.com/algorand-devrel/beaker", branch = "v
 
 [tool.poetry.group.dev.dependencies]
 {% if use_python_pip_audit -%}
-pip-audit = "^2.4.5"
+pip-audit = "*"
 {% endif %}
 {%- if use_python_black -%}
-black = {extras = ["d"], version = "^22.10.0"}
+black = {extras = ["d"], version = "*"}
 {% endif %}
 {%- if python_linter == 'ruff' -%}
-ruff = "^0.0.171"
+ruff = "0.0.252"
 {% endif %}
 {%- if python_linter == 'flake8' -%}
-flake8 = "^6.0.0"
+flake8 = "*"
 {% endif %}
 {%- if use_python_mypy -%}
-mypy = "^0.991"
+mypy = "*"
 {% endif %}
 {%- if use_python_pytest -%}
-pytest = "^7.2.0"
-pytest-cov = "^4.0.0"
+pytest = "*"
+pytest-cov = "*"
 {% endif %}
 
 [build-system]
