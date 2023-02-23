@@ -2,9 +2,9 @@ from pathlib import Path
 from shutil import rmtree
 from typing import Sequence
 
-from beaker.application import Application
+from beaker import Application
 
-from smart_contracts.helloworld import HelloWorld
+from smart_contracts.helloworld import app as hello_world_app
 
 
 class Lab:
@@ -17,14 +17,12 @@ class Lab:
             rmtree(output_dir)
         output_dir.mkdir(exist_ok=False)
         for app in self.apps:
-            cls = app.__class__
-            module_name = cls.__module__.removeprefix("smart_contracts.")
-            qualified_app_name = f"{module_name}.{cls.__qualname__}"
-            app_output_dir = output_dir / qualified_app_name
-            print(f"Compiling {qualified_app_name} to {app_output_dir}")
-            app.dump(str(app_output_dir))
+            app_output_dir = output_dir / app.name
+            print(f"Exporting {app.name} to {app_output_dir}")
+            specification = app.build()
+            specification.export(app_output_dir)
 
 
 my_lab = Lab(
-    apps=[HelloWorld()],
+    apps=[hello_world_app],
 )

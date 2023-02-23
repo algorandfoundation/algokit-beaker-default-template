@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-beaker-pyteal = "^0.5.0"
+beaker-pyteal = { git = "https://github.com/algorand-devrel/beaker", branch = "v1" }
 
 [tool.poetry.group.dev.dependencies]
 {% if use_python_pip_audit -%}
