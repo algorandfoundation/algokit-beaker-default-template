@@ -1,6 +1,6 @@
+from collections.abc import Sequence
 from pathlib import Path
 from shutil import rmtree
-from typing import Sequence
 
 from beaker import Application
 
