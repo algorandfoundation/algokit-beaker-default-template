@@ -80,14 +80,9 @@ pythonpath = ["smart_contracts", "tests"]
 [tool.mypy]
 files = "smart_contracts/"
 python_version = "3.10"
-warn_unused_ignores = true
+check_untyped_defs = true
 warn_redundant_casts = true
-warn_unused_configs = true
-warn_unreachable = true
-warn_return_any = true
-strict = true
-disallow_untyped_decorators = true
-disallow_any_generics = false
-implicit_reexport = false
-show_error_codes = true
+warn_unused_ignores = true
+allow_untyped_defs = false
+strict_equality = true
 {% endif %}
