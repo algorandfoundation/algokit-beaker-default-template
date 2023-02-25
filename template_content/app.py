@@ -17,13 +17,14 @@ def delete() -> Expr:
     return Approve()
 
 
+app.build().export("./artifacts")
+
 accounts = get_accounts()
 sender = accounts[0]
 
 app_client = ApplicationClient(
     client=get_algod_client(), app=app, sender=sender.address, signer=sender.signer
 )
-
 
 app_client.create()
 return_value = app_client.call(hello, name="Beaker").return_value
