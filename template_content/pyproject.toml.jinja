@@ -73,12 +73,12 @@ suppress-none-returning = true
 
 {% if use_python_pytest -%}
 [tool.pytest.ini_options]
-pythonpath = ["smart_contracts", "tests"]
+pythonpath = [".", "tests"]
 {% endif %}
 
 {% if use_python_mypy -%}
 [tool.mypy]
-files = "smart_contracts/"
+files = "./"
 python_version = "3.10"
 check_untyped_defs = true
 warn_redundant_casts = true

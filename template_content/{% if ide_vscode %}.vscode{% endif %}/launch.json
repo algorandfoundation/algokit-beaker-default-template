@@ -5,7 +5,7 @@
       "name": "Compile PyTEAL smart contracts to .teal",
       "type": "python",
       "request": "launch",
-      "module": "smart_contracts",
+      "program": "app.py",
       "cwd": "${workspaceFolder}"
     }
   ]
