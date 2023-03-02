@@ -172,7 +172,7 @@ pyteal = "~0.23.0"
 type = "git"
 url = "https://github.com/algorand-devrel/beaker"
 reference = "v1"
-resolved_reference = "6882c2513269777e6fa7e5375c0efe98191ce2ac"
+resolved_reference = "931cd25e17454874b9d23b481d0db4df9fd802b7"
 
 [[package]]
 name = "black"

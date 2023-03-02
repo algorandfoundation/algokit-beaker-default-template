@@ -2,13 +2,13 @@ from collections.abc import Sequence
 from pathlib import Path
 from shutil import rmtree
 
-from beaker import Application
+import beaker
 
 from smart_contracts.helloworld import app as hello_world_app
 
 
 class Lab:
-    def __init__(self, apps: Sequence[Application]) -> None:
+    def __init__(self, apps: Sequence[beaker.Application]) -> None:
         self.apps = apps
 
     def distill(self, output_dir: Path) -> None:

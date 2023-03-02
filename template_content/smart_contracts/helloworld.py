@@ -1,14 +1,15 @@
-from beaker import Application, Authorize
-from pyteal import Approve, Bytes, Concat, Expr, Global, abi
+import beaker
+import pyteal as pt
 
-app = Application("HelloWorld")
+app = beaker.Application("HelloWorld")
 
 
 @app.external(read_only=True)
-def hello(name: abi.String, *, output: abi.String) -> Expr:
-    return output.set(Concat(Bytes("Hello, "), name.get()))
+def hello(name: pt.abi.String, *, output: pt.abi.String) -> pt.Expr:
+    return output.set(pt.Concat(pt.Bytes("Hello, "), name.get()))
 
 
-@app.delete(authorize=Authorize.only(Global.creator_address()))
-def delete() -> Expr:
-    return Approve()
+@app.delete(authorize=beaker.Authorize.only(pt.Global.creator_address()))
+def delete() -> pt.Expr:
+    return pt.Approve()
+
