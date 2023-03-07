@@ -19,7 +19,12 @@
   // Python
   "platformSettings.autoLoad": true,
   "platformSettings.platforms": {
-    "default": {
+    "linux": {
+      "nodes": {
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
+      }
+    },
+    "darwin": {
       "nodes": {
         "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
       }
