@@ -2,10 +2,10 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Start AlgoKit Sandbox",
+      "label": "Start AlgoKit LocalNet",
       "command": "algokit",
       "args": [
-        "sandbox",
+        "localnet",
         "start"
       ],
       "type": "shell",
@@ -15,10 +15,10 @@
       "problemMatcher": []
     },
     {
-      "label": "Stop AlgoKit Sandbox",
+      "label": "Stop AlgoKit LocalNet",
       "command": "algokit",
       "args": [
-        "sandbox",
+        "localnet",
         "stop"
       ],
       "type": "shell",
@@ -28,10 +28,10 @@
       "problemMatcher": []
     },
     {
-      "label": "Reset AlgoKit Sandbox",
+      "label": "Reset AlgoKit LocalNet",
       "command": "algokit",
       "args": [
-        "sandbox",
+        "localnet",
         "reset"
       ],
       "type": "shell",
