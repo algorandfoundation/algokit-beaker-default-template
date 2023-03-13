@@ -142,7 +142,7 @@ pyteal = "^0.23.0"
 type = "git"
 url = "https://github.com/algorandfoundation/algokit-utils-py"
 reference = "add-application-client"
-resolved_reference = "b7e60f11f58ae4b82223a05d2c5d182dbe48047b"
+resolved_reference = "875a08d0514e13abc6c028853fa50299cd2a0269"
 
 [[package]]
 name = "async-timeout"
@@ -193,7 +193,7 @@ pyteal = "~0.23.0"
 type = "git"
 url = "https://github.com/daniel-makerx/beaker"
 reference = "add-algokit-utils"
-resolved_reference = "f9bf91b2a6f1e3c953b83090c570322a2a282655"
+resolved_reference = "5eadc962644303c95ab677ccd871ad3e8816c7ba"
 
 [[package]]
 name = "black"
