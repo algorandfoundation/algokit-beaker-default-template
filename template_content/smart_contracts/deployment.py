@@ -5,7 +5,7 @@ from algokit_utils.account import get_account
 from algokit_utils.app import OnSchemaBreak, OnUpdate, deploy_app, get_creator_apps
 from algokit_utils.application_specification import ApplicationSpecification
 from algokit_utils.network_clients import get_algod_client, get_indexer_client
-
+from algosdk.util import algos_to_microalgos
 
 logger = logging.getLogger(__name__)
 
@@ -38,11 +38,12 @@ def deploy(app_spec_path: Path) -> None:
 
     # TODO: get algokit-utils to provide this
     apps = get_creator_apps(indexer_client, deployer)
-    app = apps.get(app_spec.contract.name)
+    app = apps[app_spec.contract.name]
     # if only just created, fund smart contract account
     if app.created_at_round > round_before_deploy:
-        amount = 10
-        logger.info(f"New app created, funding with {amount}")
+        amount = algos_to_microalgos(10)
+        logger.info(f"New app created, funding with {amount}µ algos")
         fund_response = app_client.fund(amount)
-        logging.info(f"Transfer of {amount} to {app_client.app_id} successful: {fund_response.tx_ids[0]}")
-
+        logging.info(
+            f"Transfer of {amount}µ algos to {app_client.app_id} successful: {fund_response.tx_ids[0]}"
+        )

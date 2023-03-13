@@ -18,11 +18,11 @@ load_dotenv()
 root_path = Path(__file__).parent
 
 
-def build(output_dir: Path, app: Application) -> Path:
+def build(output_dir: Path, app: Application) -> None:
     output_dir = output_dir.resolve()
     if output_dir.exists():
         rmtree(output_dir)
-    output_dir.mkdir(exist_ok=False)
+    output_dir.mkdir(exist_ok=True, parents=True)
     logger.info(f"Exporting {app.name} to {output_dir}")
     specification = app.build()
     specification.export(output_dir)
