@@ -1,13 +1,12 @@
 import logging
 import sys
 from pathlib import Path
-from shutil import rmtree
 
-from beaker import Application
 from dotenv import load_dotenv
 
-from smart_contracts.deployment import deploy
-from smart_contracts.helloworld import app as helloworld_app
+from smart_contracts import config
+from smart_contracts.helpers.build import build
+from smart_contracts.helpers.deploy import deploy
 
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
@@ -18,30 +17,24 @@ load_dotenv()
 root_path = Path(__file__).parent
 
 
-def build(output_dir: Path, app: Application) -> None:
-    output_dir = output_dir.resolve()
-    if output_dir.exists():
-        rmtree(output_dir)
-    output_dir.mkdir(exist_ok=True, parents=True)
-    logger.info(f"Exporting {app.name} to {output_dir}")
-    specification = app.build()
-    specification.export(output_dir)
-
-
 def main(action: str) -> None:
-    app_spec_path = root_path / "artifacts" / helloworld_app.name
+    artifact_path = root_path / "artifacts"
     match action:
         case "build":
-            logger.info(f"Building app {helloworld_app.name}")
-            build(app_spec_path, helloworld_app)
+            for app in config.contracts:
+                logger.info(f"Building app {app.name}")
+                build(artifact_path / app.name, app)
         case "deploy":
-            logger.info(f"Deploying {helloworld_app.name}")
-            deploy(app_spec_path / "application.json")
+            for app in config.contracts:
+                logger.info(f"Building app {app.name}")
+                app_spec_path = artifact_path / app.name / "application.json"
+                deploy(app_spec_path, config.deploy)
         case "all":
-            logger.info(f"Building app {helloworld_app.name}")
-            build(app_spec_path, helloworld_app)
-            logger.info(f"Deploying {helloworld_app.name}")
-            deploy(app_spec_path / "application.json")
+            for app in config.contracts:
+                logger.info(f"Building app {app.name}")
+                app_spec_path = build(artifact_path / app.name, app)
+                logger.info(f"Deploying {app.name}")
+                deploy(app_spec_path, config.deploy)
 
 
 if __name__ == "__main__":

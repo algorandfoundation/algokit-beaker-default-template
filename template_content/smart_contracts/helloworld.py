@@ -1,13 +1,13 @@
 import beaker
 import pyteal as pt
 
-from smart_contracts.deployment_standard import (
+from smart_contracts.helpers.deployment_standard import (
     deploy_time_immutability_control,
     deploy_time_permanence_control,
 )
 
 app = (
-    beaker.Application("SampleApp")
+    beaker.Application("HelloWorldApp")
     .apply(deploy_time_immutability_control)
     .apply(deploy_time_permanence_control)
 )
