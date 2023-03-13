@@ -6,7 +6,11 @@ from smart_contracts.deployment_standard import (
     deploy_time_permanence_control,
 )
 
-app = beaker.Application("SampleApp").apply(deploy_time_immutability_control).apply(deploy_time_permanence_control)
+app = (
+    beaker.Application("SampleApp")
+    .apply(deploy_time_immutability_control)
+    .apply(deploy_time_permanence_control)
+)
 
 
 @app.external(read_only=True)

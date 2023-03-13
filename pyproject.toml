@@ -10,9 +10,10 @@ python = "^3.10"
 beaker-pyteal = { git = "https://github.com/daniel-makerx/beaker", branch = "add-algokit-utils" }
 algokit-utils = { git = "https://github.com/algorandfoundation/algokit-utils-py", branch = "add-application-client" }
 python-dotenv = "^1.0.0"
+ruff = "^0.0.254"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.0.171"
+ruff = "^0.0.254"
 black = {extras = ["d"], version = "^22.10.0"}
 flake8 = "^6.0.0"
 pytest = "^7.2.2"

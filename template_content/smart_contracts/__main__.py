@@ -5,10 +5,13 @@ from shutil import rmtree
 
 from beaker import Application
 from dotenv import load_dotenv
-from smart_contracts.helloworld import app as helloworld_app
-from smart_contracts.deployment import deploy
 
-logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s")
+from smart_contracts.deployment import deploy
+from smart_contracts.helloworld import app as helloworld_app
+
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
+)
 logger = logging.getLogger(__name__)
 logger.info("Loading .env")
 load_dotenv()
