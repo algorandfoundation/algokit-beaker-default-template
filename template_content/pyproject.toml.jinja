@@ -7,7 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-beaker-pyteal = "^1.0.0-beta.2"
+beaker-pyteal = { git = "https://github.com/daniel-makerx/beaker", branch = "add-algokit-utils" }
+algokit-utils = { git = "https://github.com/algorandfoundation/algokit-utils-py", branch = "add-application-client" }
+python-dotenv = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 {% if use_python_pip_audit -%}
@@ -34,10 +36,21 @@ pytest-cov = "*"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+{% if use_python_black -%}
+[tool.black]
+line-length = 120
+{% endif %}
+
 {% if python_linter == 'ruff' -%}
 [tool.ruff]
 select = ["E", "F", "ANN", "UP", "N", "C", "B", "A", "YTT", "W", "FBT", "Q", "RUF", "I"]
-ignore = ["ANN101", "C901"]
+ignore = [
+  "ANN101", # missing type for self parameter
+  "C901",
+{% if use_python_black -%}
+  "E501", # line too long - black takes care of this for us
+{% endif %}
+]
 # Exclude a variety of commonly ignored directories.
 exclude = [
     ".bzr",

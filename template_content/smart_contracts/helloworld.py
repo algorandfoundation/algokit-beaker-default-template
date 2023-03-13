@@ -1,15 +1,14 @@
 import beaker
 import pyteal as pt
 
-app = beaker.Application("HelloWorld")
+from smart_contracts.deployment_standard import (
+    deploy_time_immutability_control,
+    deploy_time_permanence_control,
+)
+
+app = beaker.Application("SampleApp").apply(deploy_time_immutability_control).apply(deploy_time_permanence_control)
 
 
 @app.external(read_only=True)
 def hello(name: pt.abi.String, *, output: pt.abi.String) -> pt.Expr:
     return output.set(pt.Concat(pt.Bytes("Hello, "), name.get()))
-
-
-@app.delete(authorize=beaker.Authorize.only_creator())
-def delete() -> pt.Expr:
-    return pt.Approve()
-
