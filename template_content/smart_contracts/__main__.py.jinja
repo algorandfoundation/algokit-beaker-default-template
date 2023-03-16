@@ -46,6 +46,6 @@ if __name__ == "__main__":
     else:
 {%- if deployment_language == 'python' -%}
         main("all")
-{%- else -%}
+{% else -%}
         main("build")
 {% endif %}

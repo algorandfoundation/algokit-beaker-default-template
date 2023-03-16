@@ -4,10 +4,12 @@
     {% if python_linter == 'ruff' -%}
     "charliermarsh.ruff",
     "emeraldwalk.runonsave",
-    {%- endif -%}
+    {% endif -%}
     "bungcip.better-toml",
     "editorconfig.editorconfig",
     "matangover.mypy",
+    {% if deployment_language == 'typescript' -%}
     "esbenp.prettier-vscode"
+    {% endif -%}
   ]
 }
