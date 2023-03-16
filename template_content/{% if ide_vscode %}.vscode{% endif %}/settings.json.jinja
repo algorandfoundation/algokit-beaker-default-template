@@ -16,6 +16,11 @@
     ".idea": true
   },
 
+  {% if deployment_language == 'typescript' -%}
+  // TypeScript
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  {% endif %}
+
   // Python
   "python.analysis.indexing": true,
   "python.analysis.extraPaths": ["${workspaceFolder}/smart_contracts"],
