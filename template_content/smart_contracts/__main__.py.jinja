@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 from smart_contracts import config
 from smart_contracts.helpers.build import build
-{%- if deployment_language == 'python' -%}
+{% if deployment_language == 'python' -%}
 from smart_contracts.helpers.deploy import deploy
 {% endif %}
 
@@ -26,7 +26,7 @@ def main(action: str) -> None:
             for app in config.contracts:
                 logger.info(f"Building app {app.name}")
                 build(artifact_path / app.name, app)
-{%- if deployment_language == 'python' -%}
+{% if deployment_language == 'python' -%}
         case "deploy":
             for app in config.contracts:
                 logger.info(f"Building app {app.name}")
