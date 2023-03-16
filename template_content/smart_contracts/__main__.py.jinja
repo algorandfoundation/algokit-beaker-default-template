@@ -44,8 +44,8 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         main(sys.argv[1])
     else:
-{% if deployment_language == 'python' -%}
+{% if deployment_language == 'python' %}
         main("all")
-{% else -%}
+{% else %}
         main("build")
 {% endif -%}
