@@ -32,7 +32,7 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
       if (app.operationPerformed === 'create') {
         algokit.transferAlgos(
           {
-            amount: AlgoAmount.Algos(1),
+            amount: algokit.algos(1),
             from: deployer,
             to: app.appAddress,
           },
