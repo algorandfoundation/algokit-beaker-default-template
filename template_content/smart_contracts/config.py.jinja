@@ -15,7 +15,7 @@ from algokit_utils import (
 from algosdk.util import algos_to_microalgos
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
-{% endif %}
+{% endif -%}
 
 from smart_contracts.helloworld import app as helloworld_app
 
@@ -67,6 +67,6 @@ def deploy(
                 f"Called {method} on {app_spec.contract.name} ({app_client.app_id}) with args={args}, received: {response.abi_result.return_value}"
             )
         case _:
-            raise Exception(f"Attempt to deploy unknown contract {name}")
+            raise Exception(f"Attempt to deploy unknown contract {app_spec.contract.name}")
 
 {% endif %}
