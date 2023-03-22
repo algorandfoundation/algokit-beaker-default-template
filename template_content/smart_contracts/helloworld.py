@@ -1,14 +1,18 @@
-from beaker.application import Application
-from beaker.decorators import Authorize, delete, external
-from pyteal import Approve, Bytes, Concat, Expr, Global
-from pyteal.ast import abi
+import beaker
+import pyteal as pt
+
+from smart_contracts.helpers.deployment_standard import (
+    deploy_time_immutability_control,
+    deploy_time_permanence_control,
+)
+
+app = (
+    beaker.Application("HelloWorldApp")
+    .apply(deploy_time_immutability_control)
+    .apply(deploy_time_permanence_control)
+)
 
 
-class HelloWorld(Application):
-    @external(read_only=True)
-    def hello(self, name: abi.String, *, output: abi.String) -> Expr:
-        return output.set(Concat(Bytes("Hello, "), name.get()))
-
-    @delete(authorize=Authorize.only(Global.creator_address()))
-    def delete(self) -> Expr:
-        return Approve()
+@app.external(read_only=True)
+def hello(name: pt.abi.String, *, output: pt.abi.String) -> pt.Expr:
+    return output.set(pt.Concat(pt.Bytes("Hello, "), name.get()))

@@ -1,14 +1,15 @@
 {
   "recommendations": [
     "ms-python.python",
-    "ms-python.vscode-pylance",
     {% if python_linter == 'ruff' -%}
     "charliermarsh.ruff",
     "emeraldwalk.runonsave",
-    {% endif %}
+    {% endif -%}
     "bungcip.better-toml",
     "editorconfig.editorconfig",
     "matangover.mypy",
-    "runarsf.platform-settings"
+    {% if deployment_language == 'typescript' -%}
+    "esbenp.prettier-vscode"
+    {%- endif %}
   ]
 }
