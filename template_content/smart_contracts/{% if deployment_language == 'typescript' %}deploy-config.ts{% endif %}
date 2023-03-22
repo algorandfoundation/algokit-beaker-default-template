@@ -14,9 +14,9 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
       app: appSpec,
       sender: deployer,
       creatorAddress: deployer.addr,
+      indexer,
     },
     algod,
-    indexer,
   )
 
   switch (name) {
