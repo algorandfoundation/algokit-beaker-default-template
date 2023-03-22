@@ -32,8 +32,8 @@ def deploy(
     app_spec: ApplicationSpecification,
     deployer: Account,
 ) -> None:
-    # TODO: function that returns environment
-    is_localnet = is_sandbox(algod_client)
+
+    is_local = is_sandbox(algod_client)
     match app_spec.contract.name:
         case "HelloWorldApp":
             app_client = ApplicationClient(
@@ -43,10 +43,10 @@ def deploy(
                 indexer_client=indexer_client,
             )
             deploy_response = app_client.deploy(
-                on_schema_break=OnSchemaBreak.ReplaceApp,
-                on_update=OnUpdate.UpdateApp,
-                allow_delete=is_localnet,
-                allow_update=is_localnet,
+                on_schema_break=OnSchemaBreak.ReplaceApp if is_local else OnSchemaBreak.Fail,
+                on_update=OnUpdate.UpdateApp if is_local else OnUpdate.Fail,
+                allow_delete=is_local,
+                allow_update=is_local,
             )
 
             # if only just created, fund smart contract account
@@ -66,5 +66,7 @@ def deploy(
             logger.info(
                 f"Called {method} on {app_spec.contract.name} ({app_client.app_id}) with args={args}, received: {response.abi_result.return_value}"
             )
+        case _:
+            raise Exception(f"Attempt to deploy unknown contract {name}")
 
 {% endif %}
