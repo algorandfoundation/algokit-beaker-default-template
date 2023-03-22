@@ -7,10 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-beaker-pyteal = { git = "https://github.com/daniel-makerx/beaker", branch = "add-algokit-utils" }
-algokit-utils = { git = "https://github.com/algorandfoundation/algokit-utils-py", branch = "add-application-client" }
+beaker-pyteal = "1.0.0b2"
+algokit-utils = "0.1.0"
 python-dotenv = "^1.0.0"
-ruff = "^0.0.254"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.254"

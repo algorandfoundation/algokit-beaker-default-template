@@ -126,23 +126,18 @@ frozenlist = ">=1.1.0"
 
 [[package]]
 name = "algokit-utils"
-version = "0.0.0"
+version = "0.1.0"
 description = "Utilities for Algorand development for use by AlgoKit"
 category = "main"
 optional = false
-python-versions = "^3.10"
-files = []
-develop = false
+python-versions = ">=3.10,<4.0"
+files = [
+    {file = "algokit_utils-0.1.0-py3-none-any.whl", hash = "sha256:b5dc35a462269052f41be2ba5da4bb0144d3e1988b495833b410f23efad10eb2"},
+]
 
 [package.dependencies]
-py-algorand-sdk = "^2.0.0"
-pyteal = "^0.23.0"
-
-[package.source]
-type = "git"
-url = "https://github.com/algorandfoundation/algokit-utils-py"
-reference = "add-application-client"
-resolved_reference = "849ec13ca0c2e91febb358d8d754a8e5d7584fdb"
+py-algorand-sdk = ">=2.0.0,<3.0.0"
+pyteal = ">=0.23.0,<0.24.0"
 
 [[package]]
 name = "async-timeout"
@@ -177,24 +172,18 @@ tests-no-zope = ["cloudpickle", "cloudpickle", "hypothesis", "hypothesis", "mypy
 
 [[package]]
 name = "beaker-pyteal"
-version = "0.6.1"
+version = "1.0.0b2"
 description = "A Framework for building PyTeal Applications"
 category = "main"
 optional = false
-python-versions = "^3.10"
-files = []
-develop = false
+python-versions = ">=3.10,<4.0"
+files = [
+    {file = "beaker_pyteal-1.0.0b2-py3-none-any.whl", hash = "sha256:adb297bf3db3756a84bc9e17ef18f41f99e53ce7ae1f8bf040bc722871da5831"},
+]
 
 [package.dependencies]
-algokit-utils = {git = "https://github.com/algorandfoundation/algokit-utils-py", branch = "add-application-client"}
 py-algorand-sdk = ">=2.0.0"
-pyteal = "~0.23.0"
-
-[package.source]
-type = "git"
-url = "https://github.com/daniel-makerx/beaker"
-reference = "add-algokit-utils"
-resolved_reference = "5eadc962644303c95ab677ccd871ad3e8816c7ba"
+pyteal = ">=0.23.0,<0.24.0"
 
 [[package]]
 name = "black"
@@ -993,7 +982,7 @@ cli = ["click (>=5.0)"]
 name = "ruff"
 version = "0.0.254"
 description = "An extremely fast Python linter, written in Rust."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1135,4 +1124,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "ddcaccb350087bb01a853b24e7998ddb3dda261f1d7e2a6466ece04b27c178d0"
+content-hash = "aab219d68b9103dc1b919e293b39aed121593f73c892cff5dec212c70e3c7fd0"
