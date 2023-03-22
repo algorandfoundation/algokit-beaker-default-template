@@ -48,6 +48,13 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
           algod,
         )
       }
+
+      const method = 'hello'
+      const methodArgs = ['world']
+      const response = await appClient.call({ callType: 'normal', method: method, methodArgs: methodArgs })
+      console.log(
+        `Called ${method} on ${name} (${app.appId}) with args=[${methodArgs}], received: ${response.return?.returnValue}`,
+      )
       break
     default:
       throw new Error(`Attempt to deploy unknown contract ${name}`)
