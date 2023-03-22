@@ -62,9 +62,9 @@ def deploy(
 
             method = "hello"
             args = {"name": "world"}
-            response = app_client.call(method, args=dict(args))
+            response = app_client.call(method, args=args)
             logger.info(
-                f"Called {method} on {app_spec.contract.name} ({app_client.app_id}) with args={str(args)}, received: {response.abi_result.return_value}"
+                f"Called {method} on {app_spec.contract.name} ({app_client.app_id}) with args={args}, received: {response.abi_result.return_value}"
             )
 
 {% endif %}
