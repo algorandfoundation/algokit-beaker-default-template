@@ -1,11 +1,17 @@
 import logging
 
 {% if deployment_language == 'python' -%}
-from algokit_utils.account import Account
-from algokit_utils.app import DeployAction, OnSchemaBreak, OnUpdate, deploy_app
-from algokit_utils.application_specification import ApplicationSpecification
-from algokit_utils.network_clients import is_sandbox
-from algokit_utils.transfer import TransferParameters, transfer
+from algokit_utils import (
+    Account,
+    ApplicationClient,
+    ApplicationSpecification,
+    OnSchemaBreak,
+    OnUpdate,
+    OperationPerformed,
+    TransferParameters,
+    is_sandbox,
+    transfer,
+)
 from algosdk.util import algos_to_microalgos
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
@@ -30,29 +36,35 @@ def deploy(
     is_localnet = is_sandbox(algod_client)
     match app_spec.contract.name:
         case "HelloWorldApp":
-            deploy_response = deploy_app(
+            app_client = ApplicationClient(
                 algod_client,
-                indexer_client,
                 app_spec,
-                deployer,
-                version="v1.0",
+                creator=deployer,
+                indexer_client=indexer_client,
+            )
+            deploy_response = app_client.deploy(
                 on_schema_break=OnSchemaBreak.ReplaceApp,
                 on_update=OnUpdate.UpdateApp,
                 allow_delete=is_localnet,
                 allow_update=is_localnet,
             )
-            app_client = deploy_response.client
 
             # if only just created, fund smart contract account
             if deploy_response.action_taken in [
-                DeployAction.Created,
-                DeployAction.Replaced,
+                OperationPerformed.Create,
+                OperationPerformed.Replace,
             ]:
                 transfer_parameters = TransferParameters(
-                    deployer, app_client.app_address, amount=algos_to_microalgos(10)
+                    from_account=deployer, to_address=app_client.app_address, amount=algos_to_microalgos(10)
                 )
-                logger.info(
-                    f"New app created, funding with {transfer_parameters.amount}µ algos"
-                )
+                logger.info(f"New app created, funding with {transfer_parameters.amount}µ algos")
                 transfer(transfer_parameters, algod_client)
+
+            method = "hello"
+            args = {"name": "world"}
+            response = app_client.call(method, args=dict(args))
+            logger.info(
+                f"Called {method} on {app_spec.contract.name} ({app_client.app_id}) with args={str(args)}, received: {response.abi_result.return_value}"
+            )
+
 {% endif %}
