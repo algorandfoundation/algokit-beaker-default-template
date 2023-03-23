@@ -51,7 +51,7 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
 
       const method = 'hello'
       const methodArgs = ['world']
-      const response = await appClient.call({ callType: 'normal', method: method, methodArgs: methodArgs })
+      const response = await appClient.call({ method: method, methodArgs: methodArgs })
       console.log(
         `Called ${method} on ${name} (${app.appId}) with args=[${methodArgs}], received: ${response.return?.returnValue}`,
       )
