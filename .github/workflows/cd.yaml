@@ -1,0 +1,13 @@
+name: Continuous Delivery of Template
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: release
+
+jobs:
+  ci-check-python:
+    name: Check Python
+    uses: ./.github/workflows/check-python.yaml

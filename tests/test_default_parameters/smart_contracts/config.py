@@ -1,6 +1,5 @@
 import logging
 
-{% if deployment_language == 'python' -%}
 from algokit_utils import (
     Account,
     ApplicationClient,
@@ -15,7 +14,6 @@ from algokit_utils import (
 from algosdk.util import algos_to_microalgos
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
-{%- endif %}
 
 from smart_contracts.helloworld import app as helloworld_app
 
@@ -25,7 +23,6 @@ logger = logging.getLogger(__name__)
 contracts = [helloworld_app]
 
 
-{% if deployment_language == 'python' -%}
 # define deployment behaviour based on supplied app spec
 def deploy(
     algod_client: AlgodClient,
@@ -69,4 +66,3 @@ def deploy(
             )
         case _:
             raise Exception(f"Attempt to deploy unknown contract {app_spec.contract.name}")
-{% endif -%}

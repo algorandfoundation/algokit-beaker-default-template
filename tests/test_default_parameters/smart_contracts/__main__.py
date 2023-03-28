@@ -6,9 +6,8 @@ from dotenv import load_dotenv
 
 from smart_contracts import config
 from smart_contracts.helpers.build import build
-{% if deployment_language == 'python' -%}
 from smart_contracts.helpers.deploy import deploy
-{% endif %}
+
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s")
 logger = logging.getLogger(__name__)
 logger.info("Loading .env")
@@ -23,7 +22,7 @@ def main(action: str) -> None:
             for app in config.contracts:
                 logger.info(f"Building app {app.name}")
                 build(artifact_path / app.name, app)
-{% if deployment_language == 'python' %}
+
         case "deploy":
             for app in config.contracts:
                 logger.info(f"Building app {app.name}")
@@ -35,14 +34,10 @@ def main(action: str) -> None:
                 app_spec_path = build(artifact_path / app.name, app)
                 logger.info(f"Deploying {app.name}")
                 deploy(app_spec_path, config.deploy)
-{% endif %}
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         main(sys.argv[1])
     else:
-{%- if deployment_language == 'python' %}
         main("all")
-{% else %}
-        main("build")
-{% endif -%}

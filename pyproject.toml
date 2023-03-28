@@ -7,8 +7,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-beaker-pyteal = "1.0.0b2"
-algokit-utils = "0.1.0"
+beaker-pyteal = "^1.0.0"
+algokit-utils = "^1.0.0"
 python-dotenv = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
@@ -16,10 +16,15 @@ ruff = "^0.0.254"
 black = {extras = ["d"], version = "^22.10.0"}
 flake8 = "^6.0.0"
 pytest = "^7.2.2"
+mypy = "^1.1.1"
+pre-commit = "^3.2.1"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
 
 [tool.ruff]
 line-length = 120
@@ -52,3 +57,14 @@ per-file-ignores = {}
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 # Assume Python 3.10.
 target-version = "py310"
+
+[tool.pytest.ini_options]
+pythonpath = ["tests"]
+
+[tool.mypy]
+python_version = "3.10"
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+allow_untyped_defs = false
+strict_equality = true
