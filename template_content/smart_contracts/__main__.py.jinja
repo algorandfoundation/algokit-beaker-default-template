@@ -9,7 +9,6 @@ from smart_contracts.helpers.build import build
 {% if deployment_language == 'python' -%}
 from smart_contracts.helpers.deploy import deploy
 {% endif %}
-
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
 )
