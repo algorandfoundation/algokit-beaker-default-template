@@ -56,18 +56,18 @@ def deploy(
                 transfer_parameters = TransferParameters(
                     from_account=deployer,
                     to_address=app_client.app_address,
-                    amount=algos_to_microalgos(10),
+                    micro_algos=algos_to_microalgos(10),
                 )
                 logger.info(
-                    f"New app created, funding with {transfer_parameters.amount}µ algos"
+                    f"New app created, funding with {transfer_parameters.micro_algos}µ algos"
                 )
-                transfer(transfer_parameters, algod_client)
+                transfer(algod_client, transfer_parameters)
 
             method = "hello"
             args = {"name": "world"}
             response = app_client.call(method, args=args)
             logger.info(
-                f"Called {method} on {app_spec.contract.name} ({app_client.app_id}) with args={args}, received: {response.abi_result.return_value}"
+                f"Called {method} on {app_spec.contract.name} ({app_client.app_id}) with args={args}, received: {response.return_value}"
             )
         case _:
             raise Exception(

@@ -22,7 +22,7 @@ def run_init(
                 cwd=root,
                 stdout=subprocess.PIPE,
             )
-            template_branch = git_output.stdout.strip()
+            template_branch = git_output.stdout.decode("utf-8").strip()
 
     init_args = [
         "algokit",
