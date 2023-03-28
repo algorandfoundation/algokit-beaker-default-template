@@ -126,13 +126,13 @@ frozenlist = ">=1.1.0"
 
 [[package]]
 name = "algokit-utils"
-version = "0.1.0"
+version = "0.2.0b1"
 description = "Utilities for Algorand development for use by AlgoKit"
 category = "main"
 optional = false
 python-versions = ">=3.10,<4.0"
 files = [
-    {file = "algokit_utils-0.1.0-py3-none-any.whl", hash = "sha256:b5dc35a462269052f41be2ba5da4bb0144d3e1988b495833b410f23efad10eb2"},
+    {file = "algokit_utils-0.2.0b1-py3-none-any.whl", hash = "sha256:18dc04bd9cbd1ecd403b9a0b5b47afbf259156894c716d217b3619412a1a549c"},
 ]
 
 [package.dependencies]
@@ -1183,4 +1183,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "66830ef1310344c06d7f3301e72fa0c09eed3d1ac16250b12c83cd8150e8d8dd"
+content-hash = "70e87bf74a5163092b3fefb983d9cb94ef0fc4d877cc959208e837636feef0a5"
