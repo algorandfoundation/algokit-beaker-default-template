@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "emeraldwalk.runonsave",
+    "bungcip.better-toml",
+    "editorconfig.editorconfig",
+    "matangover.mypy",
+    
+  ]
+}

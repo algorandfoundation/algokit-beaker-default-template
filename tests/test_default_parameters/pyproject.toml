@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "{{ project_name }}"
+name = "test_default_parameters"
 version = "0.1.0"
 description = "Algorand smart contracts"
-authors = ["{{ author_name }} <{{ author_email }}>"]
+authors = ["None <None>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -12,44 +12,29 @@ algokit-utils = "0.2.0b1"
 python-dotenv = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
-{% if use_python_pip_audit -%}
 pip-audit = "*"
-{% endif %}
-{%- if use_python_black -%}
 black = {extras = ["d"], version = "*"}
-{% endif %}
-{%- if python_linter == 'ruff' -%}
 ruff = "0.0.252"
-{% endif %}
-{%- if python_linter == 'flake8' -%}
-flake8 = "*"
-{% endif %}
-{%- if use_python_mypy -%}
 mypy = "*"
-{% endif %}
-{%- if use_python_pytest -%}
 pytest = "*"
 pytest-cov = "*"
-{% endif %}
+
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-{% if use_python_black -%}
 [tool.black]
 line-length = 120
-{% endif %}
 
-{% if python_linter == 'ruff' -%}
+
 [tool.ruff]
 select = ["E", "F", "ANN", "UP", "N", "C", "B", "A", "YTT", "W", "FBT", "Q", "RUF", "I"]
 ignore = [
   "ANN101", # missing type for self parameter
   "C901",
-{% if use_python_black -%}
-  "E501", # line too long - black takes care of this for us
-{% endif %}
+"E501", # line too long - black takes care of this for us
+
 ]
 # Exclude a variety of commonly ignored directories.
 exclude = [
@@ -82,14 +67,12 @@ target-version = "py310"
 [tool.ruff.flake8-annotations]
 allow-star-arg-any = true
 suppress-none-returning = true
-{% endif %}
 
-{% if use_python_pytest -%}
+
 [tool.pytest.ini_options]
 pythonpath = ["smart_contracts", "tests"]
-{% endif %}
 
-{% if use_python_mypy -%}
+
 [tool.mypy]
 files = "smart_contracts/"
 python_version = "3.10"
@@ -98,4 +81,4 @@ warn_redundant_casts = true
 warn_unused_ignores = true
 allow_untyped_defs = false
 strict_equality = true
-{% endif %}
+
