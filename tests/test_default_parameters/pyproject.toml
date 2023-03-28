@@ -7,8 +7,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-beaker-pyteal = "^1.0.0b2"
-algokit-utils = "^0.2.0b1"
+beaker-pyteal = "^1.0.0"
+algokit-utils = "^1.0.0"
 python-dotenv = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]

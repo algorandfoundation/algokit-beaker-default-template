@@ -40,9 +40,7 @@ def deploy(
                 indexer_client=indexer_client,
             )
             deploy_response = app_client.deploy(
-                on_schema_break=OnSchemaBreak.ReplaceApp
-                if is_local
-                else OnSchemaBreak.Fail,
+                on_schema_break=OnSchemaBreak.ReplaceApp if is_local else OnSchemaBreak.Fail,
                 on_update=OnUpdate.UpdateApp if is_local else OnUpdate.Fail,
                 allow_delete=is_local,
                 allow_update=is_local,
@@ -58,18 +56,13 @@ def deploy(
                     to_address=app_client.app_address,
                     micro_algos=algos_to_microalgos(10),
                 )
-                logger.info(
-                    f"New app created, funding with {transfer_parameters.micro_algos}µ algos"
-                )
+                logger.info(f"New app created, funding with {transfer_parameters.micro_algos}µ algos")
                 transfer(algod_client, transfer_parameters)
 
-            method = "hello"
-            args = {"name": "world"}
-            response = app_client.call(method, args=args)
+            name = "world"
+            response = app_client.call("hello", name=name)
             logger.info(
-                f"Called {method} on {app_spec.contract.name} ({app_client.app_id}) with args={args}, received: {response.return_value}"
+                f"Called hello on {app_spec.contract.name} ({app_client.app_id}) with name={name}, received: {response.return_value}"
             )
         case _:
-            raise Exception(
-                f"Attempt to deploy unknown contract {app_spec.contract.name}"
-            )
+            raise Exception(f"Attempt to deploy unknown contract {app_spec.contract.name}")

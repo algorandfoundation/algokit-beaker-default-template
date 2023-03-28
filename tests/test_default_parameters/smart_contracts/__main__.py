@@ -8,9 +8,7 @@ from smart_contracts import config
 from smart_contracts.helpers.build import build
 from smart_contracts.helpers.deploy import deploy
 
-logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
-)
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s")
 logger = logging.getLogger(__name__)
 logger.info("Loading .env")
 load_dotenv()
@@ -42,5 +40,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         main(sys.argv[1])
     else:
-
         main("all")
