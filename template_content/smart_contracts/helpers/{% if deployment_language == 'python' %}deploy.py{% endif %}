@@ -2,9 +2,13 @@ import logging
 from collections.abc import Callable
 from pathlib import Path
 
-from algokit_utils.account import Account, get_account
-from algokit_utils.application_specification import ApplicationSpecification
-from algokit_utils.network_clients import get_algod_client, get_indexer_client
+from algokit_utils import (
+  Account,
+  ApplicationSpecification,
+  get_account,
+  get_algod_client,
+  get_indexer_client
+)
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
 

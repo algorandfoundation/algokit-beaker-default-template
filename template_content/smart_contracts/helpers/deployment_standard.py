@@ -2,6 +2,7 @@ import beaker
 import pyteal as pt
 from algokit_utils.app import DELETABLE_TEMPLATE_NAME, UPDATABLE_TEMPLATE_NAME
 
+
 def deploy_time_immutability_control(app: beaker.Application) -> None:
     @app.update(authorize=beaker.Authorize.only_creator(), bare=True)
     def update() -> pt.Expr:
