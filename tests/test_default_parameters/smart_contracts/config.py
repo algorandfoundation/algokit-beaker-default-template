@@ -8,7 +8,7 @@ from algokit_utils import (
     OnUpdate,
     OperationPerformed,
     TransferParameters,
-    is_sandbox,
+    is_localnet,
     transfer,
 )
 from algosdk.util import algos_to_microalgos
@@ -30,7 +30,7 @@ def deploy(
     app_spec: ApplicationSpecification,
     deployer: Account,
 ) -> None:
-    is_local = is_sandbox(algod_client)
+    is_local = is_localnet(algod_client)
     match app_spec.contract.name:
         case "HelloWorldApp":
             app_client = ApplicationClient(
