@@ -126,13 +126,13 @@ frozenlist = ">=1.1.0"
 
 [[package]]
 name = "algokit-utils"
-version = "1.0.0"
+version = "1.0.1"
 description = "Utilities for Algorand development for use by AlgoKit"
 category = "main"
 optional = false
 python-versions = ">=3.10,<4.0"
 files = [
-    {file = "algokit_utils-1.0.0-py3-none-any.whl", hash = "sha256:7f408c50aaf5c0bb506eca0a63a86cab36eaf776fe754bda729db7b7a85d529e"},
+    {file = "algokit_utils-1.0.1-py3-none-any.whl", hash = "sha256:26521f407907739d866bd71ae8ac559950137fd9a7f1ed6e0f4f86ba65e8ba48"},
 ]
 
 [package.dependencies]
@@ -1056,7 +1056,7 @@ files = [
 cffi = ">=1.4.1"
 
 [package.extras]
-docs = ["sphinx (>=1.6.5)", "sphinx_rtd_theme"]
+docs = ["sphinx (>=1.6.5)", "sphinx-rtd-theme"]
 tests = ["hypothesis (>=3.27.0)", "pytest (>=3.2.1,!=3.3.0)"]
 
 [[package]]
@@ -1361,4 +1361,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "0e6c03ba2bdaa2b79bc2a4d406799e3ad09d11d344fc89ad65cbf24cd159cb7d"
+content-hash = "b026fc9ebc8e27b8e5f1c46640ded46bf7302e2a2310c9ee9043c928e656f4b1"
