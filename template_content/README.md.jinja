@@ -55,8 +55,7 @@ This project makes use of Python to build Algorand smart contracts. The followin
 {% endif %}
 {%- if python_linter == "ruff" -%}
 - [Ruff](https://github.com/charliermarsh/ruff): An extremely fast Python linter.
-{% endif %}
-{%- if python_linter == "flake8" -%}
+{% elif python_linter == "flake8" -%}
 - [Flake8](https://flake8.pycqa.org/en/latest/): A Python linter for style guide enforcement.
 {% endif %}
 - [mypy](https://mypy-lang.org/): Static type checker.

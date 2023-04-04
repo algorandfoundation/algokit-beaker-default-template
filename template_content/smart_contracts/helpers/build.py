@@ -2,12 +2,12 @@ import logging
 from pathlib import Path
 from shutil import rmtree
 
-from beaker import Application
+import beaker
 
 logger = logging.getLogger(__name__)
 
 
-def build(output_dir: Path, app: Application) -> Path:
+def build(output_dir: Path, app: beaker.Application) -> Path:
     output_dir = output_dir.resolve()
     if output_dir.exists():
         rmtree(output_dir)

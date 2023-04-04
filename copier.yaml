@@ -36,7 +36,7 @@ python_linter:
     choices:
         Ruff: "ruff"
         Flake8: "flake8"
-        No, thank you: "null"
+        No thanks: "none"
     default: "ruff"
 
 use_python_black:

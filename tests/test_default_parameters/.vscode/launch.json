@@ -15,17 +15,15 @@
       "request": "launch",
       "module": "smart_contracts",
       "args": ["deploy"],
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}"
     },
-    
-    
     {
       "name": "Build Beaker application",
       "type": "python",
       "request": "launch",
       "module": "smart_contracts",
       "args": ["build"],
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}"
     }
   ]
 }
