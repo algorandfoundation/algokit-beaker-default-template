@@ -8,7 +8,9 @@ from smart_contracts import config
 from smart_contracts.helpers.build import build
 from smart_contracts.helpers.deploy import deploy
 
-logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s")
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
+)
 logger = logging.getLogger(__name__)
 logger.info("Loading .env")
 load_dotenv()
@@ -22,7 +24,6 @@ def main(action: str) -> None:
             for app in config.contracts:
                 logger.info(f"Building app {app.name}")
                 build(artifact_path / app.name, app)
-
         case "deploy":
             for app in config.contracts:
                 logger.info(f"Building app {app.name}")

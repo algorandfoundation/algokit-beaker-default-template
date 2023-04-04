@@ -16,10 +16,9 @@
       "request": "launch",
       "module": "smart_contracts",
       "args": ["deploy"],
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}"
     },
-    {% endif %}
-    {% if deployment_language == 'typescript' -%}
+    {% elif deployment_language == 'typescript' -%}
     {
       "name": "Build & Deploy Beaker application",
       "type": "node",
@@ -39,16 +38,16 @@
       "runtimeArgs": ["run", "deploy"],
       "cwd": "${workspaceFolder}/smart_contracts",
       "console": "integratedTerminal",
-      "skipFiles": ["<node_internals>/**", "node_modules/**"],
+      "skipFiles": ["<node_internals>/**", "node_modules/**"]
     },
-    {% endif %}
+    {% endif -%}
     {
       "name": "Build Beaker application",
       "type": "python",
       "request": "launch",
       "module": "smart_contracts",
       "args": ["build"],
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}"
     }
   ]
 }
