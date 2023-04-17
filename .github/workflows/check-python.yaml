@@ -39,4 +39,6 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
+          # set git user and email as test invoke git
+          git config --global user.email "actions@github.com" && git config --global user.name "github-actions"
           poetry run pytest --junitxml=pytest-junit.xml
