@@ -1,14 +1,14 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: 1.1.3-8-g1163e6f
-_src_path: /Users/adam/vcs/algokit-beaker-default-template
-algod_port: '4001'
+_commit: 1.1.4-4-g61a6075
+_src_path: /Users/danielm/repos/algorand/algokit-beaker-default-template
+algod_port: 4001
 algod_server: http://localhost
 algod_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-author_email: null
-author_name: null
+author_email: None
+author_name: None
 deployment_language: python
 ide_vscode: true
-indexer_port: '8980'
+indexer_port: 8980
 indexer_server: http://localhost
 indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 project_name: test_default_parameters

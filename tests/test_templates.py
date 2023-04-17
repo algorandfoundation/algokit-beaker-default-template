@@ -8,6 +8,7 @@ def run_init(
     *args: str,
     template_url: str | None = None,
     template_branch: str | None = None,
+    answers: dict[str, str] | None = None,
 ) -> subprocess.CompletedProcess:
     tests_path = Path(__file__).parent
     root = tests_path.parent
@@ -37,6 +38,13 @@ def run_init(
         "--no-git",
         "--no-bootstrap",
     ]
+    if answers is None:
+        answers = {
+            "author_name": "None",
+            "author_email": "None",
+        }
+    for question, answer in answers.items():
+        init_args.extend(["-a", question, answer])
     if template_branch:
         init_args.extend(["--template-url-ref", template_branch])
     init_args.extend(args)
