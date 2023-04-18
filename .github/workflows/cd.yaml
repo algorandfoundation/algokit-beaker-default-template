@@ -11,3 +11,14 @@ jobs:
   ci-check-python:
     name: Check Python
     uses: ./.github/workflows/check-python.yaml
+
+  tag-release:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Tag release
+        uses: TriPSs/conventional-changelog-action@v3.18.0
+        with:
+          skip-commit: "true"
