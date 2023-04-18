@@ -1,4 +1,3 @@
-import os
 import re
 import shutil
 import subprocess
@@ -29,9 +28,8 @@ def working_dir() -> Iterator[Path]:
 
         yield working_dir
 
-        for dir_name in os.listdir(working_generated_root):
-            src_dir = working_generated_root / dir_name
-            dest_dir = generated_root / dir_name
+        for src_dir in working_generated_root.iterdir():
+            dest_dir = generated_root / src_dir.stem
             shutil.rmtree(dest_dir, ignore_errors=True)
             shutil.copytree(src_dir, dest_dir, dirs_exist_ok=True)
 
