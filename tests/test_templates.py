@@ -1,6 +1,12 @@
+import re
 import shutil
 import subprocess
 from pathlib import Path
+
+import pytest
+
+commit_pattern = re.compile(r"_commit: .*")
+src_path_pattern = re.compile(r"_src_path: .*")
 
 
 def run_init(
@@ -12,7 +18,7 @@ def run_init(
 ) -> subprocess.CompletedProcess:
     tests_path = Path(__file__).parent
     root = tests_path.parent
-    copy_to = tests_path / test_name
+    copy_to = root / "tests_generated" / test_name
     shutil.rmtree(copy_to, ignore_errors=True)
     if template_url is None:
         template_url = str(root)
@@ -38,18 +44,17 @@ def run_init(
         "--no-git",
         "--no-bootstrap",
     ]
-    if answers is None:
-        answers = {
-            "author_name": "None",
-            "author_email": "None",
-        }
+    answers = dict(answers or {})
+    answers.setdefault("author_name", "None")
+    answers.setdefault("author_email", "None")
+
     for question, answer in answers.items():
         init_args.extend(["-a", question, answer])
     if template_branch:
         init_args.extend(["--template-url-ref", template_branch])
     init_args.extend(args)
 
-    return subprocess.run(
+    result = subprocess.run(
         init_args,
         input="y",  # acknowledge that input is not a tty
         stdout=subprocess.PIPE,
@@ -58,8 +63,62 @@ def run_init(
         cwd=copy_to.parent,
     )
 
+    if (
+        result.returncode == 0
+    ):  # if successful, normalize .copier-answers.yml to make observing diffs easier
+        copier_answers = Path(copy_to / ".copier-answers.yml")
+        content = copier_answers.read_text("utf-8")
+        content = commit_pattern.sub("_commit: <commit>", content)
+        content = src_path_pattern.sub("_src_path: <src>", content)
+        copier_answers.write_text(content, "utf-8")
+
+    return result
+
 
 def test_default_parameters() -> None:
     response = run_init("test_default_parameters")
 
     assert response.returncode == 0
+
+
+def run_init_kwargs(**kwargs: str | bool) -> None:
+    answers = {k: str(v) for k, v in kwargs.items()}
+    name_suffix = "_".join(f"{k}-{v}" for k, v in answers.items())
+    response = run_init(f"test_{name_suffix}", answers=answers)
+
+    assert response.returncode == 0
+
+
+@pytest.mark.parametrize("ide_vscode", [True, False])
+def test_ide_vscode(*, ide_vscode: bool) -> None:
+    run_init_kwargs(ide_vscode=ide_vscode)
+
+
+@pytest.mark.parametrize("use_python_black", [True, False])
+def test_use_python_black(*, use_python_black: bool) -> None:
+    run_init_kwargs(use_python_black=use_python_black)
+
+
+@pytest.mark.parametrize("use_python_mypy", [True, False])
+def test_use_python_mypy(*, use_python_mypy: bool) -> None:
+    run_init_kwargs(use_python_mypy=use_python_mypy)
+
+
+@pytest.mark.parametrize("use_python_pytest", [True, False])
+def test_use_python_pytest(*, use_python_pytest: bool) -> None:
+    run_init_kwargs(use_python_pytest=use_python_pytest)
+
+
+@pytest.mark.parametrize("use_python_pip_audit", [True, False])
+def test_use_python_pip_audit(*, use_python_pip_audit: bool) -> None:
+    run_init_kwargs(use_python_pip_audit=use_python_pip_audit)
+
+
+@pytest.mark.parametrize("deployment_language", ["python", "typescript"])
+def test_deployment_language(*, deployment_language: str) -> None:
+    run_init_kwargs(deployment_language=deployment_language)
+
+
+@pytest.mark.parametrize("python_linter", ["ruff", "flake8", "none"])
+def test_python_linter(*, python_linter: str) -> None:
+    run_init_kwargs(python_linter=python_linter)
