@@ -27,11 +27,10 @@ jobs:
           skip-on-empty: "false"
           
       - name: Create Release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         if: ${{ steps.tag.outputs.skipped == 'false' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          release_name: ${{ steps.tag.outputs.tag }}
           body: ${{ steps.tag.outputs.clean_changelog }}
