@@ -6,6 +6,7 @@ from collections.abc import Iterator
 from pathlib import Path
 
 import pytest
+import yaml
 
 commit_pattern = re.compile(r"_commit: .*")
 src_path_pattern = re.compile(r"_src_path: .*")
@@ -13,6 +14,10 @@ tests_path = Path(__file__).parent
 root = tests_path.parent
 generated_folder = "tests_generated"
 generated_root = root / generated_folder
+DEFAULT_PARAMETERS = {
+    "author_name": "None",
+    "author_email": "None",
+}
 
 
 @pytest.fixture(autouse=True, scope="module")
@@ -68,9 +73,7 @@ def run_init(
         "--no-git",
         "--no-bootstrap",
     ]
-    answers = dict(answers or {})
-    answers.setdefault("author_name", "None")
-    answers.setdefault("author_email", "None")
+    answers = {**DEFAULT_PARAMETERS, **(answers or {})}
 
     for question, answer in answers.items():
         init_args.extend(["-a", question, answer])
@@ -99,12 +102,6 @@ def run_init(
     return result
 
 
-def test_default_parameters(working_dir: Path) -> None:
-    response = run_init(working_dir, "test_default_parameters")
-
-    assert response.returncode == 0
-
-
 def run_init_kwargs(working_dir: Path, **kwargs: str | bool) -> None:
     answers = {k: str(v) for k, v in kwargs.items()}
     name_suffix = "_".join(f"{k}-{v}" for k, v in answers.items())
@@ -113,36 +110,44 @@ def run_init_kwargs(working_dir: Path, **kwargs: str | bool) -> None:
     assert response.returncode == 0
 
 
-@pytest.mark.parametrize("ide_vscode", [True, False])
-def test_ide_vscode(working_dir: Path, *, ide_vscode: bool) -> None:
-    run_init_kwargs(working_dir, ide_vscode=ide_vscode)
+def get_questions_from_copier_yaml() -> Iterator[tuple[str, str | bool]]:
+    copier_yaml = root / "copier.yaml"
+    ignored_keys = {
+        "_subdirectory",  # copier setting
+        # the following are ignored as they are passed automatically by algokit
+        "project_name",
+        "algod_token",
+        "algod_server",
+        "algod_port",
+        "indexer_token",
+        "indexer_server",
+        "indexer_port",
+    }
+    ignored_keys.update(DEFAULT_PARAMETERS)
+
+    with copier_yaml.open("r", encoding="utf-8") as stream:
+        questions = yaml.safe_load(stream)
+        for question_name, details in questions.items():
+            if question_name in ignored_keys:
+                continue
+            match details["type"]:
+                case "str":
+                    if "choices" not in details:
+                        continue
+
+                    for choice in details["choices"].values():
+                        yield question_name, choice
+                case "bool":
+                    yield question_name, False
+                    yield question_name, True
 
 
-@pytest.mark.parametrize("use_python_black", [True, False])
-def test_use_python_black(working_dir: Path, *, use_python_black: bool) -> None:
-    run_init_kwargs(working_dir, use_python_black=use_python_black)
+@pytest.mark.parametrize(("question_name", "answer"), get_questions_from_copier_yaml())
+def test_parameters(working_dir: Path, question_name: str, answer: str | bool) -> None:
+    run_init_kwargs(working_dir, **{question_name: answer})
 
 
-@pytest.mark.parametrize("use_python_mypy", [True, False])
-def test_use_python_mypy(working_dir: Path, *, use_python_mypy: bool) -> None:
-    run_init_kwargs(working_dir, use_python_mypy=use_python_mypy)
+def test_default_parameters(working_dir: Path) -> None:
+    response = run_init(working_dir, "test_default_parameters")
 
-
-@pytest.mark.parametrize("use_python_pytest", [True, False])
-def test_use_python_pytest(working_dir: Path, *, use_python_pytest: bool) -> None:
-    run_init_kwargs(working_dir, use_python_pytest=use_python_pytest)
-
-
-@pytest.mark.parametrize("use_python_pip_audit", [True, False])
-def test_use_python_pip_audit(working_dir: Path, *, use_python_pip_audit: bool) -> None:
-    run_init_kwargs(working_dir, use_python_pip_audit=use_python_pip_audit)
-
-
-@pytest.mark.parametrize("deployment_language", ["python", "typescript"])
-def test_deployment_language(working_dir: Path, *, deployment_language: str) -> None:
-    run_init_kwargs(working_dir, deployment_language=deployment_language)
-
-
-@pytest.mark.parametrize("python_linter", ["ruff", "flake8", "none"])
-def test_python_linter(working_dir: Path, *, python_linter: str) -> None:
-    run_init_kwargs(working_dir, python_linter=python_linter)
+    assert response.returncode == 0
