@@ -26,7 +26,7 @@ def main(action: str) -> None:
                 build(artifact_path / app.name, app)
         case "deploy":
             for app in config.contracts:
-                logger.info(f"Building app {app.name}")
+                logger.info(f"Deploying app {app.name}")
                 app_spec_path = artifact_path / app.name / "application.json"
                 deploy(app_spec_path, config.deploy)
         case "all":
