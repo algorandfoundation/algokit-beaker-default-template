@@ -54,4 +54,3 @@ jobs:
           git add -N ./tests_generated
           # Look for changes in generated templates and error if there are any
           git diff --exit-code --minimal ./tests_generated
-        working-directory: ${{ inputs.working-directory }}
