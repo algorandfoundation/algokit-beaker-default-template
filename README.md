@@ -9,6 +9,7 @@ This is the default template used by AlgoKit to initialise an Algorand smart con
 This template supports the following features:
 
 * Compilation of [multiple Beaker contracts](template_content/smart_contracts/config.py) to a [predictable folder location and file layout](template_content/smart_contracts/__main__.py) where they can be deployed
+* Deploy-time immutability and permanence control
 * [Poetry](https://python-poetry.org/) for Python dependency management and virtual environment management
 * Linting via [Ruff](https://github.com/charliermarsh/ruff) or [Flake8](https://flake8.pycqa.org/en/latest/)
 * Formatting via [Black](https://github.com/psf/black)
