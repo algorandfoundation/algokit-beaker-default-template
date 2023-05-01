@@ -37,6 +37,32 @@ This project has been generated using AlgoKit. See below for default getting sta
 1. If you update to the latest source code and there are new dependencies you will need to run `algokit bootstrap all` again
 2. Follow step 3 above
 
+### Continuous Integration
+
+For pull requests against this repository the following checks are performed by GitHub Actions:
+ - Python dependencies using pip-audit
+ - Formatting using Black
+ - Linting using Ruff
+ - Types using MyPy
+ - Python tests are executed
+ - Smart contract artifacts are built
+ - Smart contract artifacts are checked for changes. This ensures that changes to the smart contract are not
+   accidentally introduced. After first creating a smart contract or making changes to it, the smart contracts should be
+   built and commit the associated artifacts if you are happy with the changes.
+ - Smart contract is deployed to a AlgoKit LocalNet instance
+
+### Continuous Deployment
+
+After merging the following actions are performed
+  - Continuous Integration checks are re-run
+  - Smart contract is deployed to testnet using [algonode](https://algonode.io)
+
+    The `DEPLOYER_MNEMONIC` secret needs to be defined as a [GitHub environment secrets](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-secrets)
+    for a Test environment, this account will be used to deploy the app to the Test environment
+
+    The `DISPENSER_MNEMONIC` is an optional secret, if defined it will be used to fund the deployer account. If it is
+    not defined then the Deployer account will need to be funded manually.
+
 # Tools
 
 This project makes use of Python to build Algorand smart contracts. The following tools are in use:

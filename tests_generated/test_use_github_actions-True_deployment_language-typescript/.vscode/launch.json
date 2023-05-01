@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Build & Deploy Beaker application",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "deploy"],
+      "cwd": "${workspaceFolder}/smart_contracts",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"],
+      "preLaunchTask": "Build Beaker application (+ LocalNet)"
+    },
+    {
+      "name": "Deploy Built Beaker application",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "deploy"],
+      "cwd": "${workspaceFolder}/smart_contracts",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"]
+    },
+    {
+      "name": "Build Beaker application",
+      "type": "python",
+      "request": "launch",
+      "module": "smart_contracts",
+      "args": ["build"],
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

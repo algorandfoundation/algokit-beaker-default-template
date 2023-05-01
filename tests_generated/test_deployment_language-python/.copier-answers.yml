@@ -13,6 +13,7 @@ indexer_server: http://localhost
 indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 project_name: test_deployment_language-python
 python_linter: ruff
+use_github_actions: true
 use_python_black: true
 use_python_mypy: true
 use_python_pip_audit: true
