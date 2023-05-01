@@ -59,6 +59,11 @@ use_python_pip_audit:
     help: Do you want to include Python dependency vulnerability scanning (via pip-audit)?
     default: yes
 
+use_github_actions:
+    type: bool
+    help: Do you want to include Github Actions workflows for build and testnet deployment?
+    default: yes
+
 # The following should never get prompted; algokit should always pass these values through by convention
 
 algod_token:
