@@ -56,7 +56,7 @@ def deploy(
                 transfer_parameters = TransferParameters(
                     from_account=deployer,
                     to_address=app_client.app_address,
-                    micro_algos=algos_to_microalgos(10),
+                    micro_algos=algos_to_microalgos(1),
                 )
                 logger.info(
                     f"New app created, funding with "

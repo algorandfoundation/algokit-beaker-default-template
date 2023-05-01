@@ -181,3 +181,11 @@ def test_parameters_with_github(
     )
 
     assert response.returncode == 0, response.stdout
+
+
+def test_typescript_deploy_without_github(working_dir: Path) -> None:
+    response = run_init_kwargs(
+        working_dir, use_github_actions=False, deployment_language="typescript"
+    )
+
+    assert response.returncode == 0, response.stdout
