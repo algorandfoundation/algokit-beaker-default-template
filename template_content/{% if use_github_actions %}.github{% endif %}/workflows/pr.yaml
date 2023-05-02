@@ -4,5 +4,5 @@ on: [pull_request]
 
 jobs:
   pr-check:
-    name: Check Python
-    uses: ./.github/workflows/check-python.yaml
+    name: Perform Checks
+    uses: ./.github/workflows/checks.yaml

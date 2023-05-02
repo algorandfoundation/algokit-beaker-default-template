@@ -8,13 +8,13 @@ on:
 concurrency: release
 
 jobs:
-  ci-check-python:
-    name: Check Python
-    uses: ./.github/workflows/check-python.yaml
+  ci-check:
+    name: Perform Checks
+    uses: ./.github/workflows/checks.yaml
 
   deploy-testnet:
     runs-on: 'ubuntu-latest'
-    needs: ci-check-python
+    needs: ci-check
     environment: Test
     steps:
       - name: Checkout source code
