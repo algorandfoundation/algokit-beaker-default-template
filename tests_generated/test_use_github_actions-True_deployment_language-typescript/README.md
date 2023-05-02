@@ -41,7 +41,7 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 ### Continuous Integration
 
-  This project uses [GitHub actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) to define CI/CD workflows, see the `.github/workflows` folder for details.
+  This project uses [GitHub actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) to define CI/CD workflows, which are located in the  `.github/workflows` folder.
 
 #### Setting up GitHub for CI/CD workflow and Testnet deployment
 
