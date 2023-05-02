@@ -39,6 +39,28 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 ### Continuous Integration
 
+  This project uses [GitHub actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) to define CI/CD workflows, see the `.github/workflows` folder for details.
+
+#### Setting up GitHub for CI/CD workflow and Testnet deployment
+
+  1. Build and commit smart contract artifacts for output stability
+  2. Decide what values you want to use for the `allow_update` and `allow_delete` parameters specified in `config.py`
+     When deploying to LocalNet these values are both set to `True` for convenience. But for non-LocalNet networks
+     they are more conservative and use `False`
+     These default values will allow the smart contract to be deployed initially, but will not allow the app to be updated or deleted if is changed.
+     To help you decide it may be helpful to read the following [AlgoKit documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/architecture-decisions/2023-01-12_smart-contract-deployment.md#upgradeable-and-deletable-contracts)
+  3. Create a [Github environment](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment) named `Test`
+  4. Create or obtain the mnemonic for an Algorand account for use on testnet to deploy apps, referred to as the Deployer account
+  5. Store the mnemonic as a [secret](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-secrets) `DEPLOYER_MNEMONIC`
+     in the Test environment created in step 2
+  6. The account used to deploy the smart contract will require enough funds to create the app, and also fund it. There are two approaches available here:
+     * Either, ensure the account is funded outside of CI/CD.
+
+       In Testnet, funds can be obtained by using the [Algorand testnet dispenser](https://bank.testnet.algorand.network/)
+       The funds can either be transferred to the Deployer account
+     * Or, fund the account as part of the CI/CD process by using the `DISPENSER_MNEMONIC` secret.
+       This secret can be defined in GitHub and will then be used to fund the Deployer account before deploying.
+
 For pull requests against this repository the following checks are performed by GitHub Actions:
  - Python dependencies using pip-audit
  - Formatting using Black
@@ -46,9 +68,7 @@ For pull requests against this repository the following checks are performed by 
  - Types using MyPy
  - Python tests are executed
  - Smart contract artifacts are built
- - Smart contract artifacts are checked for changes. This ensures that changes to the smart contract are not
-   accidentally introduced. After first creating a smart contract or making changes to it, the smart contracts should be
-   built and commit the associated artifacts if you are happy with the changes.
+ - Smart contract artifacts are checked for [output stability](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/articles/output_stability.md).
  - Smart contract is deployed to a AlgoKit LocalNet instance
 
 ### Continuous Deployment
@@ -56,12 +76,6 @@ For pull requests against this repository the following checks are performed by 
 After merging the following actions are performed
   - Continuous Integration checks are re-run
   - Smart contract is deployed to testnet using [algonode](https://algonode.io)
-
-    The `DEPLOYER_MNEMONIC` secret needs to be defined as a [GitHub environment secrets](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-secrets)
-    for a Test environment, this account will be used to deploy the app to the Test environment
-
-    The `DISPENSER_MNEMONIC` is an optional secret, if defined it will be used to fund the deployer account. If it is
-    not defined then the Deployer account will need to be funded manually.
 
 # Tools
 
