@@ -11,14 +11,13 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
   await algokit.ensureFunded(
     {
       accountToFund: deployer,
-      fundingSource: await algokit.getDispenserAccount(algod),
       minSpendingBalance: algokit.algos(10),
       minFundingIncrement: algokit.algos(10),
     },
     algod,
   )
   const isLocal = await algokit.isLocalNet(algod)
-  const appClient = algokit.getApplicationClient(
+  const appClient = algokit.getAppClient(
     {
       app: appSpec,
       sender: deployer,

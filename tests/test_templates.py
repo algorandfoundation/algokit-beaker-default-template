@@ -62,6 +62,7 @@ def run_init(
 
     init_args = [
         "algokit",
+        "--verbose",
         "init",
         "--name",
         str(copy_to.stem),
@@ -102,15 +103,17 @@ def run_init(
     return result
 
 
-def run_init_kwargs(working_dir: Path, **kwargs: str | bool) -> None:
+def run_init_kwargs(
+    working_dir: Path, **kwargs: str | bool
+) -> subprocess.CompletedProcess:
     answers = {k: str(v) for k, v in kwargs.items()}
     name_suffix = "_".join(f"{k}-{v}" for k, v in answers.items())
-    response = run_init(working_dir, f"test_{name_suffix}", answers=answers)
-
-    assert response.returncode == 0
+    return run_init(working_dir, f"test_{name_suffix}", answers=answers)
 
 
-def get_questions_from_copier_yaml() -> Iterator[tuple[str, str | bool]]:
+def get_questions_from_copier_yaml(
+    allowed_questions: list[str] | None = None,
+) -> Iterator[tuple[str, str | bool]]:
     copier_yaml = root / "copier.yaml"
     ignored_keys = {
         "_subdirectory",  # copier setting
@@ -130,6 +133,8 @@ def get_questions_from_copier_yaml() -> Iterator[tuple[str, str | bool]]:
         for question_name, details in questions.items():
             if question_name in ignored_keys:
                 continue
+            if allowed_questions and question_name not in allowed_questions:
+                continue
             match details["type"]:
                 case "str":
                     if "choices" not in details:
@@ -144,10 +149,43 @@ def get_questions_from_copier_yaml() -> Iterator[tuple[str, str | bool]]:
 
 @pytest.mark.parametrize(("question_name", "answer"), get_questions_from_copier_yaml())
 def test_parameters(working_dir: Path, question_name: str, answer: str | bool) -> None:
-    run_init_kwargs(working_dir, **{question_name: answer})
+    response = run_init_kwargs(working_dir, **{question_name: answer})
+
+    assert response.returncode == 0, response.stdout
 
 
 def test_default_parameters(working_dir: Path) -> None:
     response = run_init(working_dir, "test_default_parameters")
 
-    assert response.returncode == 0
+    assert response.returncode == 0, response.stdout
+
+
+@pytest.mark.parametrize(
+    ("question_name", "answer"),
+    get_questions_from_copier_yaml(
+        [
+            "deployment_language",
+            "python_linter",
+            "use_python_black",
+            "use_python_mypy",
+            "use_python_pytest",
+            "use_python_pip_audit",
+        ]
+    ),
+)
+def test_parameters_with_github(
+    working_dir: Path, question_name: str, answer: str | bool
+) -> None:
+    response = run_init_kwargs(
+        working_dir, **{"use_github_actions": True, question_name: answer}
+    )
+
+    assert response.returncode == 0, response.stdout
+
+
+def test_typescript_deploy_without_github(working_dir: Path) -> None:
+    response = run_init_kwargs(
+        working_dir, use_github_actions=False, deployment_language="typescript"
+    )
+
+    assert response.returncode == 0, response.stdout
