@@ -11,8 +11,8 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
   await algokit.ensureFunded(
     {
       accountToFund: deployer,
-      minSpendingBalance: algokit.algos(10),
-      minFundingIncrement: algokit.algos(10),
+      minSpendingBalance: algokit.algos(2),
+      minFundingIncrement: algokit.algos(2),
     },
     algod,
   )

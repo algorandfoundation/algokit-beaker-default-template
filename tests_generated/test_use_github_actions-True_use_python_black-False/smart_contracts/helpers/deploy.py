@@ -23,7 +23,7 @@ def deploy(
     deploy_callback: Callable[
         [AlgodClient, IndexerClient, ApplicationSpecification, Account], None
     ],
-    deployer_initial_funds: int = 10,
+    deployer_initial_funds: int = 2,
 ) -> None:
     # get clients
     # by default client configuration is loaded from environment variables
