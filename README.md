@@ -20,12 +20,9 @@ This template supports the following features:
 * Dependency vulnerability scanning via pip-audit (not yet used)
 * VS Code configuration (linting, formatting, breakpoint debugging)
 * dotenv (.env) file for configuration
-
-Planned (future) features:
-
-* Automated testing of the compiled smart contracts using TypeScript or Python
-* Output stability tests of the teal output via pytest
-* CI/CD pipeline using GitHub actions
+* Automated testing of the compiled smart contracts
+* [Output stability](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/articles/output_stability.md) tests of the TEAL output
+* CI/CD pipeline using GitHub Actions
 
 # Getting started
 
