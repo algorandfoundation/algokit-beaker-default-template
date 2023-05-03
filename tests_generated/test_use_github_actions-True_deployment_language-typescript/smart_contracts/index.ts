@@ -1,5 +1,5 @@
 import { consoleLogger } from '@algorandfoundation/algokit-utils/types/logging'
-import { AppSpec } from '@algorandfoundation/algokit-utils/types/appspec'
+import { AppSpec } from '@algorandfoundation/algokit-utils/types/app-spec'
 import * as algokit from '@algorandfoundation/algokit-utils'
 import fs from 'fs/promises'
 import path from 'path'

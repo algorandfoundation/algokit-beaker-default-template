@@ -1,5 +1,5 @@
 import * as algokit from '@algorandfoundation/algokit-utils'
-import { AppSpec } from '@algorandfoundation/algokit-utils/types/appspec'
+import { AppSpec } from '@algorandfoundation/algokit-utils/types/app-spec'
 
 // Edit this to add in your contracts
 export const contracts = ['HelloWorldApp'] as const
