@@ -5,10 +5,13 @@ from shutil import rmtree
 import beaker
 
 logger = logging.getLogger(__name__)
-
+{% if deployment_language == 'python' -%}
+deployment_extension = 'py'
+deployment_language = 'python'
+{%- elif deployment_language == 'typescript' %}
 deployment_extension = 'ts'
 deployment_language = 'typescript'
-
+{% endif %}
 
 
 def build(output_dir: Path, app: beaker.Application) -> Path:
@@ -25,7 +28,6 @@ def build(output_dir: Path, app: beaker.Application) -> Path:
             "algokit",
             "generate",
             "client",
-            "-a",
             output_dir / "application.json",
             "--output",
             output_dir / f"client.{deployment_extension}",

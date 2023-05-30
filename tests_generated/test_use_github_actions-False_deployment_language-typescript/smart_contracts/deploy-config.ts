@@ -1,5 +1,6 @@
 import * as algokit from '@algorandfoundation/algokit-utils'
 import { AppSpec } from '@algorandfoundation/algokit-utils/types/app-spec'
+import { HelloWorldAppClient } from './artifacts/HelloWorldApp/client'
 
 // Edit this to add in your contracts
 export const contracts = ['HelloWorldApp'] as const
@@ -17,7 +18,7 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
     algod,
   )
   const isLocal = await algokit.isLocalNet(algod)
-  const appClient = algokit.getAppClient(
+  const appClient = new HelloWorldAppClient(
     {
       app: appSpec,
       sender: deployer,
