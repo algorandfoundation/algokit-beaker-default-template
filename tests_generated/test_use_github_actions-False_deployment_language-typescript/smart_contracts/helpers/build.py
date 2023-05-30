@@ -28,8 +28,6 @@ def build(output_dir: Path, app: beaker.Application) -> Path:
                 output_dir / "application.json",
                 "--output",
                 output_dir / f"client.{deployment_extension}",
-                "--language",
-                f"{'python' if (deployment_extension == 'py')  else 'typescript'}",
             ]
         )
     except subprocess.CalledProcessError as e:
