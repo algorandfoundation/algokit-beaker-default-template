@@ -1,4 +1,5 @@
 import logging
+
 from algokit_utils import (
     Account,
     ApplicationSpecification,
@@ -12,8 +13,9 @@ from algokit_utils import (
 from algosdk.util import algos_to_microalgos
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
-from smart_contracts.artifacts.HelloWorldApp.client import HelloWorldAppClient
+
 from smart_contracts import helloworld
+from smart_contracts.artifacts.HelloWorldApp.client import HelloWorldAppClient
 
 logger = logging.getLogger(__name__)
 
