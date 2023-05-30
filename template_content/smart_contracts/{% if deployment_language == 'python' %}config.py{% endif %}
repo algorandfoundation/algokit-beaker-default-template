@@ -16,7 +16,6 @@ from algosdk.v2client.indexer import IndexerClient
 
 from smart_contracts import helloworld
 
-
 logger = logging.getLogger(__name__)
 
 # define contracts to build and/or deploy
@@ -32,7 +31,10 @@ def deploy(
     is_local = is_localnet(algod_client)
     match app_spec.contract.name:
         case "HelloWorldApp":
-            from smart_contracts.artifacts.HelloWorldApp.client import HelloWorldAppClient
+            from smart_contracts.artifacts.HelloWorldApp.client import (
+                HelloWorldAppClient,
+            )
+
             app_client = HelloWorldAppClient(
                 algod_client,
                 creator=deployer,

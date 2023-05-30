@@ -6,7 +6,6 @@ from shutil import rmtree
 import beaker
 
 logger = logging.getLogger(__name__)
-
 deployment_extension = "ts"
 
 
