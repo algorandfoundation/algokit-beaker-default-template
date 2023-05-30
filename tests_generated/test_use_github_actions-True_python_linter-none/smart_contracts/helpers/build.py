@@ -7,7 +7,6 @@ import beaker
 
 logger = logging.getLogger(__name__)
 deployment_extension = "py"
-deployment_language = "python"
 
 
 def build(output_dir: Path, app: beaker.Application) -> Path:
@@ -29,7 +28,7 @@ def build(output_dir: Path, app: beaker.Application) -> Path:
                 "--output",
                 output_dir / f"client.{deployment_extension}",
                 "--language",
-                f"{deployment_language}",
+                f"{'python' if (deployment_extension == 'py')  else 'typescript'}",
             ]
         )
     except subprocess.CalledProcessError as e:
