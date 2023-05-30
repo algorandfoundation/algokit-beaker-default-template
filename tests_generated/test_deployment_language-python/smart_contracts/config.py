@@ -1,5 +1,4 @@
 import logging
-
 from algokit_utils import (
     Account,
     ApplicationSpecification,
@@ -13,15 +12,13 @@ from algokit_utils import (
 from algosdk.util import algos_to_microalgos
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
-
+from smart_contracts.artifacts.HelloWorldApp.client import HelloWorldAppClient
 from smart_contracts import helloworld
-from smart_contracts.artifacts.HelloWorldApp import client
 
 logger = logging.getLogger(__name__)
 
 # define contracts to build and/or deploy
 contracts = [helloworld.app]
-
 
 # define deployment behaviour based on supplied app spec
 def deploy(
@@ -33,7 +30,7 @@ def deploy(
     is_local = is_localnet(algod_client)
     match app_spec.contract.name:
         case "HelloWorldApp":
-            app_client = client.HelloWorldAppClient(
+            app_client = HelloWorldAppClient(
                 algod_client,
                 creator=deployer,
                 indexer_client=indexer_client,
