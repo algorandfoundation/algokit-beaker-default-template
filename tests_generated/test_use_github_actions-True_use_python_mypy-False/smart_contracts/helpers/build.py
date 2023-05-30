@@ -23,7 +23,6 @@ def build(output_dir: Path, app: beaker.Application) -> Path:
             "algokit",
             "generate",
             "client",
-            "-a",
             output_dir / "application.json",
             "--output",
             output_dir / f"client.{deployment_extension}",

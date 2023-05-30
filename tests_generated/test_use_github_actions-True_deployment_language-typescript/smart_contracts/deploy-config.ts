@@ -20,10 +20,10 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
   const isLocal = await algokit.isLocalNet(algod)
   const appClient = new HelloWorldAppClient(
     {
-      app: appSpec,
+      resolveBy: 'creatorAndName',
+      findExistingUsing: indexer,
       sender: deployer,
       creatorAddress: deployer.addr,
-      indexer,
     },
     algod,
   )
@@ -50,11 +50,8 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
       }
 
       const method = 'hello'
-      const methodArgs = ['world']
-      const response = await appClient.call({ method: method, methodArgs: methodArgs })
-      console.log(
-        `Called ${method} on ${name} (${app.appId}) with args=[${methodArgs}], received: ${response.return?.returnValue}`,
-      )
+      const response = await appClient.hello({ name: 'world' })
+      console.log(`Called ${method} on ${name} (${app.appId}) with name = world, received: ${response.return}`)
       break
     default:
       throw new Error(`Attempt to deploy unknown contract ${name}`)
