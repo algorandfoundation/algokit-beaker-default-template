@@ -6,9 +6,8 @@ import beaker
 
 logger = logging.getLogger(__name__)
 
-deployment_extension = 'ts'
-deployment_language = 'typescript'
-
+deployment_extension = "ts"
+deployment_language = "typescript"
 
 
 def build(output_dir: Path, app: beaker.Application) -> Path:
@@ -29,7 +28,7 @@ def build(output_dir: Path, app: beaker.Application) -> Path:
             "--output",
             output_dir / f"client.{deployment_extension}",
             "--language",
-            f"{deployment_language}"            
+            f"{deployment_language}",
         ]
     )
 
