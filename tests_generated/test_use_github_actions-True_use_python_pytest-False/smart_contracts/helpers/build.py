@@ -27,11 +27,13 @@ def build(output_dir: Path, app: beaker.Application) -> Path:
                 "client",
                 output_dir / "application.json",
                 "--output",
-                output_dir / "client.py",
+                output_dir / f"client.{deployment_extension}",
+                "--language",
+                f"{deployment_language}",
             ]
         )
     except subprocess.CalledProcessError as e:
         logger.error(f"Build process failed with error code {e.returncode}")
         raise e
-    return output_dir / "application.json"
+
     return output_dir / "application.json"
