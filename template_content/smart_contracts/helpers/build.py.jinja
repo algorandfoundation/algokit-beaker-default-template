@@ -1,4 +1,5 @@
 import logging
+import subprocess
 from pathlib import Path
 from shutil import rmtree
 
@@ -23,17 +24,19 @@ def build(output_dir: Path, app: beaker.Application) -> Path:
     specification = app.build()
     specification.export(output_dir)
 
-    subprocess.run(
-        [
-            "algokit",
-            "generate",
-            "client",
-            output_dir / "application.json",
-            "--output",
-            output_dir / f"client.{deployment_extension}",
-            "--language",
-            f"{deployment_language}"            
-        ]
-    )
-
+    try:
+        subprocess.run(
+            [
+                "algokit",
+                "generate",
+                "client",
+                output_dir / "application.json",
+                "--output",
+                output_dir / "client.py",
+            ]
+        )
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Build process failed with error code {e.returncode}")
+        raise e
+    return output_dir / "application.json"
     return output_dir / "application.json"
