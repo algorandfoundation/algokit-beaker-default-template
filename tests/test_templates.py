@@ -18,6 +18,14 @@ DEFAULT_PARAMETERS = {
     "author_name": "None",
     "author_email": "None",
 }
+config_path = Path(__file__).parent.parent / "pyproject.toml"
+BLACK_ARGS = ["black", "--check", "--diff", "--config", str(config_path), "."]
+RUFF_ARGS = ["ruff", "--diff", "--config", str(config_path), "."]
+MYPY_ARGS = [
+    "mypy",
+    "--ignore-missing-imports",  # TODO: only ignore missing typed clients in config.py
+    ".",
+]
 
 
 @pytest.fixture(autouse=True, scope="module")
@@ -91,14 +99,25 @@ def run_init(
         cwd=copy_to.parent,
     )
 
-    if (
-        result.returncode == 0
-    ):  # if successful, normalize .copier-answers.yml to make observing diffs easier
-        copier_answers = Path(copy_to / ".copier-answers.yml")
-        content = copier_answers.read_text("utf-8")
-        content = commit_pattern.sub("_commit: <commit>", content)
-        content = src_path_pattern.sub("_src_path: <src>", content)
-        copier_answers.write_text(content, "utf-8")
+    if result.returncode:
+        return result
+    # if successful, normalize .copier-answers.yml to make observing diffs easier
+    copier_answers = Path(copy_to / ".copier-answers.yml")
+    content = copier_answers.read_text("utf-8")
+    content = commit_pattern.sub("_commit: <commit>", content)
+    content = src_path_pattern.sub("_src_path: <src>", content)
+    copier_answers.write_text(content, "utf-8")
+
+    for check_args in [BLACK_ARGS, RUFF_ARGS, MYPY_ARGS]:
+        result = subprocess.run(
+            check_args,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            cwd=copy_to,
+        )
+        if result.returncode:
+            break
 
     return result
 
