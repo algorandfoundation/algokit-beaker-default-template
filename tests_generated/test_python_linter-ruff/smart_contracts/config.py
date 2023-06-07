@@ -2,7 +2,6 @@ import logging
 
 from algokit_utils import (
     Account,
-    ApplicationClient,
     ApplicationSpecification,
     OnSchemaBreak,
     OnUpdate,
@@ -22,7 +21,6 @@ logger = logging.getLogger(__name__)
 # define contracts to build and/or deploy
 contracts = [helloworld.app]
 
-
 # define deployment behaviour based on supplied app spec
 def deploy(
     algod_client: AlgodClient,
@@ -33,9 +31,12 @@ def deploy(
     is_local = is_localnet(algod_client)
     match app_spec.contract.name:
         case "HelloWorldApp":
-            app_client = ApplicationClient(
+            from smart_contracts.artifacts.HelloWorldApp.client import (
+                HelloWorldAppClient,
+            )
+
+            app_client = HelloWorldAppClient(
                 algod_client,
-                app_spec,
                 creator=deployer,
                 indexer_client=indexer_client,
             )
@@ -65,7 +66,7 @@ def deploy(
                 transfer(algod_client, transfer_parameters)
 
             name = "world"
-            response = app_client.call("hello", name=name)
+            response = app_client.hello(name=name)
             logger.info(
                 f"Called hello on {app_spec.contract.name} ({app_client.app_id}) "
                 f"with name={name}, received: {response.return_value}"
