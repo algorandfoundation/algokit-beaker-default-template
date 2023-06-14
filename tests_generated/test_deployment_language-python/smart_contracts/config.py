@@ -29,6 +29,8 @@ def deploy(
     deployer: Account,
 ) -> None:
     is_local = is_localnet(algod_client)
+    is_main = is_mainnet(algod_client)
+    is_test = is_testnet(algod_client)
     match app_spec.contract.name:
         case "HelloWorldApp":
             from smart_contracts.artifacts.HelloWorldApp.client import (
@@ -42,11 +44,11 @@ def deploy(
             )
             deploy_response = app_client.deploy(
                 on_schema_break=(
-                    OnSchemaBreak.ReplaceApp if is_local else OnSchemaBreak.Fail
+                    OnSchemaBreak.AppendApp if is_main else OnSchemaBreak.ReplaceApp
                 ),
-                on_update=OnUpdate.UpdateApp if is_local else OnUpdate.Fail,
-                allow_delete=is_local,
-                allow_update=is_local,
+                on_update=OnUpdate.AppendApp if is_main else OnUpdate.UpdateApp,
+                allow_delete=is_main,
+                allow_update=is_main,
             )
 
             # if only just created, fund smart contract account
