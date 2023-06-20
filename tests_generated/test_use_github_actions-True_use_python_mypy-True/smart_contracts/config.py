@@ -7,7 +7,7 @@ from algokit_utils import (
     OnUpdate,
     OperationPerformed,
     TransferParameters,
-    is_localnet,
+    is_mainnet,
     transfer,
 )
 from algosdk.util import algos_to_microalgos
@@ -21,6 +21,7 @@ logger = logging.getLogger(__name__)
 # define contracts to build and/or deploy
 contracts = [helloworld.app]
 
+
 # define deployment behaviour based on supplied app spec
 def deploy(
     algod_client: AlgodClient,
@@ -28,9 +29,7 @@ def deploy(
     app_spec: ApplicationSpecification,
     deployer: Account,
 ) -> None:
-    is_local = is_localnet(algod_client)
     is_main = is_mainnet(algod_client)
-    is_test = is_testnet(algod_client)
     match app_spec.contract.name:
         case "HelloWorldApp":
             from smart_contracts.artifacts.HelloWorldApp.client import (
@@ -47,8 +46,8 @@ def deploy(
                     OnSchemaBreak.AppendApp if is_main else OnSchemaBreak.ReplaceApp
                 ),
                 on_update=OnUpdate.AppendApp if is_main else OnUpdate.UpdateApp,
-                allow_delete=is_main,
-                allow_update=is_main,
+                allow_delete=not is_main,
+                allow_update=not is_main,
             )
 
             # if only just created, fund smart contract account

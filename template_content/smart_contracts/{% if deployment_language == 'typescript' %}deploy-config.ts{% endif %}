@@ -32,8 +32,8 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
     // Edit this to add the custom deployment logic for each contract
     case 'HelloWorldApp':
       const app = await appClient.deploy({
-        allowDelete: isMain,
-        allowUpdate: isMain,
+        allowDelete: !isMain,
+        allowUpdate: !isMain,
         onSchemaBreak: isMain ? 'append' : 'replace',
         onUpdate: isMain ? 'append' : 'update',
       })

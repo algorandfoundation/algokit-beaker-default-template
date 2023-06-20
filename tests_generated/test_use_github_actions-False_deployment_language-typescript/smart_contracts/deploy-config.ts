@@ -17,7 +17,7 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
     },
     algod,
   )
-  const isLocal = await algokit.isLocalNet(algod)
+  const isMain = await algokit.isMainNet(algod)
   const appClient = new HelloWorldAppClient(
     {
       resolveBy: 'creatorAndName',
@@ -32,10 +32,10 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
     // Edit this to add the custom deployment logic for each contract
     case 'HelloWorldApp':
       const app = await appClient.deploy({
-        allowDelete: isLocal,
-        allowUpdate: isLocal,
-        onSchemaBreak: isLocal ? 'replace' : 'fail',
-        onUpdate: isLocal ? 'update' : 'fail',
+        allowDelete: !isMain,
+        allowUpdate: !isMain,
+        onSchemaBreak: isMain ? 'append' : 'replace',
+        onUpdate: isMain ? 'append' : 'update',
       })
       // If app was just created fund the app account
       if (['create', 'replace'].includes(app.operationPerformed)) {
