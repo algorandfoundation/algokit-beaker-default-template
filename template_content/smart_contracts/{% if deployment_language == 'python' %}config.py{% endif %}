@@ -7,9 +7,7 @@ from algokit_utils import (
     OnUpdate,
     OperationPerformed,
     TransferParameters,
-    is_localnet,
     is_mainnet,
-    is_testnet,
     transfer,
 )
 from algosdk.util import algos_to_microalgos
@@ -31,9 +29,7 @@ def deploy(
     app_spec: ApplicationSpecification,
     deployer: Account,
 ) -> None:
-    is_localnet(algod_client)
     is_main = is_mainnet(algod_client)
-    is_testnet(algod_client)
     match app_spec.contract.name:
         case "HelloWorldApp":
             from smart_contracts.artifacts.HelloWorldApp.client import (

@@ -17,9 +17,7 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
     },
     algod,
   )
-  const isLocal = await algokit.isLocalNet(algod)
   const isMain = await algokit.isMainNet(algod)
-  const isTest = await algokit.isTestNet(algod)
   const appClient = new HelloWorldAppClient(
     {
       resolveBy: 'creatorAndName',
