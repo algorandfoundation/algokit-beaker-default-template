@@ -17,7 +17,7 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
     },
     algod,
   )
-  const isMain = await algokit.isMainNet(algod)
+  const isMainNet = await algokit.isMainNet(algod)
   const appClient = new HelloWorldAppClient(
     {
       resolveBy: 'creatorAndName',
@@ -32,10 +32,10 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
     // Edit this to add the custom deployment logic for each contract
     case 'HelloWorldApp':
       const app = await appClient.deploy({
-        allowDelete: !isMain,
-        allowUpdate: !isMain,
-        onSchemaBreak: isMain ? 'append' : 'replace',
-        onUpdate: isMain ? 'append' : 'update',
+        allowDelete: !isMainNet,
+        allowUpdate: !isMainNet,
+        onSchemaBreak: isMainNet ? 'append' : 'replace',
+        onUpdate: isMainNet ? 'append' : 'update',
       })
       // If app was just created fund the app account
       if (['create', 'replace'].includes(app.operationPerformed)) {
