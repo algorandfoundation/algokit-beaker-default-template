@@ -1,15 +1,6 @@
 import logging
 
-from algokit_utils import (
-    Account,
-    ApplicationSpecification,
-    OnSchemaBreak,
-    OnUpdate,
-    OperationPerformed,
-    TransferParameters,
-    is_localnet,
-    transfer,
-)
+import algokit_utils
 from algosdk.util import algos_to_microalgos
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
@@ -21,14 +12,15 @@ logger = logging.getLogger(__name__)
 # define contracts to build and/or deploy
 contracts = [helloworld.app]
 
+
 # define deployment behaviour based on supplied app spec
 def deploy(
     algod_client: AlgodClient,
     indexer_client: IndexerClient,
-    app_spec: ApplicationSpecification,
-    deployer: Account,
+    app_spec: algokit_utils.ApplicationSpecification,
+    deployer: algokit_utils.Account,
 ) -> None:
-    is_local = is_localnet(algod_client)
+    is_mainnet = algokit_utils.is_mainnet(algod_client)
     match app_spec.contract.name:
         case "HelloWorldApp":
             from smart_contracts.artifacts.HelloWorldApp.client import (
@@ -42,19 +34,23 @@ def deploy(
             )
             deploy_response = app_client.deploy(
                 on_schema_break=(
-                    OnSchemaBreak.ReplaceApp if is_local else OnSchemaBreak.Fail
+                    algokit_utils.OnSchemaBreak.AppendApp
+                    if is_mainnet
+                    else algokit_utils.OnSchemaBreak.ReplaceApp
                 ),
-                on_update=OnUpdate.UpdateApp if is_local else OnUpdate.Fail,
-                allow_delete=is_local,
-                allow_update=is_local,
+                on_update=algokit_utils.OnUpdate.AppendApp
+                if is_mainnet
+                else algokit_utils.OnUpdate.UpdateApp,
+                allow_delete=not is_mainnet,
+                allow_update=not is_mainnet,
             )
 
             # if only just created, fund smart contract account
             if deploy_response.action_taken in [
-                OperationPerformed.Create,
-                OperationPerformed.Replace,
+                algokit_utils.OperationPerformed.Create,
+                algokit_utils.OperationPerformed.Replace,
             ]:
-                transfer_parameters = TransferParameters(
+                transfer_parameters = algokit_utils.TransferParameters(
                     from_account=deployer,
                     to_address=app_client.app_address,
                     micro_algos=algos_to_microalgos(1),
@@ -63,7 +59,7 @@ def deploy(
                     f"New app created, funding with "
                     f"{transfer_parameters.micro_algos}µ algos"
                 )
-                transfer(algod_client, transfer_parameters)
+                algokit_utils.transfer(algod_client, transfer_parameters)
 
             name = "world"
             response = app_client.hello(name=name)
