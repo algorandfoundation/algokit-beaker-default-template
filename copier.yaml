@@ -64,6 +64,11 @@ use_github_actions:
     help: Do you want to include Github Actions workflows for build and testnet deployment?
     default: yes
 
+use_pre_commit:
+    type: bool
+    help: Do you want to include pre-commit for linting, type checking and formatting?
+    default: yes
+
 # The following should never get prompted; algokit should always pass these values through by convention
 
 algod_token:
