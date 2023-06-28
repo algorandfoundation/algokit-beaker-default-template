@@ -18,6 +18,7 @@ pytest = "*"
 pytest-cov = "*"
 pip-audit = "*"
 
+pre-commit = "*"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

@@ -68,6 +68,7 @@ For pull requests and pushes to `main` branch against this repository the follow
  - Linting is checked using [Flake8](https://flake8.pycqa.org/en/latest/)
  - Types are checked using [mypy](https://mypy-lang.org/)
  - Python tests are executed using [pytest](https://docs.pytest.org/)
+  - [Pre-commit](https://pre-commit.com/) to enable pre-commit you need to run `pre-commit install` in the root of the repository
  - Smart contract artifacts are built
  - Smart contract artifacts are checked for [output stability](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/articles/output_stability.md)
  - Smart contract is deployed to a AlgoKit LocalNet instance
@@ -92,5 +93,6 @@ This project makes use of Python to build Algorand smart contracts. The followin
 - [mypy](https://mypy-lang.org/): Static type checker.
 - [pytest](https://docs.pytest.org/): Automated testing.
  - [pip-audit](https://pypi.org/project/pip-audit/): Tool for scanning Python environments for packages with known vulnerabilities.
+ - [Pre-commit](https://pre-commit.com/): A framework for managing and maintaining pre-commit hooks.
 It has also been configured to have a productive dev experience out of the box in [VS Code](https://code.visualstudio.com/), see the [.vscode](./.vscode) folder.
 
