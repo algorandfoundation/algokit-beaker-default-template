@@ -90,9 +90,6 @@ For pull requests and pushes to `main` branch against this repository the follow
 {%- if use_python_pytest %}
  - Python tests are executed using [pytest](https://docs.pytest.org/)
 {%- endif %}
-{%- if use_pre_commit %}
-  - [pre-commit](https://pre-commit.com/) to enable pre-commit you need to run `pre-commit install` in the root of the repository
-{%- endif %}
  - Smart contract artifacts are built
  - Smart contract artifacts are checked for [output stability](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/articles/output_stability.md)
  - Smart contract is deployed to a AlgoKit LocalNet instance
@@ -130,7 +127,7 @@ This project makes use of Python to build Algorand smart contracts. The followin
  - [pip-audit](https://pypi.org/project/pip-audit/): Tool for scanning Python environments for packages with known vulnerabilities.
 {%- endif %}
 {%- if use_pre_commit %}
- - [pre-commit](https://pre-commit.com/): A framework for managing and maintaining multi-language pre-commit hooks.
+ - [pre-commit](https://pre-commit.com/): to enable pre-commit you need to run `pre-commit install` in the root of the repository.
 {%- endif %}
 {%- if deployment_language == "typescript" %}
 - [npm](https://www.npmjs.com/): Node.js package manager
