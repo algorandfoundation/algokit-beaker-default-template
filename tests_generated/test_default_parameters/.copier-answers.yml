@@ -14,6 +14,7 @@ indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 project_name: test_default_parameters
 python_linter: ruff
 use_github_actions: true
+use_pre_commit: <commit>
 use_python_black: true
 use_python_mypy: true
 use_python_pip_audit: true
