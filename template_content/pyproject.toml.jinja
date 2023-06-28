@@ -29,10 +29,10 @@ pytest-cov = "*"
 {% endif -%}
 {% if use_python_pip_audit -%}
 pip-audit = "*"
-{% endif %}
+{% endif -%}
 {% if use_pre_commit -%}
 pre-commit = "*"
-{% endif -%}
+{% endif %}
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
