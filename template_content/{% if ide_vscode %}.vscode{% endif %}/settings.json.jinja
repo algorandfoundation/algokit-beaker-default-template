@@ -30,7 +30,7 @@
   "python.testing.pytestEnabled": true,
   {% endif -%}
   {% if use_python_black -%}
-  "python.formatting.provider": "none",
+  "python.formatting.provider": "black",
   {% endif -%}
   {% if python_linter != 'none' -%}
   "python.linting.pylintEnabled": false,
