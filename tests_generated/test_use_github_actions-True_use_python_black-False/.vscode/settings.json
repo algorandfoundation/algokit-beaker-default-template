@@ -21,7 +21,7 @@
       // Prevent default import sorting from running; Ruff will sort imports for us anyway
       "source.organizeImports": false
     },
-    "editor.defaultFormatter": null
+    "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "python.testing.pytestEnabled": true,
   "python.linting.pylintEnabled": false,
