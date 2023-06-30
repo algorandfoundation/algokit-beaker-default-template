@@ -2,8 +2,6 @@ import logging
 import sys
 from pathlib import Path
 
-from dotenv import load_dotenv
-
 from smart_contracts import config
 from smart_contracts.helpers.build import build
 from smart_contracts.helpers.deploy import deploy
@@ -12,8 +10,7 @@ logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
 )
 logger = logging.getLogger(__name__)
-logger.info("Loading .env")
-load_dotenv()
+
 root_path = Path(__file__).parent
 
 

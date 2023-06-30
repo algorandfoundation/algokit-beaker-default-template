@@ -123,6 +123,10 @@ celerybeat.pid
 .env
 .venv
 env/
+.env.*
+!.env.*.template
+!.env.*.template.jinja
+!.env.template
 venv/
 ENV/
 env.bak/

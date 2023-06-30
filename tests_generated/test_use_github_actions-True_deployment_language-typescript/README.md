@@ -79,6 +79,8 @@ For pull requests and pushes to `main` branch against this repository the follow
 For pushes to `main` branch, after the above checks pass, the following deployment actions are performed:
   - The smart contract(s) are deployed to TestNet using [AlgoNode](https://algonode.io).
 
+> Please note deployment is also performed via `algokit deploy` command which can be invoked both via CI as seen on this project, or locally. For more information on how to use `algokit deploy` please see [AlgoKit documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/features/deploy.md).
+
 # Tools
 
 This project makes use of Python to build Algorand smart contracts. The following tools are in use:

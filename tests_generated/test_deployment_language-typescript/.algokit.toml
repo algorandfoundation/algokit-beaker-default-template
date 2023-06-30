@@ -1,2 +1,7 @@
 [algokit]
 min_version = "v1.1.0-beta.4"
+[deploy.localnet]
+command = "npm run deploy:ci"
+
+[deploy.testnet]
+command = "npm run deploy:ci"
