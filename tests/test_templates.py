@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-commit_pattern = re.compile(r"_commit: .*")
+commit_pattern = re.compile(r"^_commit: .*", flags=re.MULTILINE)
 src_path_pattern = re.compile(r"_src_path: .*")
 tests_path = Path(__file__).parent
 root = tests_path.parent

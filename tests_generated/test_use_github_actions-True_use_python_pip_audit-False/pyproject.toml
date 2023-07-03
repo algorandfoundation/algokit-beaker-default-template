@@ -17,6 +17,7 @@ ruff = ">=0.0.260"
 mypy = "*"
 pytest = "*"
 pytest-cov = "*"
+pre-commit = "*"
 
 [build-system]
 requires = ["poetry-core"]
