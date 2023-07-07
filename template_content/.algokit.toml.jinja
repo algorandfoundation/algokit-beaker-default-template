@@ -1,16 +1,9 @@
 [algokit]
 min_version = "v1.1.0-beta.4"
 
+[deploy]
 {%- if deployment_language == 'python' %}
-[deploy.localnet]
-command = "poetry run python -m smart_contracts deploy"
-
-[deploy.testnet]
 command = "poetry run python -m smart_contracts deploy"
 {%- elif deployment_language == 'typescript' %}
-[deploy.localnet]
-command = "npm run deploy:ci"
-
-[deploy.testnet]
 command = "npm run deploy:ci"
 {%- endif %}
