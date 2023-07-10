@@ -15,6 +15,7 @@ project_name: test_python_linter-flake8
 python_linter: flake8
 use_dispenser: false
 use_github_actions: true
+use_pre_commit: true
 use_python_black: true
 use_python_mypy: true
 use_python_pip_audit: true
