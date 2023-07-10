@@ -1,9 +1,25 @@
+import dataclasses
 import logging
 import sys
+from collections.abc import Callable
 from pathlib import Path
 
-from smart_contracts import config
+from algokit_utils import Account, ApplicationSpecification
+from algosdk.v2client.algod import AlgodClient
+from algosdk.v2client.indexer import IndexerClient
+from beaker import Application
+
 from smart_contracts.helpers.build import build
+
+from .hello_world import hello_world
+
+
+@dataclasses.dataclass
+class SmartContract:
+    app: Application
+    deploy: Callable[
+        [AlgodClient, IndexerClient, ApplicationSpecification, Account], None
+    ] | None = None
 
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
@@ -14,13 +30,17 @@ root_path = Path(__file__).parent
 
 
 def main(action: str) -> None:
+    # define contracts to build and/or deploy
+    
+    contracts = [SmartContract(app=hello_world.app)]
+    
+
     artifact_path = root_path / "artifacts"
     match action:
         case "build":
-            for app in config.contracts:
-                logger.info(f"Building app {app.name}")
-                build(artifact_path / app.name, app)
-
+            for contract in contracts:
+                logger.info(f"Building app {contract.app.name}")
+                build(artifact_path / contract.app.name, contract.app)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

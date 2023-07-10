@@ -6,6 +6,7 @@ algod_server: http://localhost
 algod_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 author_email: None
 author_name: None
+contract_name: hello_world
 deployment_language: python
 ide_vscode: false
 indexer_port: 8980
