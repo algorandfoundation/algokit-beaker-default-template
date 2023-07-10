@@ -7,6 +7,15 @@ project_name:
     help: Name for this project.
     placeholder: "algorand-app"
 
+contract_name:
+    type: str
+    help: Name for the default application.
+    placeholder: "hello_world"
+    default: "hello_world"
+    validator: >-
+        {% if not (contract_name | regex_search('^[a-z]+(?:_[a-z]+)*$')) %}
+        contract_name must be formatted in snake case.
+        {% endif %}
 author_name:
     type: str
     help: Package author name

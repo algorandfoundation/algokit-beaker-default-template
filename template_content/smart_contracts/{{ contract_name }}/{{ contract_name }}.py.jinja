@@ -7,7 +7,7 @@ from smart_contracts.helpers.deployment_standard import (
 )
 
 app = (
-    beaker.Application("HelloWorldApp")
+    beaker.Application("{{ contract_name }}_app")
     .apply(deploy_time_immutability_control)
     .apply(deploy_time_permanence_control)
 )
@@ -16,3 +16,4 @@ app = (
 @app.external
 def hello(name: pt.abi.String, *, output: pt.abi.String) -> pt.Expr:
     return output.set(pt.Concat(pt.Bytes("Hello, "), name.get()))
+2

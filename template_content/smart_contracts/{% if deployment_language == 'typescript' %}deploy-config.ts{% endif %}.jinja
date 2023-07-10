@@ -1,9 +1,9 @@
 import * as algokit from '@algorandfoundation/algokit-utils'
 import { AppSpec } from '@algorandfoundation/algokit-utils/types/app-spec'
-import { HelloWorldAppClient } from './artifacts/HelloWorldApp/client'
+import { {{ contract_name.split('_')|map('capitalize')|join }}AppClient } from './artifacts/{{ contract_name }}_app/client'
 
 // Edit this to add in your contracts
-export const contracts = ['HelloWorldApp'] as const
+export const contracts = ['{{ contract_name.split('_')|map('capitalize')|join }}App'] as const
 
 export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec) {
   const algod = algokit.getAlgoClient()
@@ -18,7 +18,7 @@ export async function deploy(name: (typeof contracts)[number], appSpec: AppSpec)
     algod,
   )
   const isMainNet = await algokit.isMainNet(algod)
-  const appClient = new HelloWorldAppClient(
+  const appClient = new {{ contract_name.split('_')|map('capitalize')|join }}AppClient(
     {
       resolveBy: 'creatorAndName',
       findExistingUsing: indexer,
