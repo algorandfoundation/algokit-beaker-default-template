@@ -13,6 +13,7 @@ indexer_server: http://localhost
 indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 project_name: test_python_linter-flake8
 python_linter: flake8
+use_dispenser: false
 use_github_actions: true
 use_python_black: true
 use_python_mypy: true
