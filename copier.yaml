@@ -64,6 +64,11 @@ use_github_actions:
     help: Do you want to include Github Actions workflows for build and testnet deployment?
     default: yes
 
+use_dispenser:
+    type: bool
+    help: Do you want to fund your deployment account using a dispenser account (doesn't apply to localnet)?
+    default: no
+
 # The following should never get prompted; algokit should always pass these values through by convention
 
 algod_token:
