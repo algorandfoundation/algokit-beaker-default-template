@@ -13,6 +13,7 @@ indexer_server: http://localhost
 indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 project_name: test_use_pre_commit-True
 python_linter: ruff
+use_dispenser: false
 use_github_actions: true
 use_pre_commit: true
 use_python_black: true
