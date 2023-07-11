@@ -8,11 +8,9 @@ from algokit_utils import Account, ApplicationSpecification
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
 from beaker import Application
-
+from smart_contracts.hello_world import deploy_config, hello_world
 from smart_contracts.helpers.build import build
 from smart_contracts.helpers.deploy import deploy
-from .hello_world import deploy_config, hello_world
-
 
 
 @dataclasses.dataclass
@@ -22,20 +20,17 @@ class SmartContract:
         [AlgodClient, IndexerClient, ApplicationSpecification, Account], None
     ] | None = None
 
+
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
 )
 logger = logging.getLogger(__name__)
-
 root_path = Path(__file__).parent
 
 
 def main(action: str) -> None:
     # define contracts to build and/or deploy
     contracts = [SmartContract(app=hello_world.app, deploy=deploy_config.deploy)]
-    
-    
-
     artifact_path = root_path / "artifacts"
     match action:
         case "build":
@@ -53,6 +48,7 @@ def main(action: str) -> None:
                 app_spec_path = build(artifact_path / contract.app.name, contract.app)
                 logger.info(f"Deploying {contract.app.name}")
                 deploy(app_spec_path, contract.deploy)
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
