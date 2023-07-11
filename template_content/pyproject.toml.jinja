@@ -29,6 +29,9 @@ pytest-cov = "*"
 {% endif -%}
 {% if use_python_pip_audit -%}
 pip-audit = "*"
+{% endif -%}
+{% if use_pre_commit -%}
+pre-commit = "*"
 {% endif %}
 [build-system]
 requires = ["poetry-core"]

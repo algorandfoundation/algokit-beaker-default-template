@@ -17,6 +17,7 @@ mypy = "*"
 pytest = "*"
 pytest-cov = "*"
 pip-audit = "*"
+pre-commit = "*"
 
 [build-system]
 requires = ["poetry-core"]

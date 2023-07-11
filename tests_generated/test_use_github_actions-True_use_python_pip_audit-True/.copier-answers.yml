@@ -14,6 +14,7 @@ indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 project_name: test_use_github_actions-True_use_python_pip_audit-True
 python_linter: ruff
 use_github_actions: true
+use_pre_commit: true
 use_python_black: true
 use_python_mypy: true
 use_python_pip_audit: true
