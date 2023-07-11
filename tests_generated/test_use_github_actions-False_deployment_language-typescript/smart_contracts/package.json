@@ -9,7 +9,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@algorandfoundation/algokit-utils": "^2.2.1"
+    "@algorandfoundation/algokit-utils": "^2.3.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
