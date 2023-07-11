@@ -12,11 +12,13 @@ from beaker import Application
 from smart_contracts.helpers.build import build
 {% if deployment_language == 'python' -%}
 from smart_contracts.helpers.deploy import deploy
-from .{{ contract_name }} import deploy_config, {{ contract_name }}
-{% endif %}
-{% if deployment_language == 'typescript' -%}
-from .{{ contract_name }} import {{ contract_name }}
-{% endif %}
+from smart_contracts.{{ contract_name }} import deploy_config, {{ contract_name }}
+{% elif deployment_language == 'typescript' -%}
+from smart_contracts.{{ contract_name }} import {{ contract_name }}
+{% endif -%}
+
+
+
 
 @dataclasses.dataclass
 class SmartContract:
@@ -24,6 +26,7 @@ class SmartContract:
     deploy: Callable[
         [AlgodClient, IndexerClient, ApplicationSpecification, Account], None
     ] | None = None
+
 
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
@@ -37,10 +40,9 @@ def main(action: str) -> None:
     # define contracts to build and/or deploy
     {% if deployment_language == 'python' -%}
     contracts = [SmartContract(app={{ contract_name }}.app, deploy=deploy_config.deploy)]
-    {% endif %}
-    {% if deployment_language == 'typescript' -%}
+    {% elif deployment_language == 'typescript' -%}
     contracts = [SmartContract(app={{ contract_name }}.app)]
-    {% endif %}
+    {% endif -%}
 
     artifact_path = root_path / "artifacts"
     match action:
