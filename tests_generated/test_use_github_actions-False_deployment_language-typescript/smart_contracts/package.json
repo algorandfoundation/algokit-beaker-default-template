@@ -4,8 +4,8 @@
   "description": "Smart contract deployer",
   "main": "index.ts",
   "scripts": {
-    "deploy": "ts-node-dev --transpile-only smart_contracts/index.ts",
-    "deploy:ci": "ts-node --transpile-only smart_contracts/index.ts",
+    "deploy": "ts-node-dev --transpile-only --watch .env -r dotenv/config index.ts",
+    "deploy:ci": "ts-node --transpile-only -r dotenv/config index.ts",
     "format": "prettier --write ."
   },
   "dependencies": {
