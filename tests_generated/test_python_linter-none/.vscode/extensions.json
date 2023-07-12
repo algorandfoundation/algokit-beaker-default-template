@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "ms-python.python",
-    "matangover.mypy",
     "bungcip.better-toml",
     "editorconfig.editorconfig"
   ]

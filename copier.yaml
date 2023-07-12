@@ -13,7 +13,7 @@ preset_name:
     choices:
         Starter: "starter"
         Production: "production"
-    default: "python"
+    default: "starter"
 
 contract_name:
     type: str
@@ -43,7 +43,6 @@ ide_vscode:
 deployment_language:
     type: str
     help: What programming language do you want to use for your contract deployment code?
-    when: "{{ preset_name == 'production' }}"
     choices:
         Python: "python"
         TypeScript: "typescript"
@@ -67,8 +66,8 @@ use_python_black:
 use_python_mypy:
     type: bool
     when: "{{ preset_name == 'production' }}"
-    help: Do you want to use a Python type checker (via mypy)?
-    default: yes
+    help: Do you want to use a Python type checker (via mypy)? Recommended for production projects.
+    default: no
 
 use_python_pytest:
     type: bool
@@ -84,14 +83,14 @@ use_python_pip_audit:
 use_github_actions:
     type: bool
     when: "{{ preset_name == 'production' }}"
-    help: Do you want to include Github Actions workflows for build and testnet deployment?
-    default: yes
+    help: Do you want to include Github Actions workflows for build and testnet deployment? Recommended for production projects.
+    default: No
 
 use_pre_commit:
     type: bool
     when: "{{ preset_name == 'production' }}"
-    help: Do you want to include pre-commit for linting, type checking and formatting?
-    default: yes
+    help: Do you want to include pre-commit for linting, type checking and formatting? Recommended for production projects.
+    default: No
 
 use_dispenser:
     type: bool

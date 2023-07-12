@@ -1,5 +1,5 @@
 import * as algokit from '@algorandfoundation/algokit-utils'
-import { HelloWorldAppClient } from '../artifacts/hello_world/client'
+import { HelloWorldClient } from '../artifacts/hello_world/client'
 
 // Below is a showcase of various deployment options you can use in TypeScript Client
 export async function deploy() {
@@ -17,7 +17,7 @@ export async function deploy() {
     algod,
   )
   const isMainNet = await algokit.isMainNet(algod)
-  const appClient = new HelloWorldAppClient(
+  const appClient = new HelloWorldClient(
     {
       resolveBy: 'creatorAndName',
       findExistingUsing: indexer,

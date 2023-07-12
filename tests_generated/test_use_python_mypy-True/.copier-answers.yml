@@ -12,11 +12,12 @@ ide_vscode: true
 indexer_port: 8980
 indexer_server: http://localhost
 indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+preset_name: starter
 project_name: test_use_python_mypy-True
-python_linter: ruff
+python_linter: none
 use_dispenser: false
-use_github_actions: true
-use_pre_commit: true
+use_github_actions: false
+use_pre_commit: false
 use_python_black: true
 use_python_mypy: true
 use_python_pip_audit: true

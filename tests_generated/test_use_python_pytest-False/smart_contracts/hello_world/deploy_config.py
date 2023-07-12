@@ -15,11 +15,11 @@ def deploy(
     deployer: algokit_utils.Account,
 ) -> None:
     is_mainnet = algokit_utils.is_mainnet(algod_client)
-    from smart_contracts.artifacts.hello_world_app.client import (
-        HelloWorldAppClient,
+    from smart_contracts.artifacts.hello_world.client import (
+        HelloWorldClient,
     )
 
-    app_client = HelloWorldAppClient(
+    app_client = HelloWorldClient(
         algod_client,
         creator=deployer,
         indexer_client=indexer_client,

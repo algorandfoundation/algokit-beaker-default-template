@@ -15,11 +15,11 @@ def deploy(
     deployer: algokit_utils.Account,
 ) -> None:
     is_mainnet = algokit_utils.is_mainnet(algod_client)
-    from smart_contracts.artifacts.{{ contract_name }}_app.client import (
-        {{ contract_name.split('_')|map('capitalize')|join }}AppClient,
+    from smart_contracts.artifacts.{{ contract_name }}.client import (
+        {{ contract_name.split('_')|map('capitalize')|join }}Client,
     )
 
-    app_client = {{ contract_name.split('_')|map('capitalize')|join }}AppClient(
+    app_client = {{ contract_name.split('_')|map('capitalize')|join }}Client(
         algod_client,
         creator=deployer,
         indexer_client=indexer_client,

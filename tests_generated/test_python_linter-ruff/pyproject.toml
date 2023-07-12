@@ -14,11 +14,9 @@ python-dotenv = "^1.0.0"
 [tool.poetry.group.dev.dependencies]
 black = {extras = ["d"], version = "*"}
 ruff = ">=0.0.260"
-mypy = "*"
 pytest = "*"
 pytest-cov = "*"
 pip-audit = "*"
-pre-commit = "*"
 
 [build-system]
 requires = ["poetry-core"]
@@ -38,12 +36,3 @@ suppress-none-returning = true
 
 [tool.pytest.ini_options]
 pythonpath = ["smart_contracts", "tests"]
-
-[tool.mypy]
-files = "smart_contracts/"
-python_version = "3.10"
-check_untyped_defs = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-allow_untyped_defs = false
-strict_equality = true
