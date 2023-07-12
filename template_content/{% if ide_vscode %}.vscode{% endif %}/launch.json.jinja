@@ -8,7 +8,8 @@
       "request": "launch",
       "module": "smart_contracts",
       "cwd": "${workspaceFolder}",
-      "preLaunchTask": "Start AlgoKit LocalNet"
+      "preLaunchTask": "Start AlgoKit LocalNet",
+      "envFile": "${workspaceFolder}/.env.localnet"
     },
     {
       "name": "Deploy Built Beaker application",
@@ -16,7 +17,8 @@
       "request": "launch",
       "module": "smart_contracts",
       "args": ["deploy"],
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env.localnet"
     },
     {% elif deployment_language == 'typescript' -%}
     {
@@ -28,7 +30,8 @@
       "cwd": "${workspaceFolder}/smart_contracts",
       "console": "integratedTerminal",
       "skipFiles": ["<node_internals>/**", "node_modules/**"],
-      "preLaunchTask": "Build Beaker application (+ LocalNet)"
+      "preLaunchTask": "Build Beaker application (+ LocalNet)",
+      "envFile": "${workspaceFolder}/.env.localnet"
     },
     {
       "name": "Deploy Built Beaker application",
@@ -38,7 +41,8 @@
       "runtimeArgs": ["run", "deploy"],
       "cwd": "${workspaceFolder}/smart_contracts",
       "console": "integratedTerminal",
-      "skipFiles": ["<node_internals>/**", "node_modules/**"]
+      "skipFiles": ["<node_internals>/**", "node_modules/**"],
+      "envFile": "${workspaceFolder}/.env.localnet"
     },
     {% endif -%}
     {

@@ -7,15 +7,24 @@ project_name:
     help: Name for this project.
     placeholder: "algorand-app"
 
+preset_name:
+    type: str
+    help: Name of the preset to use. Starter is optimal for simpler projects, Production is optimal for more complex projects that require CI/CD and other features.
+    choices:
+        Starter: "starter"
+        Production: "production"
+    default: "python"
+
 contract_name:
     type: str
-    help: Name for the default application.
+    help: Name of the default smart contract app.
     placeholder: "hello_world"
     default: "hello_world"
     validator: >-
         {% if not (contract_name | regex_search('^[a-z]+(?:_[a-z]+)*$')) %}
         contract_name must be formatted in snake case.
         {% endif %}
+
 author_name:
     type: str
     help: Package author name
@@ -34,6 +43,7 @@ ide_vscode:
 deployment_language:
     type: str
     help: What programming language do you want to use for your contract deployment code?
+    when: "{{ preset_name == 'production' }}"
     choices:
         Python: "python"
         TypeScript: "typescript"
@@ -42,11 +52,12 @@ deployment_language:
 python_linter:
     type: str
     help: Do you want to use a Python linter?
+    when: "{{ preset_name == 'production' }}"
     choices:
         Ruff: "ruff"
         Flake8: "flake8"
         No thanks: "none"
-    default: "ruff"
+    default: "none"
 
 use_python_black:
     type: bool
@@ -55,6 +66,7 @@ use_python_black:
 
 use_python_mypy:
     type: bool
+    when: "{{ preset_name == 'production' }}"
     help: Do you want to use a Python type checker (via mypy)?
     default: yes
 
@@ -65,22 +77,26 @@ use_python_pytest:
 
 use_python_pip_audit:
     type: bool
+    when: "{{ preset_name == 'production' }}"
     help: Do you want to include Python dependency vulnerability scanning (via pip-audit)?
     default: yes
 
 use_github_actions:
     type: bool
+    when: "{{ preset_name == 'production' }}"
     help: Do you want to include Github Actions workflows for build and testnet deployment?
     default: yes
 
 use_pre_commit:
     type: bool
+    when: "{{ preset_name == 'production' }}"
     help: Do you want to include pre-commit for linting, type checking and formatting?
     default: yes
 
 use_dispenser:
     type: bool
-    help: Do you want to fund your deployment account using a dispenser account (doesn't apply to localnet)?
+    when: "{{ preset_name == 'production' }}"
+    help: Do you want to fund your deployment account using an optional dispenser account?
     default: no
 
 # The following should never get prompted; algokit should always pass these values through by convention

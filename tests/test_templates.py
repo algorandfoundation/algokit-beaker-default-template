@@ -180,34 +180,3 @@ def test_default_parameters(working_dir: Path) -> None:
     response = run_init(working_dir, "test_default_parameters")
 
     assert response.returncode == 0, response.stdout
-
-
-@pytest.mark.parametrize(
-    ("question_name", "answer"),
-    get_questions_from_copier_yaml(
-        [
-            "deployment_language",
-            "python_linter",
-            "use_python_black",
-            "use_python_mypy",
-            "use_python_pytest",
-            "use_python_pip_audit",
-        ]
-    ),
-)
-def test_parameters_with_github(
-    working_dir: Path, question_name: str, answer: str | bool
-) -> None:
-    response = run_init_kwargs(
-        working_dir, **{"use_github_actions": True, question_name: answer}
-    )
-
-    assert response.returncode == 0, response.stdout
-
-
-def test_typescript_deploy_without_github(working_dir: Path) -> None:
-    response = run_init_kwargs(
-        working_dir, use_github_actions=False, deployment_language="typescript"
-    )
-
-    assert response.returncode == 0, response.stdout

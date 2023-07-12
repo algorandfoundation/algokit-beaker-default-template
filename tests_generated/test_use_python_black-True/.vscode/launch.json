@@ -7,7 +7,8 @@
       "request": "launch",
       "module": "smart_contracts",
       "cwd": "${workspaceFolder}",
-      "preLaunchTask": "Start AlgoKit LocalNet"
+      "preLaunchTask": "Start AlgoKit LocalNet",
+      "envFile": "${workspaceFolder}/.env.localnet"
     },
     {
       "name": "Deploy Built Beaker application",
@@ -15,7 +16,8 @@
       "request": "launch",
       "module": "smart_contracts",
       "args": ["deploy"],
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env.localnet"
     },
     {
       "name": "Build Beaker application",
