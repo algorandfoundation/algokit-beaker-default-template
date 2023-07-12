@@ -17,6 +17,7 @@ ruff = ">=0.0.260"
 pytest = "*"
 pytest-cov = "*"
 pip-audit = "*"
+pre-commit = "*"
 
 [build-system]
 requires = ["poetry-core"]

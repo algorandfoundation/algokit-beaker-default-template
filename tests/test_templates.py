@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-commit_pattern = re.compile(r"_commit: .*")
+commit_pattern = re.compile(r"^_commit: .*", flags=re.MULTILINE)
 src_path_pattern = re.compile(r"_src_path: .*")
 tests_path = Path(__file__).parent
 root = tests_path.parent
@@ -42,6 +42,9 @@ def working_dir() -> Iterator[Path]:
         yield working_dir
 
         for src_dir in working_generated_root.iterdir():
+            if not src_dir.is_dir():
+                continue
+
             dest_dir = generated_root / src_dir.stem
             shutil.rmtree(dest_dir, ignore_errors=True)
             shutil.copytree(src_dir, dest_dir, dirs_exist_ok=True)
