@@ -5,7 +5,6 @@ from algokit_utils import (
     get_localnet_default_account,
 )
 from algosdk.v2client.algod import AlgodClient
-
 from smart_contracts.hello_world import contract as hello_world_contract
 
 

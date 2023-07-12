@@ -1,8 +1,0 @@
-{
-  "recommendations": [
-    "ms-python.python",
-    "ms-python.flake8",
-    "bungcip.better-toml",
-    "editorconfig.editorconfig"
-  ]
-}
