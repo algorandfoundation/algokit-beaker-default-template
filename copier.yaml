@@ -56,7 +56,7 @@ python_linter:
         Ruff: "ruff"
         Flake8: "flake8"
         No thanks: "none"
-    default: "none"
+    default: "ruff"
 
 use_python_black:
     type: bool

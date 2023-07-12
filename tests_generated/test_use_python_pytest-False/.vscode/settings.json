@@ -24,6 +24,7 @@
     "editor.defaultFormatter": null
   },
   "python.formatting.provider": "black",
+  "python.linting.pylintEnabled": false,
   
   // On Windows, if execution policy is set to Signed (default) then it won't be able to activate the venv
   //  so instead let's set it to RemoteSigned for VS Code terminal

@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "ms-python.python",
+    "charliermarsh.ruff",
     "esbenp.prettier-vscode",
     "bungcip.better-toml",
     "editorconfig.editorconfig"

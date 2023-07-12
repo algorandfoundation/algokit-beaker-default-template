@@ -12,4 +12,16 @@ repos:
         types_or: [ python, pyi ]
       
       
+      - id: ruff
+        name: ruff
+        description: "Run 'ruff' for extremely fast Python linting"
+        entry: poetry run ruff
+        language: system
+        types: [ python ]
+        args: [ --fix ]
+        require_serial: false
+        additional_dependencies: [ ]
+        minimum_pre_commit_version: '0'
+        files: '^(src|tests)/'
+      
       
