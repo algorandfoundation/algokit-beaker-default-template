@@ -66,8 +66,13 @@ use_python_black:
 use_python_mypy:
     type: bool
     when: "{{ preset_name == 'production' }}"
-    help: Do you want to use a Python type checker (via mypy)? Recommended for production projects.
-    default: no
+    help: Do you want to use a Python type checker (via mypy)?
+    default: |-
+        {% if preset_name == 'production' -%}
+            yes
+        {%- else -%}
+            no
+        {%- endif %}
 
 use_python_pytest:
     type: bool
@@ -83,14 +88,24 @@ use_python_pip_audit:
 use_github_actions:
     type: bool
     when: "{{ preset_name == 'production' }}"
-    help: Do you want to include Github Actions workflows for build and testnet deployment? Recommended for production projects.
-    default: No
+    help: Do you want to include Github Actions workflows for build and testnet deployment?
+    default: |-
+        {% if preset_name == 'production' -%}
+            yes
+        {%- else -%}
+            no
+        {%- endif %}
 
 use_pre_commit:
     type: bool
     when: "{{ preset_name == 'production' }}"
-    help: Do you want to include pre-commit for linting, type checking and formatting? Recommended for production projects.
-    default: No
+    help: Do you want to include pre-commit for linting, type checking and formatting?
+    default: |-
+        {% if preset_name == 'production' -%}
+            yes
+        {%- else -%}
+            no
+        {%- endif %}
 
 use_dispenser:
     type: bool
