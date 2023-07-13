@@ -64,7 +64,6 @@ This project uses [GitHub Actions](https://docs.github.com/en/actions/learn-gith
 For pull requests and pushes to `main` branch against this repository the following checks are automatically performed by GitHub Actions:
  - Python dependencies are audited using [pip-audit](https://pypi.org/project/pip-audit/)
  - Code formatting is checked using [Black](https://github.com/psf/black)
- - Linting is checked using [Ruff](https://github.com/charliermarsh/ruff)
  - Python tests are executed using [pytest](https://docs.pytest.org/)
  - Smart contract artifacts are built
  - Smart contract artifacts are checked for [output stability](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/articles/output_stability.md)
@@ -87,7 +86,6 @@ This project makes use of Python to build Algorand smart contracts. The followin
 - [PyTEAL](https://github.com/algorand/pyteal) - Python language binding for Algorand smart contracts; [docs](https://pyteal.readthedocs.io/en/stable/)
 - [AlgoKit Utils](https://github.com/algorandfoundation/algokit-utils-py) - A set of core Algorand utilities that make it easier to build solutions on Algorand.
 - [Poetry](https://python-poetry.org/): Python packaging and dependency management.- [Black](https://github.com/psf/black): A Python code formatter.
-- [Ruff](https://github.com/charliermarsh/ruff): An extremely fast Python linter.
 
 - [mypy](https://mypy-lang.org/): Static type checker.
 - [pytest](https://docs.pytest.org/): Automated testing.

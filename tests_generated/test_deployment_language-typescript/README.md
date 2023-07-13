@@ -51,7 +51,6 @@ This project makes use of Python to build Algorand smart contracts. The followin
 - [PyTEAL](https://github.com/algorand/pyteal) - Python language binding for Algorand smart contracts; [docs](https://pyteal.readthedocs.io/en/stable/)
 - [AlgoKit Utils](https://github.com/algorandfoundation/algokit-utils-ts) - A set of core Algorand utilities that make it easier to build solutions on Algorand.
 - [Poetry](https://python-poetry.org/): Python packaging and dependency management.- [Black](https://github.com/psf/black): A Python code formatter.
-- [Ruff](https://github.com/charliermarsh/ruff): An extremely fast Python linter.
 
 - [mypy](https://mypy-lang.org/): Static type checker.
 - [pytest](https://docs.pytest.org/): Automated testing.

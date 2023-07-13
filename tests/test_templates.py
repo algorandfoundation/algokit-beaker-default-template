@@ -28,6 +28,11 @@ MYPY_ARGS = [
 ]
 
 
+def _load_copier_yaml(path: Path) -> dict[str, str | bool | dict]:
+    with path.open("r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream)
+
+
 @pytest.fixture(autouse=True, scope="module")
 def working_dir() -> Iterator[Path]:
     with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
@@ -111,9 +116,17 @@ def run_init(
     content = src_path_pattern.sub("_src_path: <src>", content)
     copier_answers.write_text(content, "utf-8")
 
-    for check_args in [BLACK_ARGS, RUFF_ARGS, MYPY_ARGS]:
+    check_args = [BLACK_ARGS]
+
+    # Starter template does not have ruff config or mypy config by default
+    # so only check for them if the starter template is not used
+    processed_questions = _load_copier_yaml(copier_answers)
+    if processed_questions["preset_name"] == "production":
+        check_args += [RUFF_ARGS, MYPY_ARGS]
+
+    for check_arg in check_args:
         result = subprocess.run(
-            check_args,
+            check_arg,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
@@ -150,23 +163,21 @@ def get_questions_from_copier_yaml(
     }
     ignored_keys.update(DEFAULT_PARAMETERS)
 
-    with copier_yaml.open("r", encoding="utf-8") as stream:
-        questions = yaml.safe_load(stream)
-        for question_name, details in questions.items():
-            if question_name in ignored_keys:
-                continue
-            if allowed_questions and question_name not in allowed_questions:
-                continue
-            match details["type"]:
-                case "str":
-                    if "choices" not in details:
-                        continue
-
+    questions = _load_copier_yaml(copier_yaml)
+    for question_name, details in questions.items():
+        if question_name in ignored_keys:
+            continue
+        if allowed_questions and question_name not in allowed_questions:
+            continue
+        if isinstance(details, dict):
+            details_type = details["type"]
+            if details_type == "str" and isinstance(details, dict):
+                if "choices" in details:
                     for choice in details["choices"].values():
                         yield question_name, choice
-                case "bool":
-                    yield question_name, False
-                    yield question_name, True
+            elif details_type == "bool":
+                yield question_name, False
+                yield question_name, True
 
 
 @pytest.mark.parametrize(("question_name", "answer"), get_questions_from_copier_yaml())
