@@ -41,8 +41,6 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 > For guidance on `smart_contracts` folder and adding new contracts to the project please see [README](smart_contracts/README.md) on the respective folder.
 
-
-
 # Tools
 
 This project makes use of Python to build Algorand smart contracts. The following tools are in use:
