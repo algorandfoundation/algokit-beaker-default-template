@@ -1,6 +1,6 @@
 import { consoleLogger } from '@algorandfoundation/algokit-utils/types/logging'
 import * as algokit from '@algorandfoundation/algokit-utils'
-import { deploy as {{ contract_name.split('_')|map('capitalize')|join }}Deployer } from './hello_world/deploy-config'
+import { deploy as {{ contract_name.split('_')|map('capitalize')|join }}Deployer } from './{{ contract_name }}/deploy-config'
 
 const contractDeployers = [{{ contract_name.split('_')|map('capitalize')|join }}Deployer]
 
