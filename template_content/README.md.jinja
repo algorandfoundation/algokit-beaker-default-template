@@ -118,18 +118,20 @@ This project makes use of Python to build Algorand smart contracts. The followin
 - [Poetry](https://python-poetry.org/): Python packaging and dependency management.
 {%- if use_python_black -%}
 - [Black](https://github.com/psf/black): A Python code formatter.
-{% endif %}
+{%- endif %}
 {%- if python_linter == "ruff" -%}
 - [Ruff](https://github.com/charliermarsh/ruff): An extremely fast Python linter.
 {% elif python_linter == "flake8" -%}
 - [Flake8](https://flake8.pycqa.org/en/latest/): A Python linter for style guide enforcement.
-{% endif %}
+{%- endif %}
+{%- if use_python_mypy %}
 - [mypy](https://mypy-lang.org/): Static type checker.
+{%- endif %}
 {%- if use_python_pytest %}
 - [pytest](https://docs.pytest.org/): Automated testing.
 {%- endif %}
 {%- if use_python_pip_audit %}
- - [pip-audit](https://pypi.org/project/pip-audit/): Tool for scanning Python environments for packages with known vulnerabilities.
+- [pip-audit](https://pypi.org/project/pip-audit/): Tool for scanning Python environments for packages with known vulnerabilities.
 {%- endif %}
 {%- if use_pre_commit %}
  - [pre-commit](https://pre-commit.com/): A framework for managing and maintaining multi-language pre-commit hooks, to enable pre-commit you need to run `pre-commit install` in the root of the repository. This will install the pre-commit hooks and run them against modified files when committing. If any of the hooks fail, the commit will be aborted. To run the hooks on all files, use `pre-commit run --all-files`.
