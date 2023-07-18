@@ -14,7 +14,6 @@ def deploy(
     app_spec: algokit_utils.ApplicationSpecification,
     deployer: algokit_utils.Account,
 ) -> None:
-    is_mainnet = algokit_utils.is_mainnet(algod_client)
     from smart_contracts.artifacts.hello_world.client import (
         HelloWorldClient,
     )
@@ -24,7 +23,7 @@ def deploy(
         creator=deployer,
         indexer_client=indexer_client,
     )
-
+    is_mainnet = algokit_utils.is_mainnet(algod_client)
     app_client.deploy(
         on_schema_break=(
             algokit_utils.OnSchemaBreak.AppendApp

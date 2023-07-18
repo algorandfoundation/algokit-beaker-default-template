@@ -14,7 +14,6 @@ def deploy(
     app_spec: algokit_utils.ApplicationSpecification,
     deployer: algokit_utils.Account,
 ) -> None:
-    is_mainnet = algokit_utils.is_mainnet(algod_client)
     from smart_contracts.artifacts.{{ contract_name }}.client import (
         {{ contract_name.split('_')|map('capitalize')|join }}Client,
     )
@@ -25,6 +24,14 @@ def deploy(
         indexer_client=indexer_client,
     )
 
+
+    {%- if preset_name == 'starter'  %}
+    app_client.deploy(
+        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
+        on_update=algokit_utils.OnUpdate.AppendApp,
+    )
+    {%- elif preset_name == 'production' %}
+    is_mainnet = algokit_utils.is_mainnet(algod_client)
     app_client.deploy(
         on_schema_break=(
             algokit_utils.OnSchemaBreak.AppendApp
@@ -37,6 +44,7 @@ def deploy(
         allow_delete=not is_mainnet,
         allow_update=not is_mainnet,
     )
+    {%- endif %}
 
     name = "world"
     response = app_client.hello(name=name)
