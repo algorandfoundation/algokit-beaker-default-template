@@ -1,4 +1,5 @@
 _subdirectory: template_content
+_templates_suffix: ".jinja"
 
 # questions
 # project_name should never get prompted, AlgoKit should always pass it by convention

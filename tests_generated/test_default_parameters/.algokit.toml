@@ -9,3 +9,8 @@ environment_secrets = [
 
 [deploy.localnet]
 environment_secrets = []
+
+[generators.create_contract]
+name = "smart contract"
+description = "Adds new smart contract to existing project"
+path = ".generators/create_contract"

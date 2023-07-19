@@ -1,0 +1,16 @@
+# questions
+#  should never get prompted, AlgoKit should always pass it by convention
+contract_name:
+    type: str
+    help: Name of your new contract.
+    placeholder: "my-contract"
+
+deployment_language:
+    type: str
+    help: What programming language do you want to use for your contract deployment code?
+    choices:
+        Python: "python"
+        TypeScript: "typescript"
+    default: "python"
+
+_templates_suffix: ".j2"
