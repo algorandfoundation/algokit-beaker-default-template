@@ -107,8 +107,12 @@ def run_init(
         cwd=copy_to.parent,
     )
 
-    if result.returncode:
-        return result
+    return result
+
+
+def check_codebase(working_dir: Path, test_name: str) -> subprocess.CompletedProcess:
+    copy_to = working_dir / generated_folder / test_name
+
     # if successful, normalize .copier-answers.yml to make observing diffs easier
     copier_answers = Path(copy_to / ".copier-answers.yml")
     content = copier_answers.read_text("utf-8")
@@ -138,17 +142,72 @@ def run_init(
     return result
 
 
-def run_init_kwargs(
-    working_dir: Path, **kwargs: str | bool
+def run_generator(
+    working_dir: Path,
+    test_name: str,
+    generator_name: str,
+    answers: dict[str, str] | None = None,
 ) -> subprocess.CompletedProcess:
-    answers = {k: str(v) for k, v in kwargs.items()}
-    name_suffix = "_".join(f"{k}-{v}" for k, v in answers.items())
-    return run_init(working_dir, f"test_{name_suffix}", answers=answers)
+    copy_to = working_dir / generated_folder / test_name
+
+    init_args = [
+        "algokit",
+        "--verbose",
+        "generate",
+        str(generator_name),
+    ]
+
+    if answers:
+        for question, answer in answers.items():
+            init_args.extend(["-a", question, answer])
+
+    result = subprocess.run(
+        init_args,
+        input="y",  # acknowledge that input is not a tty
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        cwd=copy_to.absolute(),
+    )
+
+    return result
 
 
-# TODO: refactor so that after scafolding default template it runs the algokit generate
-# command and tests the generators
-def test_smart_contract_generator_default_parameters(working_dir: Path) -> None:
-    response = run_init(working_dir, "test_smart_contract_generator_default_parameters")
+def test_smart_contract_generator_default_starter_preset(working_dir: Path) -> None:
+    test_name = "test_smart_contract_generator_default_starter_preset"
 
+    response = run_init(working_dir, test_name)
+    assert response.returncode == 0, response.stdout
+
+    response = run_generator(
+        working_dir,
+        test_name,
+        "smart-contract",
+        {
+            "contract_name": "cool_contract",
+        },
+    )
+    assert response.returncode == 0, response.stdout
+
+    response = check_codebase(working_dir, test_name)
+    assert response.returncode == 0, response.stdout
+
+
+def test_smart_contract_generator_default_production_preset(working_dir: Path) -> None:
+    test_name = "test_smart_contract_generator_default_production_preset"
+
+    response = run_init(working_dir, test_name, answers={"preset_name": "production"})
+    assert response.returncode == 0, response.stdout
+
+    response = run_generator(
+        working_dir,
+        test_name,
+        "smart-contract",
+        {
+            "contract_name": "cool_contract",
+        },
+    )
+    assert response.returncode == 0, response.stdout
+
+    response = check_codebase(working_dir, test_name)
     assert response.returncode == 0, response.stdout

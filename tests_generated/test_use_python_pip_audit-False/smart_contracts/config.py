@@ -54,5 +54,5 @@ base_dir = Path("smart_contracts")
 contracts = [
     SmartContract(app=import_contract(folder), deploy=import_deploy_if_exists(folder))
     for folder in base_dir.iterdir()
-    if folder.is_dir() and has_contract_file(folder) is not None
+    if folder.is_dir() and has_contract_file(folder)
 ]

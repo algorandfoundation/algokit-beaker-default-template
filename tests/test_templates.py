@@ -135,6 +135,9 @@ def run_init(
         if result.returncode:
             break
 
+    # Remove .algokit generators folder to avoid polluting the git history
+    shutil.rmtree(copy_to / ".algokit", ignore_errors=True)
+
     return result
 
 
