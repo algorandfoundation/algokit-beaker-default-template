@@ -12,7 +12,7 @@ commit_pattern = re.compile(r"^_commit: .*", flags=re.MULTILINE)
 src_path_pattern = re.compile(r"_src_path: .*")
 tests_path = Path(__file__).parent
 root = tests_path.parent
-generated_folder = "tests_generated"
+generated_folder = "tests_generated/templates"
 generated_root = root / generated_folder
 DEFAULT_PARAMETERS = {
     "author_name": "None",

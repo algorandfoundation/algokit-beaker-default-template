@@ -12,7 +12,7 @@ commit_pattern = re.compile(r"^_commit: .*", flags=re.MULTILINE)
 src_path_pattern = re.compile(r"_src_path: .*")
 tests_path = Path(__file__).parent
 root = tests_path.parent
-generated_folder = "tests_generated"
+generated_folder = "tests_generated/generators"
 generated_root = root / generated_folder
 DEFAULT_PARAMETERS = {
     "author_name": "None",
@@ -173,8 +173,11 @@ def run_generator(
     return result
 
 
-def test_smart_contract_generator_default_starter_preset(working_dir: Path) -> None:
-    test_name = "test_smart_contract_generator_default_starter_preset"
+@pytest.mark.parametrize("language", ["python", "typescript"])
+def test_smart_contract_generator_default_starter_preset(
+    language: str, working_dir: Path
+) -> None:
+    test_name = f"test_smart_contract_generator_default_starter_preset_{language}"
 
     response = run_init(working_dir, test_name)
     assert response.returncode == 0, response.stdout
@@ -185,6 +188,7 @@ def test_smart_contract_generator_default_starter_preset(working_dir: Path) -> N
         "smart-contract",
         {
             "contract_name": "cool_contract",
+            "deployment_language": language,
         },
     )
     assert response.returncode == 0, response.stdout
@@ -193,8 +197,11 @@ def test_smart_contract_generator_default_starter_preset(working_dir: Path) -> N
     assert response.returncode == 0, response.stdout
 
 
-def test_smart_contract_generator_default_production_preset(working_dir: Path) -> None:
-    test_name = "test_smart_contract_generator_default_production_preset"
+@pytest.mark.parametrize("language", ["python", "typescript"])
+def test_smart_contract_generator_default_production_preset(
+    language: str, working_dir: Path
+) -> None:
+    test_name = f"test_smart_contract_generator_default_production_preset_{language}"
 
     response = run_init(working_dir, test_name, answers={"preset_name": "production"})
     assert response.returncode == 0, response.stdout
@@ -205,6 +212,7 @@ def test_smart_contract_generator_default_production_preset(working_dir: Path) -
         "smart-contract",
         {
             "contract_name": "cool_contract",
+            "deployment_language": language,
         },
     )
     assert response.returncode == 0, response.stdout
