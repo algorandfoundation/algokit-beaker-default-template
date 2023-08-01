@@ -15,7 +15,7 @@ This template provides a production-ready baseline for developing and deploying 
 
 To use it [install AlgoKit](https://github.com/algorandfoundation/algokit-cli#readme) and then either pass in `-t beaker_production` to `algokit init` or select the `beaker_production` template.
 
-This is one of the official templates used by AlgoKit to initialise an Algorand smart contract project. It's a [Copier template](https://copier.readthedocs.io/en/stable/).
+This is one of the official templates used by AlgoKit to initialize an Algorand smart contract project. It's a [Copier template](https://copier.readthedocs.io/en/stable/).
 
 ## Features
 

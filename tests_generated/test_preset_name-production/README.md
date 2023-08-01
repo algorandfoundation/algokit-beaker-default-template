@@ -45,7 +45,7 @@ This project uses [GitHub Actions](https://docs.github.com/en/actions/learn-gith
 
 #### Setting up GitHub for CI/CD workflow and TestNet deployment
 
-  1. Every time you have a change to your smart contract, and when you first initialise the project you need to [build the contract](#initial-setup) and then commit the `smart_contracts/artifacts` folder so the [output stability](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/articles/output_stability.md) tests pass
+  1. Every time you have a change to your smart contract, and when you first initialize the project you need to [build the contract](#initial-setup) and then commit the `smart_contracts/artifacts` folder so the [output stability](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/articles/output_stability.md) tests pass
   2. Decide what values you want to use for the `allow_update`, `allow_delete` and the `on_schema_break`, `on_update` parameters specified in [`contract.py`](./smart_contracts/hello_world/contract.py).
      When deploying to LocalNet these values are both set to allow update and replacement of the app for convenience. But for non-LocalNet networks
      the defaults are more conservative.
