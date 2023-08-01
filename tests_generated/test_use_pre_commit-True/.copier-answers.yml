@@ -6,17 +6,20 @@ algod_server: http://localhost
 algod_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 author_email: None
 author_name: None
+contract_name: hello_world
 deployment_language: python
 ide_vscode: true
 indexer_port: 8980
 indexer_server: http://localhost
 indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+preset_name: starter
 project_name: test_use_pre_commit-True
-python_linter: ruff
-use_github_actions: true
+python_linter: none
+use_dispenser: false
+use_github_actions: false
 use_pre_commit: true
 use_python_black: true
-use_python_mypy: true
+use_python_mypy: false
 use_python_pip_audit: true
 use_python_pytest: true
 

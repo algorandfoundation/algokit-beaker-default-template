@@ -2,7 +2,6 @@
   "recommendations": [
     "ms-python.python",
     "ms-python.flake8",
-    "matangover.mypy",
     "bungcip.better-toml",
     "editorconfig.editorconfig"
   ]

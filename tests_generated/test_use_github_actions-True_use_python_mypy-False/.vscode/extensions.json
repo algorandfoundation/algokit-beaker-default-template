@@ -1,8 +1,0 @@
-{
-  "recommendations": [
-    "ms-python.python",
-    "charliermarsh.ruff",
-    "bungcip.better-toml",
-    "editorconfig.editorconfig"
-  ]
-}

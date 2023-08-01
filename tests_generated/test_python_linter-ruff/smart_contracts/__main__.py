@@ -4,7 +4,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from smart_contracts import config
+from smart_contracts.config import contracts
 from smart_contracts.helpers.build import build
 from smart_contracts.helpers.deploy import deploy
 
@@ -21,20 +21,22 @@ def main(action: str) -> None:
     artifact_path = root_path / "artifacts"
     match action:
         case "build":
-            for app in config.contracts:
-                logger.info(f"Building app {app.name}")
-                build(artifact_path / app.name, app)
+            for contract in contracts:
+                logger.info(f"Building app {contract.app.name}")
+                build(artifact_path / contract.app.name, contract.app)
         case "deploy":
-            for app in config.contracts:
-                logger.info(f"Deploying app {app.name}")
-                app_spec_path = artifact_path / app.name / "application.json"
-                deploy(app_spec_path, config.deploy)
+            for contract in contracts:
+                logger.info(f"Deploying app {contract.app.name}")
+                app_spec_path = artifact_path / contract.app.name / "application.json"
+                if contract.deploy:
+                    deploy(app_spec_path, contract.deploy)
         case "all":
-            for app in config.contracts:
-                logger.info(f"Building app {app.name}")
-                app_spec_path = build(artifact_path / app.name, app)
-                logger.info(f"Deploying {app.name}")
-                deploy(app_spec_path, config.deploy)
+            for contract in contracts:
+                logger.info(f"Building app {contract.app.name}")
+                app_spec_path = build(artifact_path / contract.app.name, contract.app)
+                logger.info(f"Deploying {contract.app.name}")
+                if contract.deploy:
+                    deploy(app_spec_path, contract.deploy)
 
 
 if __name__ == "__main__":

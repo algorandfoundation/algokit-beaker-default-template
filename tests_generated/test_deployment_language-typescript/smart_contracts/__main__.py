@@ -4,7 +4,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from smart_contracts import config
+from smart_contracts.config import contracts
 from smart_contracts.helpers.build import build
 
 logging.basicConfig(
@@ -20,9 +20,9 @@ def main(action: str) -> None:
     artifact_path = root_path / "artifacts"
     match action:
         case "build":
-            for app in config.contracts:
-                logger.info(f"Building app {app.name}")
-                build(artifact_path / app.name, app)
+            for contract in contracts:
+                logger.info(f"Building app {contract.app.name}")
+                build(artifact_path / contract.app.name, contract.app)
 
 
 if __name__ == "__main__":
