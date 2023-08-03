@@ -1,6 +1,3 @@
-# questions
-#  should never get prompted, AlgoKit should always pass it by convention
-
 _task:
     - "echo '==== Successfully initialized new smart contract 🚀 ===='"
 
