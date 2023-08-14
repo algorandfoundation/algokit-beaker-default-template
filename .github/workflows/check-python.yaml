@@ -14,7 +14,7 @@ jobs:
         run: pipx install poetry
 
       - name: Install algokit
-        run: pipx install git+https://github.com/algorandfoundation/algokit-cli@advanced-generate-command
+        run: pipx install algokit
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
