@@ -6,7 +6,7 @@ from shutil import rmtree
 import beaker
 
 logger = logging.getLogger(__name__)
-deployment_extension = "py"
+deployment_extension = "ts"
 
 
 def build(output_dir: Path, app: beaker.Application) -> Path:

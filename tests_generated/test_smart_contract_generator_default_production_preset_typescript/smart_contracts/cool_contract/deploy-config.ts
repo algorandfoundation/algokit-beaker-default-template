@@ -1,9 +1,9 @@
 import * as algokit from '@algorandfoundation/algokit-utils'
-import { {{ contract_name.split('_')|map('capitalize')|join }}Client } from '../artifacts/{{ contract_name }}/client'
+import { CoolContractClient } from '../artifacts/cool_contract/client'
 
 // Below is a showcase of various deployment options you can use in TypeScript Client
 export async function deploy() {
-  console.log('=== Deploying {{ contract_name.split('_')|map('capitalize')|join }} ===')
+  console.log('=== Deploying CoolContract ===')
 
   const algod = algokit.getAlgoClient()
   const indexer = algokit.getAlgoIndexerClient()
@@ -16,7 +16,7 @@ export async function deploy() {
     },
     algod,
   )
-  const appClient = new {{ contract_name.split('_')|map('capitalize')|join }}Client(
+  const appClient = new CoolContractClient(
     {
       resolveBy: 'creatorAndName',
       findExistingUsing: indexer,
@@ -25,13 +25,6 @@ export async function deploy() {
     },
     algod,
   )
-
-  {%- if preset_name == 'starter' %}
-  const app = await appClient.deploy({
-    onSchemaBreak: 'append',
-    onUpdate: 'append',
-  })
-  {% elif preset_name == 'production' %}
   const isMainNet = await algokit.isMainNet(algod)
   const app = await appClient.deploy({
     allowDelete: !isMainNet,
@@ -39,7 +32,7 @@ export async function deploy() {
     onSchemaBreak: isMainNet ? 'append' : 'replace',
     onUpdate: isMainNet ? 'append' : 'update',
   })
-  {% endif %}
+  
 
   // If app was just created fund the app account
   if (['create', 'replace'].includes(app.operationPerformed)) {

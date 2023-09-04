@@ -179,7 +179,14 @@ def test_smart_contract_generator_default_starter_preset(
 ) -> None:
     test_name = f"test_smart_contract_generator_default_starter_preset_{language}"
 
-    response = run_init(working_dir, test_name)
+    response = run_init(
+        working_dir,
+        test_name,
+        answers={
+            "preset_name": "starter",
+            "deployment_language": language,
+        },
+    )
     assert response.returncode == 0, response.stdout
 
     response = run_generator(
@@ -203,7 +210,14 @@ def test_smart_contract_generator_default_production_preset(
 ) -> None:
     test_name = f"test_smart_contract_generator_default_production_preset_{language}"
 
-    response = run_init(working_dir, test_name, answers={"preset_name": "production"})
+    response = run_init(
+        working_dir,
+        test_name,
+        answers={
+            "preset_name": "production",
+            "deployment_language": language,
+        },
+    )
     assert response.returncode == 0, response.stdout
 
     response = run_generator(
