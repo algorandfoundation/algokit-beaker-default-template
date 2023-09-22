@@ -22,7 +22,6 @@ def hello_world_client(
         algod_client,
         app_spec=hello_world_app_spec,
         signer=get_localnet_default_account(algod_client),
-        template_values={"UPDATABLE": 1, "DELETABLE": 1},
     )
     client.create()
     return client

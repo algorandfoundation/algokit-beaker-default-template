@@ -22,7 +22,9 @@ def {{ contract_name }}_client(
         algod_client,
         app_spec={{ contract_name }}_app_spec,
         signer=get_localnet_default_account(algod_client),
+        {%- if preset_name == 'production' %}
         template_values={"UPDATABLE": 1, "DELETABLE": 1},
+        {%- endif %}
     )
     client.create()
     return client
