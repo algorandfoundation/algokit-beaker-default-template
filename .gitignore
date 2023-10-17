@@ -157,7 +157,7 @@ cython_debug/
 
 # PyCharm
 .idea/
-!.idea/runConfigurations
+!.idea/runConfigurations/*
 
 # macOS
 .DS_Store

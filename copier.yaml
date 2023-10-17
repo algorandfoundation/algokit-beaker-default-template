@@ -41,6 +41,12 @@ ide_vscode:
     help: Do you want to add VSCode configuration?
     default: yes
 
+ide_other:
+    type: bool
+    help: Do you want to add idea configuration?
+    when: "{{ ide_vscode == 'no' }}"
+    default: yes
+
 deployment_language:
     type: str
     help: What programming language do you want to use for your contract deployment code?
