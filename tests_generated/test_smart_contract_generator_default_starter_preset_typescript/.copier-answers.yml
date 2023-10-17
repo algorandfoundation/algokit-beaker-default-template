@@ -8,8 +8,8 @@ author_email: None
 author_name: None
 contract_name: hello_world
 deployment_language: typescript
+ide_jetbrains: false
 ide_vscode: true
-ide_other: false
 indexer_port: 8980
 indexer_server: http://localhost
 indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
