@@ -1,11 +1,10 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Deploy Built Beaker application" type="PythonConfigurationType" factoryName="Python">
-    <module name="jetbrains" />
+    <module name="{{ project_name }}" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <envs>
       <env name="PYTHONUNBUFFERED" value="1" />
-      <env name="envFile" value="$PROJECT_DIR$/.env.localnet" />
     </envs>
     <option name="SDK_HOME" value="$PROJECT_DIR${% if _copier_conf.os == 'windows' %}\.venv\Scripts\python.exe{% else %}/.venv/bin/python{% endif %}" />
     <option name="SDK_NAME" value="Python 3.11 ({{ project_name }})" />
@@ -13,6 +12,18 @@
     <option name="IS_MODULE_SDK" value="false" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
+    <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+    <EXTENSION ID="net.ashald.envfile">
+      <option name="IS_ENABLED" value="true" />
+      <option name="IS_SUBST" value="false" />
+      <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+      <option name="IS_IGNORE_MISSING_FILES" value="false" />
+      <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+      <ENTRIES>
+        <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH=".env.localnet" />
+      </ENTRIES>
+    </EXTENSION>
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/smart_contracts" />
     <option name="PARAMETERS" value="launch deploy" />
     <option name="SHOW_COMMAND_LINE" value="false" />
