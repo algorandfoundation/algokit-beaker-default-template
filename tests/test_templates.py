@@ -179,6 +179,9 @@ def get_questions_from_copier_yaml(
         "indexer_token",
         "indexer_server",
         "indexer_port",
+        "use_python_pip_audit",
+        "use_dispenser",
+        "use_pre_commit",
     }
     ignored_keys.update(DEFAULT_PARAMETERS)
 
