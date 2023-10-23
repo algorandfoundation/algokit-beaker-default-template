@@ -138,6 +138,22 @@ def run_init(
     # Remove .algokit generators folder to avoid polluting the git history
     shutil.rmtree(copy_to / ".algokit", ignore_errors=True)
 
+    # Check if .idea folder exists and if so modify os specific SDK_HOME path
+    idea_folder = copy_to / ".idea"
+    if idea_folder.exists():
+        # Iterate over all files in .idea/runConfigurations
+        for file in (idea_folder / "runConfigurations").iterdir():
+            # Read the file content
+            content = file.read_text()
+            # Replace the line containing SDK_HOME
+            content = re.sub(
+                r'<option name="SDK_HOME" value=".*" />',
+                '<option name="SDK_HOME" value="$PROJECT_DIR$/.venv/bin/python" />',
+                content,
+            )
+            # Write the modified content back to the file
+            file.write_text(content)
+
     return result
 
 
@@ -163,6 +179,9 @@ def get_questions_from_copier_yaml(
         "indexer_token",
         "indexer_server",
         "indexer_port",
+        "use_python_pip_audit",
+        "use_dispenser",
+        "use_pre_commit",
     }
     ignored_keys.update(DEFAULT_PARAMETERS)
 
@@ -186,7 +205,6 @@ def get_questions_from_copier_yaml(
 @pytest.mark.parametrize(("question_name", "answer"), get_questions_from_copier_yaml())
 def test_parameters(working_dir: Path, question_name: str, answer: str | bool) -> None:
     response = run_init_kwargs(working_dir, **{question_name: answer})
-
     assert response.returncode == 0, response.stdout
 
 
