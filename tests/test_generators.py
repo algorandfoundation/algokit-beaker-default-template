@@ -19,7 +19,7 @@ DEFAULT_PARAMETERS = {
     "author_email": "None",
 }
 config_path = Path(__file__).parent.parent / "pyproject.toml"
-BLACK_ARGS = ["black", "--check", "--diff", "--config", str(config_path), "."]
+RUFF_FORMATTER_ARGS = ["ruff", "format", "--check", "--config", str(config_path), "."]
 RUFF_ARGS = ["ruff", "--diff", "--config", str(config_path), "."]
 MYPY_ARGS = [
     "mypy",
@@ -39,9 +39,11 @@ def working_dir() -> Iterator[Path]:
         working_dir = Path(temp) / "template"
         working_generated_root = working_dir / generated_folder
         shutil.copytree(root, working_dir)
-        subprocess.run(["git", "add", "-A"], cwd=working_dir)
+        subprocess.run(["git", "add", "-A"], cwd=working_dir, check=False)
         subprocess.run(
-            ["git", "commit", "-m", "draft changes", "--no-verify"], cwd=working_dir
+            ["git", "commit", "-m", "draft changes", "--no-verify"],
+            cwd=working_dir,
+            check=False,
         )
 
         yield working_dir
@@ -105,6 +107,7 @@ def run_init(
         stderr=subprocess.STDOUT,
         text=True,
         cwd=copy_to.parent,
+        check=False,
     )
 
     return result
@@ -120,7 +123,7 @@ def check_codebase(working_dir: Path, test_name: str) -> subprocess.CompletedPro
     content = src_path_pattern.sub("_src_path: <src>", content)
     copier_answers.write_text(content, "utf-8")
 
-    check_args = [BLACK_ARGS]
+    check_args = [RUFF_FORMATTER_ARGS]
 
     # Starter template does not have ruff config or mypy config by default
     # so only check for them if the starter template is not used
