@@ -21,23 +21,33 @@
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": true,
-      // Prevent default import sorting from running; Ruff will sort imports for us anyway
-      "source.organizeImports": false
+      "source.organizeImports": true
     },
     "editor.defaultFormatter": null
   },
   {% if use_python_pytest -%}
   "python.testing.pytestEnabled": true,
   {% endif -%}
-  {% if use_python_black -%}
-  "python.formatting.provider": "black",
-  {% endif -%}
   {% if python_linter != 'none' -%}
-  "python.linting.pylintEnabled": false,
+  "ruff.enable": false,
   {% endif -%}
   {% if python_linter == 'flake8' -%}
-  "python.linting.flake8Enabled": true,
+  "flake8.enable": true,
   "flake8.importStrategy": "fromEnvironment",
+  "flake8.args": ["--config=.flake8"],
+  {% if python_linter == 'ruff' -%}
+  "ruff.enable": true,
+  "ruff.lint.run": "onSave",
+  "ruff.lint.args": ["--config=pyproject.toml"],
+  "ruff.importStrategy": "fromEnvironment",
+  "ruff.fixAll": true, //lint and fix all files in workspace
+  "ruff.organizeImports": true, //organize imports on save
+  "ruff.codeAction.disableRuleComment": {
+    "enable": true
+  },
+  "ruff.codeAction.fixViolation": {
+    "enable": true
+  },
   {% endif -%}
   {% if use_python_mypy -%}
   "python.analysis.typeCheckingMode": "off",

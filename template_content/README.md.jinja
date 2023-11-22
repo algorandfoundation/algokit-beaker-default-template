@@ -79,8 +79,8 @@ For pull requests and pushes to `main` branch against this repository the follow
 {%- if use_python_pip_audit %}
  - Python dependencies are audited using [pip-audit](https://pypi.org/project/pip-audit/)
 {%- endif %}
-{%- if use_python_black %}
- - Code formatting is checked using [Black](https://github.com/psf/black)
+{%- if use_python_ruff_formatter %}
+ - Code formatting is checked using [Ruff](https://github.com/astral-sh/ruff)
 {%- endif %}
 {%- if python_linter == 'ruff' %}
  - Linting is checked using [Ruff](https://github.com/charliermarsh/ruff)
@@ -116,8 +116,8 @@ This project makes use of Python to build Algorand smart contracts. The followin
 - [PyTEAL](https://github.com/algorand/pyteal) - Python language binding for Algorand smart contracts; [docs](https://pyteal.readthedocs.io/en/stable/)
 - [AlgoKit Utils]({% if deployment_language == "typescript" %}https://github.com/algorandfoundation/algokit-utils-ts{% else %}https://github.com/algorandfoundation/algokit-utils-py{% endif %}) - A set of core Algorand utilities that make it easier to build solutions on Algorand.
 - [Poetry](https://python-poetry.org/): Python packaging and dependency management.
-{%- if use_python_black -%}
-- [Black](https://github.com/psf/black): A Python code formatter.
+{%- if use_python_ruff_formatter -%}
+- [Ruff](https://github.com/astral-sh/ruff): A Python code formatter.
 {%- endif %}
 {%- if python_linter == "ruff" -%}
 - [Ruff](https://github.com/charliermarsh/ruff): An extremely fast Python linter.

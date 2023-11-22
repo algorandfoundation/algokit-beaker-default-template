@@ -12,11 +12,8 @@ algokit-utils = "^2.0.1"
 python-dotenv = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
-{% if use_python_black -%}
-black = {extras = ["d"], version = "*"}
-{% endif -%}
 {% if python_linter == 'ruff' -%}
-ruff = ">=0.0.260"
+ruff = "^0.1.6"
 {% elif python_linter == 'flake8' -%}
 flake8 = "*"
 {% endif -%}

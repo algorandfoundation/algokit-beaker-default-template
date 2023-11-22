@@ -25,7 +25,7 @@ This template supports the following features:
 -   Deploy-time immutability and permanence control
 -   [Poetry](https://python-poetry.org/) for Python dependency management and virtual environment management
 -   Linting via [Ruff](https://github.com/charliermarsh/ruff) or [Flake8](https://flake8.pycqa.org/en/latest/)
--   Formatting via [Black](https://github.com/psf/black)
+-   Formatting via [Ruff](https://github.com/charliermarsh/ruff)
 -   Type checking via [mypy](https://mypy-lang.org/)
 -   Testing via pytest (not yet used)
 -   Dependency vulnerability scanning via pip-audit (not yet used)

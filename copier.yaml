@@ -70,9 +70,9 @@ python_linter:
         none
     {%- endif %}
 
-use_python_black:
+use_python_ruff_formatter:
   type: bool
-  help: Do you want to use a Python formatter (via Black)?
+  help: Do you want to use a Python formatter (via ruff)?
   default: yes
 
 use_python_mypy:
