@@ -19,7 +19,7 @@ DEFAULT_PARAMETERS = {
     "author_email": "None",
 }
 config_path = Path(__file__).parent.parent / "pyproject.toml"
-BLACK_ARGS = ["black", "--check", "--diff", "--config", str(config_path), "."]
+RUFF_FORMATTER_ARGS = ["ruff", "format", "--check", "--config", str(config_path), "."]
 RUFF_ARGS = ["ruff", "--diff", "--config", str(config_path), "."]
 MYPY_ARGS = [
     "mypy",
@@ -73,6 +73,7 @@ def run_init(
                 ["git", "rev-parse", "--abbrev-ref", "HEAD"],
                 cwd=working_dir,
                 stdout=subprocess.PIPE,
+                check=False,
             )
             template_branch = git_output.stdout.decode("utf-8").strip()
 
@@ -116,7 +117,7 @@ def run_init(
     content = src_path_pattern.sub("_src_path: <src>", content)
     copier_answers.write_text(content, "utf-8")
 
-    check_args = [BLACK_ARGS]
+    check_args = [RUFF_FORMATTER_ARGS]
 
     # Starter template does not have ruff config or mypy config by default
     # so only check for them if the starter template is not used
@@ -131,6 +132,7 @@ def run_init(
             stderr=subprocess.STDOUT,
             text=True,
             cwd=copy_to,
+            check=False,
         )
         if result.returncode:
             break
