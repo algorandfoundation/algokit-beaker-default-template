@@ -25,7 +25,7 @@
       "source.organizeImports": false
     },
     {% if use_python_black -%}
-    "editor.defaultFormatter": "ms-python.python",
+    "editor.defaultFormatter": "ms-python.black-formatter",
     {% else -%}
     "editor.defaultFormatter": null,
     {% endif -%}
@@ -36,13 +36,9 @@
   {% if use_python_pytest -%}
   "python.testing.pytestEnabled": true,
   {% endif -%}
-  {% if python_linter != 'none' -%}
-  "ruff.enable": false,
-  {% endif -%}
   {% if python_linter == 'flake8' -%}
-  "flake8.enable": true,
   "flake8.importStrategy": "fromEnvironment",
-  "flake8.args": ["--config=.flake8"]
+  "flake8.args": ["--config=.flake8"],
   {% endif -%}
   {% if python_linter == 'ruff' -%}
   "ruff.enable": true,
