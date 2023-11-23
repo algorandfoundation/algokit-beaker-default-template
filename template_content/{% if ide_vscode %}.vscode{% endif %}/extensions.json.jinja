@@ -9,10 +9,13 @@
     {% if use_python_mypy -%}
     "matangover.mypy",
     {% endif -%}
+    {% if use_python_black -%}
+    "ms-python.black-formatter",
+    {% endif -%}
     {% if deployment_language == 'typescript' -%}
     "esbenp.prettier-vscode",
     {% endif -%}
-    "bungcip.better-toml",
+    "tamasfe.even-better-toml",
     "editorconfig.editorconfig"
   ]
 }
