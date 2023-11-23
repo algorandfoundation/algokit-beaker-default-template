@@ -3,8 +3,9 @@
     "ms-python.python",
     "charliermarsh.ruff",
     "matangover.mypy",
+    "ms-python.black-formatter",
     "esbenp.prettier-vscode",
-    "bungcip.better-toml",
+    "tamasfe.even-better-toml",
     "editorconfig.editorconfig"
   ]
 }
