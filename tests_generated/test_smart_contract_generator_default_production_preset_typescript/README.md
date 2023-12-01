@@ -44,6 +44,12 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 This project uses [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) to define CI/CD workflows, which are located in the [`.github/workflows`](./.github/workflows) folder.
 
+### Debugging Smart Contracts
+
+This project is optimized to work with AlgoKit AVM Debugger extension. To activate it:
+Refer to the commented header in the `index.ts` file in the `smart_contracts` folder.
+For information on using and setting up the `AlgoKit AVM Debugger` VSCode extension refer [here](TODO: put link).
+
 #### Setting up GitHub for CI/CD workflow and TestNet deployment
 
   1. Every time you have a change to your smart contract, and when you first initialize the project you need to [build the contract](#initial-setup) and then commit the `smart_contracts/artifacts` folder so the [output stability](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/articles/output_stability.md) tests pass
