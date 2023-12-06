@@ -12,8 +12,8 @@ algokit-utils = "^1.3"
 python-dotenv = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
-ruff = ">=0.0.260"
-black = { extras = ["d"], version = "^22.10.0" }
+ruff = "^0.1.6"
+black = {extras = ["d"], version = "^22.10.0"}
 flake8 = "^6.0.0"
 pytest = "^7.2.2"
 mypy = "^1.1.1"
@@ -45,10 +45,24 @@ select = [
 extend-exclude = [
   "tests_generated/*", # Ignoring generated tests, ruff specific errors are to be caught by pytest
   "template_content",
-]
+  ".git",
+  ".mypy_cache",
+  ".ruff_cache",
+  ]
 ignore = [
   "ANN101", # no type for self
   "ANN102", # no type for cls
+  "RET505", # allow else after return
+  "SIM108", # allow if-else in place of ternary
+  "E111", # indentation is not a multiple of four
+  "E117", # over-indented
+  "ISC001", # single line implicit string concatenation
+  "ISC002", # multi line implicit string concatenation
+  "Q000", # bad quotes inline string
+  "Q001", # bad quotes multiline string
+  "Q002", # bad quotes docstring
+  "Q003", # avoidable escaped quotes
+  "W191", # indentation contains tabs
 ]
 unfixable = ["B", "RUF"]
 

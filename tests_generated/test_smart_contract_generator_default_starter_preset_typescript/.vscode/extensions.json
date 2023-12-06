@@ -1,9 +1,15 @@
 {
   "recommendations": [
     "ms-python.python",
+    "ms-python.black-formatter",
     "esbenp.prettier-vscode",
+<<<<<<< HEAD
     "bungcip.better-toml",
     "editorconfig.editorconfig",
     "vsls-contrib.codetour"
+=======
+    "tamasfe.even-better-toml",
+    "editorconfig.editorconfig"
+>>>>>>> main
   ]
 }

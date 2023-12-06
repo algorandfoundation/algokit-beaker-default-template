@@ -1,8 +1,13 @@
 {
   "recommendations": [
     "ms-python.python",
+<<<<<<< HEAD
     "bungcip.better-toml",
     "editorconfig.editorconfig",
     "vsls-contrib.codetour"
+=======
+    "tamasfe.even-better-toml",
+    "editorconfig.editorconfig"
+>>>>>>> main
   ]
 }

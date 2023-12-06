@@ -2,8 +2,14 @@
   "recommendations": [
     "ms-python.python",
     "ms-python.flake8",
+<<<<<<< HEAD
     "bungcip.better-toml",
     "editorconfig.editorconfig",
     "vsls-contrib.codetour"
+=======
+    "ms-python.black-formatter",
+    "tamasfe.even-better-toml",
+    "editorconfig.editorconfig"
+>>>>>>> main
   ]
 }
