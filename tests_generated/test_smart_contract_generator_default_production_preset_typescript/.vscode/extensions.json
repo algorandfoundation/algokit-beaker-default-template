@@ -5,6 +5,7 @@
     "matangover.mypy",
     "esbenp.prettier-vscode",
     "bungcip.better-toml",
-    "editorconfig.editorconfig"
+    "editorconfig.editorconfig",
+    "vsls-contrib.codetour"
   ]
 }

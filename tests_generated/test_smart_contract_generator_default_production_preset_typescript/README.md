@@ -4,6 +4,8 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 # Setup
 
+For an interactive guided walkthrough of the project install [CodeTour](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour) in VS Code and run the `Getting Started with Your AlgoKit Project` tour in the `CodeTour` in Explorer panel in your VSCode instance.
+
 ### Initial setup
 
 1. Clone this repository locally
@@ -48,7 +50,7 @@ This project uses [GitHub Actions](https://docs.github.com/en/actions/learn-gith
 
 This project is optimized to work with AlgoKit AVM Debugger extension. To activate it:
 Refer to the commented header in the `index.ts` file in the `smart_contracts` folder.
-For information on using and setting up the `AlgoKit AVM Debugger` VSCode extension refer [here](TODO: put link).
+For information on using and setting up the `AlgoKit AVM Debugger` VSCode extension refer [here](https://github.com/algorandfoundation/algokit-avm-vscode-debugger).
 
 #### Setting up GitHub for CI/CD workflow and TestNet deployment
 

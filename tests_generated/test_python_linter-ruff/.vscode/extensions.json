@@ -3,6 +3,7 @@
     "ms-python.python",
     "charliermarsh.ruff",
     "bungcip.better-toml",
-    "editorconfig.editorconfig"
+    "editorconfig.editorconfig",
+    "vsls-contrib.codetour"
   ]
 }

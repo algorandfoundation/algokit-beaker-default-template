@@ -4,6 +4,7 @@
     "charliermarsh.ruff",
     "matangover.mypy",
     "bungcip.better-toml",
-    "editorconfig.editorconfig"
+    "editorconfig.editorconfig",
+    "vsls-contrib.codetour"
   ]
 }

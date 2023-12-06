@@ -3,6 +3,7 @@
     "ms-python.python",
     "matangover.mypy",
     "bungcip.better-toml",
-    "editorconfig.editorconfig"
+    "editorconfig.editorconfig",
+    "vsls-contrib.codetour"
   ]
 }
