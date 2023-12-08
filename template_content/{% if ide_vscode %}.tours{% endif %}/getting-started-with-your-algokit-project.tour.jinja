@@ -18,7 +18,7 @@
       "line": 25
     },
     {
-      "file": "smart_contracts/hello_world/deploy_config.py",
+      "file": "smart_contracts/hello_world/{% if deployment_language == 'typescript' %}deploy-config.ts{% else %}deploy_config.py{% endif %}",
       "description": "The default deployment scripts invoke a sample method on the starter contract that demonstrates how to interact with your deployed Algorand on-chain applications using the [`AlgoKit Typed Clients`](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/features/generate.md#1-typed-clients) feature.",
       "line": 32
     },
