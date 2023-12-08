@@ -1,6 +1,6 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: 1.9.3-1-gab67cf0
-_src_path: /var/folders/t6/57q65mk543l7xw6_bdgx1bmc0000gn/T/tmpkn2hrvj7/template
+_commit: <commit>
+_src_path: <src>
 algod_port: 4001
 algod_server: http://localhost
 algod_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
