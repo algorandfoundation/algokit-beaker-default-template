@@ -88,8 +88,25 @@ use_python_mypy:
 
 use_python_pytest:
   type: bool
+  when: "{{ deployment_language == 'python' }}"
   help: Do you want to include unit tests (via pytest)?
-  default: yes
+  default: |-
+    {% if deployment_language == 'python' -%}
+        yes
+    {%- else -%}
+        no
+    {%- endif %}
+
+use_typescript_jest:
+  type: bool
+  when: "{{ deployment_language == 'typescript' }}"
+  help: Do you want to include unit tests (via jest)?
+  default: |-
+    {% if deployment_language == 'typescript' -%}
+        yes
+    {%- else -%}
+        no
+    {%- endif %}
 
 use_python_pip_audit:
   type: bool
