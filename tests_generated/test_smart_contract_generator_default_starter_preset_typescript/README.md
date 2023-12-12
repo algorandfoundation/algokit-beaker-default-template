@@ -51,12 +51,12 @@ This project makes use of Python to build Algorand smart contracts. The followin
 - [Beaker](https://github.com/algorand-devrel/beaker) - Smart contract development framework for PyTeal; [docs](https://beaker.algo.xyz), [examples](https://github.com/algorand-devrel/beaker/tree/master/examples)
 - [PyTEAL](https://github.com/algorand/pyteal) - Python language binding for Algorand smart contracts; [docs](https://pyteal.readthedocs.io/en/stable/)
 - [AlgoKit Utils](https://github.com/algorandfoundation/algokit-utils-ts) - A set of core Algorand utilities that make it easier to build solutions on Algorand.
-- [Poetry](https://python-poetry.org/): Python packaging and dependency management.- [Black](https://github.com/psf/black): A Python code formatter.
-- [pytest](https://docs.pytest.org/): Automated testing.
+- [Poetry](https://python-poetry.org/): Python packaging and dependency management.
+- [Black](https://github.com/psf/black): A Python code formatter.
 - [pip-audit](https://pypi.org/project/pip-audit/): Tool for scanning Python environments for packages with known vulnerabilities.
-- [npm](https://www.npmjs.com/): Node.js package manager
-- [TypeScript](https://www.typescriptlang.org/): Strongly typed programming language that builds on JavaScript
-- [ts-node-dev](https://github.com/wclr/ts-node-dev): TypeScript development execution environment
+- [npm](https://www.npmjs.com/): Node.js package manager.
+- [TypeScript](https://www.typescriptlang.org/): Strongly typed programming language that builds on JavaScript.
+- [ts-node-dev](https://github.com/wclr/ts-node-dev): TypeScript development execution environment.
+- [Jest](https://jestjs.io/): Automated testing.
 
 It has also been configured to have a productive dev experience out of the box in [VS Code](https://code.visualstudio.com/), see the [.vscode](./.vscode) folder.
-
