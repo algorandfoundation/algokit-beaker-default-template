@@ -182,6 +182,9 @@ def get_questions_from_copier_yaml(
         "use_python_pip_audit",
         "use_dispenser",
         "use_pre_commit",
+        # this also needs deployment_language set to typescript
+        # and is already tested via the typescript tests
+        "use_typescript_jest",
     }
     ignored_keys.update(DEFAULT_PARAMETERS)
 
