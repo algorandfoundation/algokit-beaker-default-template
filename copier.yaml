@@ -59,8 +59,9 @@ use_python_pytest:
   type: bool
   when: "{{ deployment_language == 'python' }}"
   help: Do you want to include unit tests (via pytest)?
+  # deployment_language is empty when using the default_language
   default: |-
-    {% if deployment_language == 'python' -%}
+    {% if deployment_language|length == 0 or deployment_language == 'python' -%}
         yes
     {%- else -%}
         no
