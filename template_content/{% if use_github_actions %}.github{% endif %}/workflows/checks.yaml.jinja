@@ -99,7 +99,7 @@ jobs:
 
       - name: Run deployer against LocalNet
 {%- if deployment_language == 'typescript' %}
-        run: npm run --prefix smart_contracts deploy:ci
+        run: npm run deploy:ci
 {%- elif deployment_language == 'python' %}
         run: poetry run python -m smart_contracts deploy
 {%- endif %}

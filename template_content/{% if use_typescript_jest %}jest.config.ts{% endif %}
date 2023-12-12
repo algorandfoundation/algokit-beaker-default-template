@@ -10,7 +10,7 @@ const config: Config = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
-  testPathIgnorePatterns: ['node_modules', '.venv'],
+  testPathIgnorePatterns: ['node_modules', '.venv', 'coverage'],
   testTimeout: 10000,
 }
 export default config

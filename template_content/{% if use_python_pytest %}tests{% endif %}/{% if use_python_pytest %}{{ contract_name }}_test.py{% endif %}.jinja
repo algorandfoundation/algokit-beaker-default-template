@@ -3,6 +3,7 @@ import pytest
 from algokit_utils import get_localnet_default_account
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
+
 from smart_contracts.artifacts.{{ contract_name }}.client import {{ contract_name.split('_')|map('capitalize')|join }}Client
 
 
@@ -21,9 +22,6 @@ def {{ contract_name }}_client(
         on_update=algokit_utils.OnUpdate.UpdateApp,
         allow_delete=True,
         allow_update=True,
-        {%- if preset_name == 'production' %}
-        template_values={"UPDATABLE": 1, "DELETABLE": 1},
-        {%- endif %}
     )
     return client
 

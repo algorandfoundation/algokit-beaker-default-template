@@ -21,12 +21,6 @@ describe('{{ contract_name.split('_')|join(' ') }} contract', () => {
       allowUpdate: true,
       onSchemaBreak: 'replace',
       onUpdate: 'update',
-      {%- if preset_name == 'production' %}
-      deployTimeParams:{
-        UPDATABLE: 1,
-        DELETABLE: 1
-      },
-      {%- endif %}
     })
     return { client }
   }
