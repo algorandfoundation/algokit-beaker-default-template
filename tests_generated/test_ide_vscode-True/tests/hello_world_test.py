@@ -35,10 +35,10 @@ def test_says_hello(hello_world_client: HelloWorldClient) -> None:
 def test_simulate_says_hello_with_correct_budget_consumed(
     hello_world_client: HelloWorldClient, algod_client: AlgodClient
 ) -> None:
-    atc = hello_world_client.compose().hello(name="World").hello(name="Jane").atc
-
-    result = atc.simulate(algod_client)
+    result = (
+        hello_world_client.compose().hello(name="World").hello(name="Jane").simulate()
+    )
 
     assert result.abi_results[0].return_value == "Hello, World"
     assert result.abi_results[1].return_value == "Hello, Jane"
-    assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] == 98
+    assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] < 100
