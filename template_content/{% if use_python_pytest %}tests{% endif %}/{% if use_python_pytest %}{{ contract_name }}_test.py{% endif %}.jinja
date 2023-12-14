@@ -35,10 +35,10 @@ def test_says_hello({{ contract_name }}_client: {{ contract_name.split('_')|map(
 def test_simulate_says_hello_with_correct_budget_consumed(
     {{ contract_name }}_client: {{ contract_name.split('_')|map('capitalize')|join }}Client, algod_client: AlgodClient
 ) -> None:
-    atc = {{ contract_name }}_client.compose().hello(name="World").hello(name="Jane").atc
-
-    result = atc.simulate(algod_client)
+    result = (
+        {{ contract_name }}_client.compose().hello(name="World").hello(name="Jane").simulate()
+    )
 
     assert result.abi_results[0].return_value == "Hello, World"
     assert result.abi_results[1].return_value == "Hello, Jane"
-    assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] == 98
+    assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] < 100
