@@ -1,9 +1,16 @@
 import { algorandFixture } from '@algorandfoundation/algokit-utils/testing'
 import { HelloWorldClient } from '../smart_contracts/artifacts/hello_world/client'
 import { Account, Algodv2, Indexer } from 'algosdk'
+import * as algokit from '@algorandfoundation/algokit-utils'
 
 describe('hello world contract', () => {
   const localnet = algorandFixture()
+  beforeAll(() => {
+    algokit.Config.configure({
+      debug: true,
+      // traceAll: true,
+    })
+  })
   beforeEach(localnet.beforeEach)
 
   const deploy = async (account: Account, algod: Algodv2, indexer: Indexer) => {

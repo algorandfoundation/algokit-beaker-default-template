@@ -1,9 +1,16 @@
 import { algorandFixture } from '@algorandfoundation/algokit-utils/testing'
 import { {{ contract_name.split('_')|map('capitalize')|join }}Client } from '../smart_contracts/artifacts/{{ contract_name }}/client'
 import { Account, Algodv2, Indexer } from 'algosdk'
+import * as algokit from '@algorandfoundation/algokit-utils'
 
 describe('{{ contract_name.split('_')|join(' ') }} contract', () => {
   const localnet = algorandFixture()
+  beforeAll(() => {
+    algokit.Config.configure({
+      debug: true,
+      // traceAll: true,
+    })
+  })
   beforeEach(localnet.beforeEach)
 
   const deploy = async (account: Account, algod: Algodv2, indexer: Indexer) => {
