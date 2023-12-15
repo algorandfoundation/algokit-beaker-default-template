@@ -4,6 +4,8 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 # Setup
 
+For an interactive guided walkthrough of the project install [CodeTour](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour) in VS Code and run the `Getting Started with Your AlgoKit Project` tour in the `CodeTour` in Explorer panel in your VSCode instance.
+
 ### Initial setup
 
 1. Clone this repository locally

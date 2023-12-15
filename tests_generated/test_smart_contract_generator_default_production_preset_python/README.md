@@ -4,6 +4,8 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 # Setup
 
+For an interactive guided walkthrough of the project install [CodeTour](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour) in VS Code and run the `Getting Started with Your AlgoKit Project` tour in the `CodeTour` in Explorer panel in your VSCode instance.
+
 ### Initial setup
 
 1. Clone this repository locally
@@ -42,6 +44,15 @@ This project has been generated using AlgoKit. See below for default getting sta
 > For guidance on `smart_contracts` folder and adding new contracts to the project please see [README](smart_contracts/README.md) on the respective folder.### Continuous Integration / Continuous Deployment (CI/CD)
 
 This project uses [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) to define CI/CD workflows, which are located in the [`.github/workflows`](./.github/workflows) folder.
+
+### Debugging Smart Contracts
+
+This project is optimized to work with AlgoKit AVM Debugger extension. To activate it:
+Refer to the commented header in the `__main__.py` file in the `smart_contracts` folder.
+
+If you have opted in to include VSCode launch configurations in your project, you can also use the `Debug TEAL via AlgoKit AVM Debugger` launch configuration to interactively select an available trace file and launch the debug session for your smart contract.
+
+For information on using and setting up the `AlgoKit AVM Debugger` VSCode extension refer [here](https://github.com/algorandfoundation/algokit-avm-vscode-debugger). To install the extension from the VSCode Marketplace, use the following link: [AlgoKit AVM Debugger extension](https://marketplace.visualstudio.com/items?itemName=algorandfoundation.algokit-avm-vscode-debugger).
 
 #### Setting up GitHub for CI/CD workflow and TestNet deployment
 
