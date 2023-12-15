@@ -12,7 +12,6 @@ from smart_contracts.helpers.deploy import deploy
 # # Learn more about using AlgoKit AVM Debugger to debug your TEAL source codes and inspect various kinds of Algorand transactions in atomic groups -> https://github.com/algorandfoundation/algokit-avm-vscode-debugger
 # from algokit_utils.config import config
 # config.configure(debug=True, trace_all=True)
-
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s %(levelname)-10s: %(message)s"
 )
