@@ -1,5 +1,5 @@
 import { algorandFixture } from '@algorandfoundation/algokit-utils/testing'
-import { {{ contract_name.split('_')|map('capitalize')|join }}Client } from '../smart_contracts/artifacts/{{ contract_name }}/client'
+import { {% include pathjoin('includes', 'contract_name_pascal.jinja') %}Client } from '../smart_contracts/artifacts/{{ contract_name }}/client'
 import { Account, Algodv2, Indexer } from 'algosdk'
 import * as algokit from '@algorandfoundation/algokit-utils'
 
@@ -14,7 +14,7 @@ describe('{{ contract_name.split('_')|join(' ') }} contract', () => {
   beforeEach(localnet.beforeEach)
 
   const deploy = async (account: Account, algod: Algodv2, indexer: Indexer) => {
-    const client = new {{ contract_name.split('_')|map('capitalize')|join }}Client(
+    const client = new {% include pathjoin('includes', 'contract_name_pascal.jinja') %}Client(
       {
         resolveBy: 'creatorAndName',
         findExistingUsing: indexer,
