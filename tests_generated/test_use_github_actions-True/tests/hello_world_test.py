@@ -1,6 +1,7 @@
 import algokit_utils
 import pytest
 from algokit_utils import get_localnet_default_account
+from algokit_utils.config import config
 from algosdk.v2client.algod import AlgodClient
 from algosdk.v2client.indexer import IndexerClient
 
@@ -11,6 +12,11 @@ from smart_contracts.artifacts.hello_world.client import HelloWorldClient
 def hello_world_client(
     algod_client: AlgodClient, indexer_client: IndexerClient
 ) -> HelloWorldClient:
+    config.configure(
+        debug=True,
+        # trace_all=True,
+    )
+
     client = HelloWorldClient(
         algod_client,
         creator=get_localnet_default_account(algod_client),
