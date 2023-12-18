@@ -55,6 +55,29 @@ deployment_language:
     TypeScript: "typescript"
   default: "python"
 
+use_python_pytest:
+  type: bool
+  when: "{{ deployment_language == 'python' }}"
+  help: Do you want to include unit tests (via pytest)?
+  # deployment_language is empty when using the default_language
+  default: |-
+    {% if deployment_language|length == 0 or deployment_language == 'python' -%}
+        yes
+    {%- else -%}
+        no
+    {%- endif %}
+
+use_typescript_jest:
+  type: bool
+  when: "{{ deployment_language == 'typescript' }}"
+  help: Do you want to include unit tests (via jest)?
+  default: |-
+    {% if deployment_language == 'typescript' -%}
+        yes
+    {%- else -%}
+        no
+    {%- endif %}
+
 python_linter:
   type: str
   help: Do you want to use a Python linter?
@@ -85,11 +108,6 @@ use_python_mypy:
     {%- else -%}
         no
     {%- endif %}
-
-use_python_pytest:
-  type: bool
-  help: Do you want to include unit tests (via pytest)?
-  default: yes
 
 use_python_pip_audit:
   type: bool

@@ -66,6 +66,9 @@ jobs:
           # stop the build if there are Python syntax errors or undefined names
           poetry run flake8 .
 {%- endif %}
+
+      - name: Build smart contracts
+        run: poetry run python -m smart_contracts build
 {%- if use_python_mypy %}
 
       - name: Check types with mypy
@@ -79,9 +82,12 @@ jobs:
           set -o pipefail
           poetry run pytest --junitxml=pytest-junit.xml
 {%- endif %}
+{%- if use_typescript_jest %}
 
-      - name: Build smart contracts
-        run: poetry run python -m smart_contracts build
+      - name: Run tests
+        shell: bash
+        run: npm run test
+{%- endif %}
 
       - name: Check output stability of the smart contracts
         shell: bash
@@ -93,7 +99,7 @@ jobs:
 
       - name: Run deployer against LocalNet
 {%- if deployment_language == 'typescript' %}
-        run: npm run --prefix smart_contracts deploy:ci
+        run: npm run deploy:ci
 {%- elif deployment_language == 'python' %}
         run: poetry run python -m smart_contracts deploy
 {%- endif %}

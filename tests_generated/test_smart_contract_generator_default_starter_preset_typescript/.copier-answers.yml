@@ -15,5 +15,5 @@ indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 preset_name: starter
 project_name: test_smart_contract_generator_default_starter_preset_typescript
 use_python_black: true
-use_python_pytest: true
+use_typescript_jest: true
 

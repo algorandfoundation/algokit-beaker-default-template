@@ -23,9 +23,9 @@
       "line": 32
     },
     {
-      "file": "tests/hello_world_test.py",
-      "description": "If you opted to include unit tests, the default tests provided demonstrate an example of mocking, setting up fixtures, and testing smart contract calls on an AlgoKit application client.",
-      "line": 21
+      "file": "tests/hello-world.spec.ts",
+      "description": "If you opted to include unit tests, the default tests provided demonstrate an example of mocking, setting up fixtures, and testing smart contract calls on an AlgoKit typed client.",
+      "line": 39
     },
     {
       "file": ".env.localnet.template",

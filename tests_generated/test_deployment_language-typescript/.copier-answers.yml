@@ -15,5 +15,5 @@ indexer_token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 preset_name: starter
 project_name: test_deployment_language-typescript
 use_python_black: true
-use_python_pytest: true
+use_typescript_jest: true
 

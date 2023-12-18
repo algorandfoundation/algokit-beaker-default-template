@@ -21,5 +21,5 @@ use_pre_commit: true
 use_python_black: true
 use_python_mypy: true
 use_python_pip_audit: true
-use_python_pytest: true
+use_typescript_jest: true
 

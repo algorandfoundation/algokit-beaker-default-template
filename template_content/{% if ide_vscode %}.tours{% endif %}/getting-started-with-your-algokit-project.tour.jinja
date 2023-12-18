@@ -23,9 +23,9 @@
       "line": 32
     },
     {
-      "file": "tests/hello_world_test.py",
-      "description": "If you opted to include unit tests, the default tests provided demonstrate an example of mocking, setting up fixtures, and testing smart contract calls on an AlgoKit application client.",
-      "line": 21
+      "file": "tests/{% if deployment_language == 'typescript' %}{% include pathjoin('includes', 'contract_name_kebab.jinja') %}.spec.ts{% else %}{{ contract_name }}_test.py{% endif %}",
+      "description": "If you opted to include unit tests, the default tests provided demonstrate an example of mocking, setting up fixtures, and testing smart contract calls on an AlgoKit typed client.",
+      "line": {% if deployment_language == 'typescript' %}39{% else %}36{% endif %}
     },
     {
       "file": ".env.localnet.template",
