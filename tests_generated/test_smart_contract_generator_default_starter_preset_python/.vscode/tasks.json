@@ -59,6 +59,15 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "Analyze TEAL contracts with AlgoKit Tealer integration",
+      "command": "algokit",
+      "args": ["task", "analyze", "${workspaceFolder}"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ]
 }

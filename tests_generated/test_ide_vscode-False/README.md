@@ -57,3 +57,8 @@ This project makes use of Python to build Algorand smart contracts. The followin
 - [pytest](https://docs.pytest.org/): Automated testing.
 - [pip-audit](https://pypi.org/project/pip-audit/): Tool for scanning Python environments for packages with known vulnerabilities.
 
+- [AlgoKit Tealer Integration](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/features/tasks/analyze.md): AlgoKit Tealer Integration is a feature in the CLI that allows you to run [tealer] static analyzer on your TEAL 
+source code. The invocation of this command is included in:
+- The github actions workflow file.
+- A VSCode task ('Shift+CMD|CTRL+P' and search for 'Tasks: Run Task' and select 'Analyze TEAL contracts with AlgoKit Tealer integration').
+- A `pre-commit` hook (if you have enabled `pre-commit` in your project). 

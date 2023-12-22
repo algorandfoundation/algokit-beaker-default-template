@@ -89,6 +89,9 @@ jobs:
         run: npm run test
 {%- endif %}
 
+      - name: Scan TEAL files for issues
+        run: algokit task analyze . # add --diff flag if you want output stability checks instead
+
       - name: Check output stability of the smart contracts
         shell: bash
         run: |
