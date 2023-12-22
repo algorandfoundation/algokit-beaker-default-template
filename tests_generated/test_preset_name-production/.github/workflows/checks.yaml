@@ -68,7 +68,7 @@ jobs:
           poetry run pytest --junitxml=pytest-junit.xml
 
       - name: Scan TEAL files for issues
-        run: algokit task analyze .algokit --recursive # add --diff flag if you want output stability checks instead
+        run: algokit task analyze .algokit --recursive --force # add --diff flag if you want output stability checks instead
 
       - name: Check output stability of the smart contracts
         shell: bash

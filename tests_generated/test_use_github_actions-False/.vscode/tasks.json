@@ -63,7 +63,13 @@
     {
       "label": "Analyze TEAL contracts with AlgoKit Tealer integration",
       "command": "algokit",
-      "args": ["task", "analyze", "${workspaceFolder}"],
+      "args": [
+        "task",
+        "analyze",
+        "${workspaceFolder}/.algokit",
+        "--recursive",
+        "--force"
+      ],
       "options": {
         "cwd": "${workspaceFolder}"
       },
