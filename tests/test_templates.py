@@ -182,6 +182,9 @@ def get_questions_from_copier_yaml(
         "use_python_pip_audit",
         "use_dispenser",
         "use_pre_commit",
+        "use_python_black",
+        "use_python_mypy",
+        "python_linter",
         # this also needs deployment_language set to typescript
         # and is already tested via the typescript tests
         "use_typescript_jest",

@@ -23,12 +23,19 @@ describe('{{ contract_name.split('_')|join(' ') }} contract', () => {
       },
       algod,
     )
+    {%- if preset_name == 'starter' %}
+    await client.deploy({
+      onSchemaBreak: 'append',
+      onUpdate: 'append',
+    })
+    {%- elif preset_name == 'production' %}
     await client.deploy({
       allowDelete: true,
       allowUpdate: true,
       onSchemaBreak: 'replace',
       onUpdate: 'update',
     })
+    {% endif %}
     return { client }
   }
 
