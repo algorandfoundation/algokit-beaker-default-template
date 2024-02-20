@@ -36,7 +36,7 @@ This template supports the following features:
 - CI/CD pipeline using GitHub Actions:
 - - Optionally pick deployments to Netlify or Vercel
 
-# Getting started
+## Getting started
 
 Once the template is instantiated you can follow the [README.md](template_content/README.md.jinja) file to see instructions for how to use the template.
 
@@ -51,7 +51,3 @@ Prefer to try out any of the official templates interactively on `GitHub Codespa
 1. Navigate to [algokit-base-template](https://github.com/algorandfoundation/algokit-base-template)
 2. Click `Create codespace on main` by clicking on `Code` button under `Codespaces` tab.
 3. Once the codespace is ready, algokit will automatically invoke an interactive prompt to help you choose the template best suited for your needs.
-
-# Getting started
-
-Once the template is instantiated you can follow the [README.md](template_content/README.md.jinja) file to see instructions for how to use the template.
