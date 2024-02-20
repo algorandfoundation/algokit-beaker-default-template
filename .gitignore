@@ -170,5 +170,6 @@ cython_debug/
 # NPM
 node_modules
 
+# playground folder for previewing templates
 .playground/*
 !.playground/.gitkeep

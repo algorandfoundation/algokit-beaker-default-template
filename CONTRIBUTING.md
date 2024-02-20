@@ -1,6 +1,6 @@
 # AlgoKit Official Template for contributors
 
-This repository is a template for creating new repositories for AlgoKit. It includes a basic structure for creating a beaker based smart contract project.
+This repository is a template for creating new AlgoKit projects. It includes a basic structure for creating a beaker based smart contract project.
 
 ## Pre-requisites
 
