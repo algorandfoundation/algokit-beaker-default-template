@@ -30,7 +30,7 @@ We are using the [Conventional Commits](https://www.conventionalcommits.org/en/v
 
 ### Guiding Principles
 
-AlgoKit development is done within the [AlgoKit Guiding Principles](./docs/algokit.md#guiding-principles).
+AlgoKit development is done within the [AlgoKit Guiding Principles](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md#guiding-principles).
 
 ### Pull Requests
 
