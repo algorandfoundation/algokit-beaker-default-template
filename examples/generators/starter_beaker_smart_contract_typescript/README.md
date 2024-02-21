@@ -58,10 +58,6 @@ This project makes use of Python to build Algorand smart contracts. The followin
 - [TypeScript](https://www.typescriptlang.org/): Strongly typed programming language that builds on JavaScript.
 - [ts-node-dev](https://github.com/wclr/ts-node-dev): TypeScript development execution environment.
 
-<<<<<<< HEAD:examples/generators/starter_beaker_smart_contract_typescript/README.md
-=======
-It has also been configured to have a productive dev experience out of the box in [VS Code](https://code.visualstudio.com/), see the [.vscode](./.vscode) folder.
->>>>>>> main:tests_generated/test_ide_jetbrains-False/README.md
 - [AlgoKit Tealer Integration](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/features/tasks/analyze.md): AlgoKit Tealer Integration is a feature in the CLI that allows you to run [Tealer](https://github.com/crytic/tealer) static analyzer on your TEAL
 source code. The invocation of this command is included in:
 - The github actions workflow file.
