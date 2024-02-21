@@ -50,23 +50,14 @@ jobs:
           # stop the build if there are files that don't meet formatting requirements
           poetry run black --check .
 
-      - name: Check linting with Ruff
-        run: |
-          # stop the build if there are Python syntax errors or undefined names
-          poetry run ruff .
-
       - name: Build smart contracts
         run: poetry run python -m smart_contracts build
 
-      - name: Check types with mypy
-        run: poetry run mypy
-
       - name: Run tests
         shell: bash
-        run: npm run test
-
-      - name: Scan TEAL files for issues
-        run: algokit task analyze .algokit --recursive --force # add --diff flag if you want output stability checks instead
+        run: |
+          set -o pipefail
+          poetry run pytest --junitxml=pytest-junit.xml
 
       - name: Scan TEAL files for issues
         run: algokit task analyze .algokit --recursive --force # add --diff flag if you want output stability checks instead
@@ -80,4 +71,4 @@ jobs:
           git diff --exit-code --minimal ./smart_contracts/artifacts || (echo "::error ::Smart contract artifacts have changed, ensure committed artifacts are up to date" && exit 1);
 
       - name: Run deployer against LocalNet
-        run: npm run deploy:ci
+        run: poetry run python -m smart_contracts deploy

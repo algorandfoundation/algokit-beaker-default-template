@@ -1,4 +1,4 @@
-# starter_beaker_smart_contract_python
+# test_smart_contract_generator_default_starter_preset_typescript
 
 This project has been generated using AlgoKit. See below for default getting started instructions.
 
@@ -17,6 +17,7 @@ For an interactive guided walkthrough of the project install [CodeTour](https://
      - Run `poetry install` in the root directory, which will set up a `.venv` folder with a Python virtual environment and also install all Python dependencies
      - Copy `.env.template` to `.env`
    - Run `algokit localnet start` to start a local Algorand network in Docker. If you are using VS Code launch configurations provided by the template, this will be done automatically for you.
+   - Run `npm install` to install NPM packages
 3. Open the project and start debugging / developing via:
    - VS Code
      1. Open the repository root in VS Code
@@ -51,13 +52,16 @@ This project makes use of Python to build Algorand smart contracts. The followin
 - [AlgoKit](https://github.com/algorandfoundation/algokit-cli) - One-stop shop tool for developers building on the Algorand network; [docs](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md), [intro tutorial](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/tutorials/intro.md)
 - [Beaker](https://github.com/algorand-devrel/beaker) - Smart contract development framework for PyTeal; [docs](https://beaker.algo.xyz), [examples](https://github.com/algorand-devrel/beaker/tree/master/examples)
 - [PyTEAL](https://github.com/algorand/pyteal) - Python language binding for Algorand smart contracts; [docs](https://pyteal.readthedocs.io/en/stable/)
-- [AlgoKit Utils](https://github.com/algorandfoundation/algokit-utils-py) - A set of core Algorand utilities that make it easier to build solutions on Algorand.
+- [AlgoKit Utils](https://github.com/algorandfoundation/algokit-utils-ts) - A set of core Algorand utilities that make it easier to build solutions on Algorand.
 - [Poetry](https://python-poetry.org/): Python packaging and dependency management.
+- [Black](https://github.com/psf/black): A Python code formatter.
+- [pip-audit](https://pypi.org/project/pip-audit/): Tool for scanning Python environments for packages with known vulnerabilities.
+- [npm](https://www.npmjs.com/): Node.js package manager.
+- [TypeScript](https://www.typescriptlang.org/): Strongly typed programming language that builds on JavaScript.
+- [ts-node-dev](https://github.com/wclr/ts-node-dev): TypeScript development execution environment.
+- [Jest](https://jestjs.io/): Automated testing.
 
-<<<<<<< HEAD:examples/generators/starter_beaker_smart_contract_python/README.md
-=======
 It has also been configured to have a productive dev experience out of the box in [VS Code](https://code.visualstudio.com/), see the [.vscode](./.vscode) folder.
->>>>>>> main:tests_generated/test_deployment_language-typescript/README.md
 - [AlgoKit Tealer Integration](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/features/tasks/analyze.md): AlgoKit Tealer Integration is a feature in the CLI that allows you to run [Tealer](https://github.com/crytic/tealer) static analyzer on your TEAL
 source code. The invocation of this command is included in:
 - The github actions workflow file.
