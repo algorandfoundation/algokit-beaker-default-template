@@ -49,7 +49,7 @@ ide_vscode:
   type: bool
   help: Do you want to add VSCode configuration?
   when: "{{ preset_name == 'custom' }}"
-  default: "{{ 'yes' if preset_name == 'production' else 'no' }}"
+  default: yes
 
 ide_jetbrains:
   type: bool
