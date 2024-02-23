@@ -16,6 +16,8 @@ setuptools = "^69.0.2" # Adding explicitly to work around pyteal https://github.
 black = {extras = ["d"], version = "*"}
 ruff = "^0.1.6"
 mypy = "*"
+pytest = "*"
+pytest-cov = "*"
 pip-audit = "*"
 pre-commit = "*"
 
@@ -35,6 +37,9 @@ unfixable = ["B", "RUF"]
 [tool.ruff.flake8-annotations]
 allow-star-arg-any = true
 suppress-none-returning = true
+
+[tool.pytest.ini_options]
+pythonpath = ["smart_contracts", "tests"]
 
 [tool.mypy]
 files = "smart_contracts/"
