@@ -17,7 +17,7 @@ jobs:
     needs: ci-check-python
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Tag release
         id: tag
