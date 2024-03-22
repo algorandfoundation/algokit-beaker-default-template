@@ -28,15 +28,9 @@ environment_secrets = []
 
 [project.run]
 # Commands intented for use locally and in CI
-{%- if deployment_language == 'python' %}
 build = { commands = [
   'poetry run python -m smart_contracts build',
 ], description = 'Build all smart contracts in the project' }
-{%- elif deployment_language == 'typescript' %}
-build = { commands = [ 
-  'npm run build',
-], description = 'Build all smart contracts in the project' }
-{%- endif %}
 {%- if deployment_language == 'python' and use_python_pytest %}
 test = { commands = [
   'poetry run pytest',
