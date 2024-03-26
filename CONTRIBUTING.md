@@ -5,11 +5,14 @@ This repository is a template for creating new AlgoKit projects. It includes a b
 ## Pre-requisites
 
 `poetry install` - Install the dependencies for the project.
+`pipx install algokit` - Ensure cli is installed.
 
 ## Testing
 
+Ensure localnet is running by executing `algokit localnet reset`.
+
 ```bash
-poetry run pytest
+poetry run pytest -n auto
 ```
 
 This will regenerate the tests for default `starter` and `production` presets as well as default tests for `generators` available on the template.
