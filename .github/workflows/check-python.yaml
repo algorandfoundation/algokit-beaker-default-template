@@ -15,10 +15,9 @@ jobs:
 
       - name: Install algokit
         # TODO: restore to algokit prior to release
-        run: pipx install git+https://github.com/algorandfoundation/algokit-cli@feat/command_orchestration
+        run: pipx install git+https://github.com/algorandfoundation/algokit-cli@v2
 
       - name: Run algokit localnet
-        # TODO: restore to algokit prior to release
         run: algokit localnet reset
 
       - name: Set up Python 3.12

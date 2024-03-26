@@ -19,11 +19,23 @@ This will regenerate the tests for default `starter` and `production` presets as
 
 ## Development
 
+### Manual
+
 ```bash
-poetry run copier copy . .playground/{some_dummy_folder_name} --vcs-ref=HEAD --trust
+poetry run copier copy . .playground --vcs-ref=HEAD --trust
 ```
 
 To generate a dummy project into the `.playground` folder. This is useful for testing the template to quickly preview the output of the template before testing via `pytest`.
+
+### Using VSCode Tasks
+
+In VSCode IDE, you can find the tasks in the `.vscode/tasks.json` file. To run them:
+
+1. Open the command palette (`Cmd+Shift+P` on macOS, `Ctrl+Shift+P` on Windows/Linux) and type `> Run Task`
+2. Select the task you want to run
+3. It will be generated for you under the .playground folder
+
+To cleanup the .playground folder run dedicated cleanup task.
 
 ## Contributing
 
