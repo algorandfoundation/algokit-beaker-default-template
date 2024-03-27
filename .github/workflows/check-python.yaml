@@ -14,7 +14,10 @@ jobs:
         run: pipx install poetry
 
       - name: Install algokit
-        run: pipx install algokit 
+        run: pipx install algokit
+
+      - name: Run algokit localnet
+        run: algokit localnet start
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5

@@ -1,12 +1,29 @@
 _subdirectory: template_content
 _templates_suffix: ".jinja"
 
+use_workspace:
+  type: bool
+  when: false # never prompted to user explicitly, instead expect cli to auto fill (supported cli versions > v1.13.x)
+  help: Automatically filled by AlgoKit CLI (>1.13.x) - passes the --workspace/--no-workspace flag's value, can be used to reason whether this template is currently being instantiated as part of a workspace or not.
+  default: no
+
 # questions
-# project_name should never get prompted, AlgoKit should always pass it by convention
 project_name:
   type: str
   help: Name for this project.
   placeholder: "algorand-app"
+
+author_name:
+  type: str
+  help: Package author name
+  placeholder: "Your Name"
+  default: "Your Name"
+
+author_email:
+  type: str
+  help: Package author email
+  placeholder: "your@email.tld"
+  default: "your@email.tld"
 
 contract_name:
   type: str
@@ -17,16 +34,6 @@ contract_name:
     {% if not (contract_name | regex_search('^[a-z]+(?:_[a-z]+)*$')) %}
     contract_name must be formatted in snake case.
     {% endif %}
-
-author_name:
-  type: str
-  help: Package author name
-  placeholder: "Your Name"
-
-author_email:
-  type: str
-  help: Package author email
-  placeholder: "your@email.tld"
 
 preset_name:
   type: str

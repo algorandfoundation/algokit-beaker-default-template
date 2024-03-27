@@ -20,12 +20,9 @@ DEFAULT_PARAMETERS = {
 }
 config_path = Path(__file__).parent.parent / "pyproject.toml"
 BLACK_ARGS = ["black", "--check", "--diff", "--config", str(config_path), "."]
-RUFF_ARGS = ["ruff", "--diff", "--config", str(config_path), "."]
-MYPY_ARGS = [
-    "mypy",
-    "--ignore-missing-imports",  # TODO: only ignore missing typed clients in config.py
-    ".",
-]
+BUILD_ARGS = ["algokit", "project", "run", "build"]
+TEST_ARGS = ["algokit", "project", "run", "test"]
+LINT_ARGS = ["algokit", "project", "run", "lint"]
 
 
 def _load_copier_yaml(path: Path) -> dict[str, str | bool | dict]:
@@ -52,7 +49,12 @@ def working_dir() -> Iterator[Path]:
 
             dest_dir = generated_root / src_dir.stem
             shutil.rmtree(dest_dir, ignore_errors=True)
-            shutil.copytree(src_dir, dest_dir, dirs_exist_ok=True)
+            shutil.copytree(
+                src_dir,
+                dest_dir,
+                dirs_exist_ok=True,
+                ignore=shutil.ignore_patterns(".*_cache", ".venv", "__pycache__"),
+            )
 
 
 def run_init(
@@ -88,7 +90,6 @@ def run_init(
         "--defaults",
         "--no-ide",
         "--no-git",
-        "--no-bootstrap",
         "--no-workspace",
     ]
     answers = {**DEFAULT_PARAMETERS, **(answers or {})}
@@ -121,13 +122,13 @@ def check_codebase(working_dir: Path, test_name: str) -> subprocess.CompletedPro
     content = src_path_pattern.sub("_src_path: <src>", content)
     copier_answers.write_text(content, "utf-8")
 
-    check_args = [BLACK_ARGS]
+    check_args = [BLACK_ARGS, BUILD_ARGS]
 
     # Starter template does not have ruff config or mypy config by default
     # so only check for them if the starter template is not used
     processed_questions = _load_copier_yaml(copier_answers)
     if processed_questions["preset_name"] == "production":
-        check_args += [RUFF_ARGS, MYPY_ARGS]
+        check_args += [LINT_ARGS, TEST_ARGS]
 
     for check_arg in check_args:
         result = subprocess.run(
