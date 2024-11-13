@@ -1,6 +1,10 @@
 _subdirectory: template_content
 _templates_suffix: ".jinja"
 
+_tasks:
+  - "python -c \"print('WARNING: This template has been deprecated. Beaker for Algorand Smart Contract development is no longer supported.\\nPlease use Algorand Python instead. The Algorand Python template can be found at https://github.com/algorandfoundation/algokit-python-template')\""
+  - "python -c \"exit(1)\""
+
 use_workspace:
   type: bool
   when: false # never prompted to user explicitly, instead expect cli to auto fill (supported cli versions > v1.13.x)
