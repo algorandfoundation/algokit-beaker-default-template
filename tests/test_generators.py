@@ -176,6 +176,7 @@ def run_generator(
 
 
 @pytest.mark.parametrize("language", ["python", "typescript"])
+@pytest.mark.skip(reason="This test is deprecated since the template is deprecated")
 def test_smart_contract_generator_default_starter_preset(
     language: str, working_dir: Path
 ) -> None:
@@ -207,6 +208,7 @@ def test_smart_contract_generator_default_starter_preset(
 
 
 @pytest.mark.parametrize("language", ["python", "typescript"])
+@pytest.mark.skip(reason="This test is deprecated since the template is deprecated")
 def test_smart_contract_generator_default_production_preset(
     language: str, working_dir: Path
 ) -> None:
@@ -235,3 +237,17 @@ def test_smart_contract_generator_default_production_preset(
 
     response = check_codebase(working_dir, test_name)
     assert response.returncode == 0, response.stdout
+
+
+def test_template_fail() -> None:
+    test_name = "production_beaker_smart_contract_fail"
+
+    response = run_init(
+        root,
+        test_name,
+        answers={
+            "preset_name": "starter",
+            "deployment_language": "python",
+        },
+    )
+    assert response.returncode == 1, response.stdout
