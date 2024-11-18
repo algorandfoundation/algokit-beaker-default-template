@@ -186,6 +186,7 @@ def get_questions_from_copier_yaml(
 
 
 @pytest.mark.parametrize(("question_name", "answer"), get_questions_from_copier_yaml())
+@pytest.mark.skip(reason="This test is deprecated since the template is deprecated")
 def test_parameters(working_dir: Path, question_name: str, answer: str | bool) -> None:
     response = run_init_kwargs(working_dir, **{question_name: answer})
     assert response.returncode == 0, response.stdout
