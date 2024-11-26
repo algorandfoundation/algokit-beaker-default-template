@@ -22,28 +22,13 @@ def main():
 
         if project_dir.exists():
             try:
-                # Change working directory to parent before deletion
                 os.chdir(project_dir.parent)
                 shutil.rmtree(project_dir)
-            except PermissionError as e:
-                print(
-                    f"Failed to clean up {project_dir}: Unable to remove directory due to permissions: {e}",
-                    file=sys.stderr,
-                )
-                print(
-                    "Please ensure no files are open in the directory and try again.",
-                    file=sys.stderr,
-                )
-                sys.exit(1)
-            except OSError as e:
-                print(f"Failed to clean up {project_dir}: {str(e)}", file=sys.stderr)
-                print(
-                    "Please ensure no files are open in the directory and try again.",
-                    file=sys.stderr,
-                )
-                sys.exit(1)
             except Exception as e:
-                print(f"Failed to clean up {project_dir}: {str(e)}", file=sys.stderr)
+                print(
+                    f"Failed to clean up {project_dir}. You will have to manually delete the project folder. Error: {str(e)}",
+                    file=sys.stderr,
+                )
 
         sys.exit(1)
 
