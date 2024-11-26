@@ -10,6 +10,10 @@
 </p>
 
 ---
+# DEPRECATED
+This template has been deprecated. Beaker for Algorand Smart Contract development is no longer supported. Please use Algorand Python instead. The Algorand Python template can be found at https://github.com/algorandfoundation/algokit-python-template.
+
+---
 
 This template provides a production-ready baseline for developing and deploying [Beaker](https://github.com/algorand-devrel/beaker) smart contracts.
 

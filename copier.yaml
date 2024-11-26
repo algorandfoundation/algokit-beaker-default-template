@@ -1,29 +1,50 @@
 _subdirectory: template_content
 _templates_suffix: ".jinja"
 
+use_deprecated_template:
+  type: bool
+  help: |
+    WARNING: This template has been deprecated. Beaker for Algorand Smart Contract development is no longer supported.
+    Please use Algorand Python instead. The Algorand Python template can be found at https://github.com/algorandfoundation/algokit-python-template
+    Do you still want to proceed with using the deprecated template?
+  default: no
+
+_tasks:
+  - '"{{ python_path if python_path else _copier_python }}" post_init.py {{ use_deprecated_template }} {{ use_workspace }}'
+    
 use_workspace:
   type: bool
-  when: false # never prompted to user explicitly, instead expect cli to auto fill (supported cli versions > v1.13.x)
+  when: false  # never prompted to user explicitly, expect CLI to auto-fill
   help: Automatically filled by AlgoKit CLI (>1.13.x) - passes the --workspace/--no-workspace flag's value, can be used to reason whether this template is currently being instantiated as part of a workspace or not.
   default: no
+
+# Auto determined by algokit-cli from v1.11.3 to allow execution of python script
+# in binary mode.
+python_path:
+  type: str
+  help: Path to the sys.executable.
+  when: false
 
 # questions
 project_name:
   type: str
   help: Name for this project.
   placeholder: "algorand-app"
+  when: "{{ use_deprecated_template }}"
 
 author_name:
   type: str
   help: Package author name
   placeholder: "Your Name"
   default: "Your Name"
+  when: "{{ use_deprecated_template }}"
 
 author_email:
   type: str
   help: Package author email
   placeholder: "your@email.tld"
   default: "your@email.tld"
+  when: "{{ use_deprecated_template }}"
 
 contract_name:
   type: str
@@ -34,6 +55,7 @@ contract_name:
     {% if not (contract_name | regex_search('^[a-z]+(?:_[a-z]+)*$')) %}
     contract_name must be formatted in snake case.
     {% endif %}
+  when: "{{ use_deprecated_template }}"
 
 preset_name:
   type: str
@@ -43,6 +65,7 @@ preset_name:
     "Production - for confidently deploying to MainNet and/or more complex projects": "production"
     "Custom - for tailoring the template output to your needs": "custom"
   default: "starter"
+  when: "{{ use_deprecated_template }}"
 
 deployment_language:
   type: str
@@ -51,41 +74,43 @@ deployment_language:
     Python: "python"
     TypeScript: "typescript"
   default: "python"
+  when: "{{ use_deprecated_template }}"
 
 ide_vscode:
   type: bool
   help: Do you want to add VSCode configuration?
-  when: "{{ preset_name == 'custom' }}"
+  when: "{{ preset_name == 'custom' and use_deprecated_template }}"
   default: yes
 
 code_tours:
   type: bool
   help: Do you want to add interactive VSCode CodeTour walkthrough?
-  when: "{{ preset_name == 'custom' }}"
+  when: "{{ preset_name == 'custom' and use_deprecated_template }}"
   default: yes
 
 ide_jetbrains:
   type: bool
   help: Do you want to add JetBrains configuration (primarily optimized for PyCharm CE)?
-  when: "{{ preset_name == 'custom' }}"
+  when: "{{ preset_name == 'custom' and use_deprecated_template }}"
   default: "{{ 'yes' if preset_name == 'production' else 'no' }}"
+  when: "{{ use_deprecated_template }}"
 
 use_python_pytest:
   type: bool
-  when: "{{ deployment_language == 'python' and preset_name == 'custom' }}"
+  when: "{{ deployment_language == 'python' and preset_name == 'custom' and use_deprecated_template }}"
   help: Do you want to include unit tests (via pytest)?
   default: "{{ 'yes' if preset_name == 'production' and deployment_language == 'python' else 'no' }}"
 
 use_typescript_jest:
   type: bool
-  when: "{{ deployment_language == 'typescript' and preset_name == 'custom' }}"
+  when: "{{ deployment_language == 'typescript' and preset_name == 'custom' and use_deprecated_template }}"
   help: Do you want to include unit tests (via jest)?
   default: "{{ 'yes' if preset_name == 'production' and deployment_language == 'typescript' else 'no' }}"
 
 python_linter:
   type: str
   help: Do you want to use a Python linter?
-  when: "{{ preset_name == 'custom' }}"
+  when: "{{ preset_name == 'custom' and use_deprecated_template }}"
   choices:
     Ruff: "ruff"
     Flake8: "flake8"
@@ -95,35 +120,35 @@ python_linter:
 use_python_black:
   type: bool
   help: Do you want to use a Python formatter (via Black)?
-  when: "{{ preset_name == 'custom' }}"
+  when: "{{ preset_name == 'custom' and use_deprecated_template }}"
   default: "{{ 'yes' if preset_name == 'production' else 'no' }}"
 
 use_python_mypy:
   type: bool
-  when: "{{ preset_name == 'custom' }}"
+  when: "{{ preset_name == 'custom' and use_deprecated_template }}"
   help: Do you want to use a Python type checker (via mypy)?
   default: "{{ 'yes' if preset_name == 'production' else 'no' }}"
 
 use_python_pip_audit:
   type: bool
-  when: "{{ preset_name == 'custom' }}"
+  when: "{{ preset_name == 'custom' and use_deprecated_template }}"
   help: Do you want to include Python dependency vulnerability scanning (via pip-audit)?
   default: "{{ 'yes' if preset_name == 'production' else 'no' }}"
 
 use_github_actions:
   type: bool
-  when: "{{ preset_name == 'custom' }}"
+  when: "{{ preset_name == 'custom' and use_deprecated_template }}"
   help: Do you want to include Github Actions workflows for build and testnet deployment?
   default: "{{ 'yes' if preset_name == 'production' else 'no' }}"
 
 use_pre_commit:
   type: bool
-  when: "{{ preset_name == 'custom' }}"
+  when: "{{ preset_name == 'custom' and use_deprecated_template }}"
   help: Do you want to include pre-commit for linting, type checking and formatting?
   default: "{{ 'yes' if preset_name == 'production' else 'no' }}"
 
 use_dispenser:
   type: bool
-  when: "{{ preset_name == 'custom' }}"
+  when: "{{ preset_name == 'custom' and use_deprecated_template }}"
   help: Do you want to fund your deployment account using an optional dispenser account?
   default: "{{ 'yes' if preset_name == 'production' else 'no' }}"
